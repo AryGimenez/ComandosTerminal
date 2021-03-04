@@ -10,13 +10,17 @@ git config --global user.email "Mail de el responsable del codigo"
 # -- muestra la lista de configuraciones de git
 git config --list #  <!> REVISAR
 
-# -- descarga el codigo segun la ruta dada
+# -- clona seguna el repositorio paso por url
 git clone URL
+
+
+# -- Ve las difernecias entre mi maquina y el repocitorio
+git diff # <!> NO FUNCIONA
 
 
 # -- para que un archivo no este en git se debe crear un archivo .gitignore
 vim .gitignore
-
+-
 
 # -- iniciar mi proyecto a git
 
