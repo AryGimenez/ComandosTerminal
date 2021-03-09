@@ -53,6 +53,17 @@ sudo dnf -y install tmux
 #-- ver la informacion del sistema
 	hostnamectl
 
+#-- Empaquetacion *.tar https://blog.desdelinux.net/con-el-terminal-comprimir-descomprimir-archivos/
+tar -cvf archivo.tar # - empaquetar
+tar tar xvf arcivo.Tar # - desemaquetar
+tar -tf archivo.tar # - Ver archivo
+
+# -- Empaquetacion *.zip https://blog.desdelinux.net/con-el-terminal-comprimir-descomprimir-archivos/
+zip arcivo.zip fichero
+unzip arcivo.zip
+unzip -v arcivo.unzip
+
+
 
 # -- Actualizar Fedor | Informacion: https://yourgeekweb.com/es/2019/03/24/como-actualizar-fedora-desde-la-terminal/
 # -Para instlar todas las actualizaciones
@@ -99,10 +110,16 @@ cp archivo.txt /Directorio
 cp -r -v archivo.txt /Directorio # -r Copiar directorio -v ver movimiento de archivos
 
 
-# Crear Directorio
+# -- Crear Directorio
 mkdir Nombre\ de\ Directorio
 
--- Ver El tomaño total de un directorio en el  curo
+# -- Renombrar Directorio
+
+
+# -- Crear Directorio
+
+
+# -- Ver El tomaño total de un directorio en el  curo
 du -sh Directorio/
 
 

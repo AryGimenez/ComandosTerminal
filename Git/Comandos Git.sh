@@ -13,6 +13,13 @@ git config --list #  <!> REVISAR
 # -- clona seguna el repositorio paso por url
 git clone URL
 
+# -- Crear credencial para guarcar
+#    Usuario y Password de GitHub
+#    https://blog.openalfa.com/como-evitar-que-git-solicite-usuario-y-contrasena-cada-vez
+git config --global credential.helper store
+#   si no queres cuardar en el disoc esto lo hace por tanto timpeo como dice el numero
+#   En este caso son Mili Segundos
+git config --global credential.helper 'cache --timeout=3600'
 
 # -- Ve las difernecias entre mi maquina y el repocitorio
 git diff # <!> NO FUNCIONA
@@ -30,6 +37,8 @@ git init
 git add Directoreio_o_archivo
 	# - Agrega al Staging area Todos lo archivos en este Repocitorio
 	git add .
+
+	git add -A #-- <?> diferencias entre add .
 
 
 # -- remover del steting area
@@ -64,7 +73,8 @@ git show
 git status
 
 # -- mustra las diferencias de el codigo
-git diff Commit Commit
+git diff  # <?> NO ME MUESTRA
+
 
 
 #Todo cambia a la vercion anterior
@@ -78,16 +88,21 @@ git reset Commit --hard
 # Rama hotfix -- Rama Arreglo en caleinte
 git branch NombreDeBranch
 
-# -- Pasarnos a Brinch
+# -- Pasarnos a branck
 git checkut NombreDeBranch
+
+
 
 # -- muestra las branch
 git branch
 #  agregando -A muesra las que estan en el remoto
 # y en el local
+git branch -a
 
-# mustra las branch que emos mergeado
-git branch --merged
+
+# -- mustra las branch que emos mergeado
+git branch --merged # <?> Que es mergead
+
 
 # -- Mergear branch
 git merge NombreDeBranch
@@ -97,5 +112,8 @@ git merge NombreDeBranch
 # en la branch asignada
 git push -u origin NombreDeBranch
 
-# -- Eliminar mi branch
+# -- Eliminar mi branch de el Repocitorio Externo
 git push origin --delete miNuevaBranch
+
+# -- Elimina la branch LOCALMENTE
+git branch -d miNuevaBranch
