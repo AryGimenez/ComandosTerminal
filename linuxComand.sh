@@ -1,3 +1,18 @@
+# -- Fechas
+#Dice la fecha
+date # muestra fecha actual
+date --set "2019-11-31 15:20" # modifica fecha actualice
+
+
+
+#-- Crear un USB de instalacion linux
+# IDENTIFICA EL USB
+fdisk -l
+
+dd if=Linux.iso of=/dev/sdf bs=512k
+
+
+
 #-- Eliminar archivos
 rm 'Nombre del archivo'
 rm -r 'Nombre del directorio'
@@ -32,8 +47,26 @@ sudp apt install tmux
 # -- Ve la vercion de Temux
 tmux -v
 
+
+
 # -- Partir a la mitad
 # CTR+B "
+
+# -- Crea Bentana nueva
+# CTR+B C
+
+# -- Cambia a Ventana Siguiente
+# CTR+B N
+
+# -- Cambia a Venta Anterior
+# CTR+B P
+
+## -- Camtia a venta segun Numero
+# CTR+B Numero
+
+# -- Cierra venta acutal
+# CTR+B &
+
 
 # -- Abrir archivo SublimeText
 	subl Nombre-De-Archivo
@@ -111,6 +144,18 @@ du -sh Directorio/
 
 # -- Ver los discos instalado en el sistema
 fdisk -l
+
+# -- Instalacion jdk en Fedroa 31
+#    https://blog.desdelinux.net/java-dos-formas-diferentes-de-instalarlo-en-fedora-31/
+java --version # saber si tengo java instalados
+sudo dnf search openjdk # instalamos OupenJDK
+
+sudo dnf install java-11-openjdk # instalamos java 11
+# o
+sudo dnf install java-1.8.0-openjdk # instalamos java 8
+
+
+
 
 # -- Saber vercion de Fedora actual
 #	-- Saber la Vercion del kernel acual

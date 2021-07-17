@@ -1,13 +1,8 @@
 
 
 
-# -- Fechas
-#Dice la fecha
-	date
-date --set "2019-11-31 15:20"
 
-# -- Como saber en que directorio Estas
-pwd
+
 
 # -- Remonbrar archivo
 mv nobre_antiguo nuevo_nombre
