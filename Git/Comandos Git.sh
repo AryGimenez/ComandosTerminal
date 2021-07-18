@@ -1,7 +1,10 @@
 # -- Muestra la vercion de el git
 git version
 
-# -- Coloca el nombre a git
+
+
+
+# -- Coloca el nombre a git  (En caso de no aver configurado en forma global se debe sacar --global)
 git config --global user.name "Nombre usuairo"
 
 # -- Colocar el Mail de el que subeel codigo
