@@ -47,8 +47,6 @@ sudp apt install tmux
 # -- Ve la vercion de Temux
 tmux -v
 
-
-
 # -- Partir a la mitad
 # CTR+B "
 

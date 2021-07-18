@@ -25,6 +25,8 @@ npm show,
 
 npm init -f # -- inicia proyecto sin hacr las preguntas frecuetes
 
+# -- ejecuta en este caso dev
+npm run dev
 
 
 # -- Para trabajar codigo en el servidro mas facil
@@ -34,7 +36,7 @@ npm install express
 #    tranfomran  codigo a html
 npm install ejs
 
-# -- ve las peticiones de los usuario al servidor 
+# -- ve las peticiones de los usuario al servidor
 npm install morgan
 
 # -- Se utiliza para ecuchar cambios en el codigo
