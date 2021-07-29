@@ -8,6 +8,11 @@ node src
 
 # -- Ejectua el Node.js
 npm start
+
+# -- Desintala dependencia
+
+npm rm --save dependencia
+
 # -- Pasa un paquete de modo
 #  desarollo a produccion
 npm install --save-prod howler

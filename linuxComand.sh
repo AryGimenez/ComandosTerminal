@@ -1,9 +1,12 @@
 # -- Fechas
-#Dice la fecha
+mo#Dice la fecha
 date # muestra fecha actual
 date --set "2019-11-31 15:20" # modifica fecha actualice
 
+# -- Apaga en 30 m
+sudo shutdown -h +30
 
+sudo shutdown now
 
 #-- Crear un USB de instalacion linux
 # IDENTIFICA EL USB
@@ -11,6 +14,36 @@ fdisk -l
 
 dd if=Linux.iso of=/dev/sdf bs=512k
 
+# no lo entendi bien    <?>
+diff #-- aca lo esplica https://linuxize.com/post/diff-command-in-linux/
+diff #-- me surgio por la siguiete lina  diff -qr ./x ./y | awk '{print $2}' | xargs -n1 -J% cp % ./y/ que encontre https://unix.stackexchange.com/questions/29845/how-can-i-do-a-copy-if-changed-operation NO ME QUEDO CLARO !
+
+#-- Crear Servidor NginExt con sertificado SSL <PEL-N>
+
+# -- Para entrar en escritorio de windows
+xfreerdp /u:administrador /p:spudla.1 /w:1280 /h:720 /v:192.168.1.3
+
+# -- Para borrar un pakete travado
+sudo  dpkg --remove --force-remove-reinstreq * # <ubuntu>
+
+
+# -- Comando instlar deb
+dpkg -i #  <ubuntu>
+
+# -- Como saber que vercion de kali tengo instlada
+lsb_release -a # <Kali>
+
+
+# -- Para Reparar cuando no puede acutalizar hay que <kali>
+# modificar /etc/apt/sources.list
+#	Repocitorio Regular
+deb http://http.kali.org/kali kali-rolling main non-free contrib
+#	En caso de que necesite paquetes de origen,
+deb-src http://http.kali.org/kali kali-rolling main non-free contrib
+
+
+# -- Para reparar alguna instlacion (guscar mas informacion)
+apt -f install # <ubuntu> Ver la diferencia con apt-get install -f
 
 
 #-- Eliminar archivos
@@ -23,7 +56,6 @@ rm -f 'si utiliza el operador -f fuersa la eliminacion sin pregunar'
 sudo yum -y install ntfs-3g # -- Instalar ntfs-3g
 yum -y install ntfsprogs # -- ntfsprogs
 
-sudo fdisk -l # -- Revisar los discos que se encuentran instalados
 
 ntfsfix /dev/sda4 # - Metodo para repararparticion <?>
 
@@ -36,7 +68,7 @@ yum install liveusb-creator # Instla el en el entorno grafico para crear usb boo
 sudo fsck /dev/sda
 
 #-- Reparar particiones ntfs - https://blog.desdelinux.net/reparar-sectores-recuperar-hdd-linux/
-sudo fdisk -l # ve los discos en el sistema
+
 sudo badblocks -s -v -f /dev/sdb
 
 # -- Instalar Temux https://www.hostinger.es/tutoriales/usar-tmux-cheat-sheet
@@ -101,6 +133,15 @@ unzip -v arcivo.unzip
 # - Instala el plugin de actualización
 	sudo dnf install dnf-plugin-system-upgrade
 
+# -- Instalar Virutal Box
+sudo dnf -y install @development-tools
+
+sudo dnf -y install kernel-headers kernel-devel dkms elfutils-libelf-devel qt5-qtx11extras
+
+sudo dnf search virtualbox
+
+sudo dnf install VirtualBox
+
 
 # -- Instlacion de Visual Studio Code / Nodejs
 sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
@@ -117,8 +158,7 @@ sudo yum install code # <?>
 # <?>
 dnf system-upgrade download --releasever=29
 
-#	-- Ver Discos HDD con 'FDISK'
-	sudo fdisk -l
+
 
 # -- Muestra el directorio actual
 pwd
@@ -133,6 +173,10 @@ mv Archivo\ Origen Archivo\ Destino
 # Copiar Archivos
 cp archivo.txt /Directorio
 cp -r -v archivo.txt /Directorio # -r Copiar directorio -v ver movimiento de archivos
+# --Ve el contenido de el dicrectiorio acutal
+ls
+ls -l Se #-- musetra las fechas de modificacion de el archivos
+
 
 # -- Crear Directorio
 mkdir Nombre\ de\ Directorio
@@ -142,6 +186,14 @@ du -sh Directorio/
 
 # -- Ver los discos instalado en el sistema
 fdisk -l
+
+# -- Descargar paquetes
+wget URL # <ubuntu>
+
+# -- Ver el estado de el  disco <?>
+#  Al parecer lo tiene que estar la opcion S M A R T  desde la biso par apoder usarlo https://computernewage.com/2015/03/14/como-detectar-errores-y-comprobar-el-estado-de-salud-de-tu-disco-duro-en-linux/
+
+
 
 # -- Instalacion jdk en Fedroa 31
 #    https://blog.desdelinux.net/java-dos-formas-diferentes-de-instalarlo-en-fedora-31/
@@ -158,6 +210,17 @@ sudo dnf install java-1.8.0-openjdk # instalamos java 8
 # -- Saber vercion de Fedora actual
 #	-- Saber la Vercion del kernel acual
 	uname -r
+
+# -- Abilitar Himbernacion Suspencion <Fedora> https://blog.desdelinux.net/como-hibernar-o-suspender-mediante-comandos-en-la-terminal/
+cat /sys/power/state # Nos dice si nuestro ordenador nos permitira himbernar o suspender  «mem» Se puede suspender «disk» se puede himbernar
+sudo pm-suspend # para suspender
+sudo pm-hibernate # Para himbernar
+
+sudo pm-suspend-hybrid # ambos
+
+
+
+
 
 # -- Para saber l qrquitectura (x86-64)
 	uname -m
@@ -176,6 +239,11 @@ mount /dev/sdb1 /media/Directorio --
 
 # -- Desmontar una partincion
 umount /media/Particion_A_Desmontar
+
+# -- Muestra la informacion de la red
+ifconfig
+
+sudo apt install net-tools # <Ubuntu> Si no anda te instala los paquetes necesarios
 
 # -- Instalar RPM
 sudo rpm -ifh *-rpm

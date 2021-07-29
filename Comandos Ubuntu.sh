@@ -1,51 +1,12 @@
 
 
 
-# -- Fechas
-#Dice la fecha
-	date
-date --set "2019-11-31 15:20"
-
-# -- Como saber en que directorio Estas
-pwd
-
-# -- Remonbrar archivo
-mv nobre_antiguo nuevo_nombre
-
-# -- Copiar Directorios
-cp -r "Directorio a copiar" "Directorio Destino"
-
-# -- Crear Directorio
-mkdir "Directorio a crear"
-
-# -- Descargar paquetes
-wget URL
-
-# -- Eliminar Directorio
-rm -r Directorio
-
-# -- Comando instlar deb
-dpkg -i
-
-# -- Para reparar alguna instlacion (guscar mas informacion)
-apt -f install #Ver la diferencia con apt-get install -f
-
-# -- Para entrar en escritorio de windows
-xfreerdp /u:administrador /p:spudla.1 /w:1280 /h:720 /v:192.168.1.3
 
 
-# -- Para borrar un pakete travado
-sudo  dpkg --remove --force-remove-reinstreq *
 
-# -- Como saber que vercion de kali tengo instlada
-lsb_release -a
 
-# -- Para Reparar cuando no puede acutalizar hay que
-# modificar /etc/apt/sources.list
-#	Repocitorio Regular
-deb http://http.kali.org/kali kali-rolling main non-free contrib
-#	En caso de que necesite paquetes de origen,
-deb-src http://http.kali.org/kali kali-rolling main non-free contrib
+
+
 
 
 # -- Instlar pquetes *.c

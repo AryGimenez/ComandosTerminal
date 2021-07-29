@@ -45,6 +45,8 @@ docker run -d --name NuevoNombreContenedor imagen # <?> -d no se lo que es
 # Agregue la clave GPG oficial de Docker:
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 
+
+
 # Verifique clave de huella digital
 sudo apt-key fingerprint 0EBFCD88
 

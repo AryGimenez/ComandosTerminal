@@ -10,6 +10,10 @@ git config --global user.name "Nombre usuairo"
 # -- Colocar el Mail de el que subeel codigo
 git config --global user.email "Mail de el responsable del codigo"
 
+# -- Guarda las credenciales permanentemente  (En caso de no aver configurado en forma global se debe sacar --global)
+
+git config  --global  credential.helper store
+
 # -- muestra la lista de configuraciones de git
 git config --list #  <!> REVISAR
 
@@ -60,7 +64,7 @@ git push origin master
 git pull origin master
 
 # -- Para comitiar el codigo
-git commit -m "Mensaje"
+	git commit -m "Mensaje"
 
 # -- Historial de el codigo
 git log
@@ -83,21 +87,30 @@ git diff  # <?> NO ME MUESTRA
 #Todo cambia a la vercion anterior
 git reset Commit --hard
 
+#-- Muestra los Repocitiorios remotos
+git remote -v
 
+
+
+#  14:00 Jueves 29 Bulebar artigas 408 esquina solano Garcia.
 
 # -- Crear una nueva branch
 # Rama master -- Rama principal
 # Rama development -- Rama Experimental
 # Rama hotfix -- Rama Arreglo en caleinte
-git branch NombreDeBranch
+git branch NombreDeBranch   <?>
+
+# -- Crea una branch
+git checkout -b NombreDeBranch
 
 # -- Pasarnos a branck
 git checkut NombreDeBranch
 
 
 
+
 # -- muestra las branch
-git branch
+	git branch
 #  agregando -A muesra las que estan en el remoto
 # y en el local
 git branch -a
