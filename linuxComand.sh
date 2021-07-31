@@ -1,4 +1,4 @@
-# -- Fechas
+#-- Fechas
 #Dice la fecha
 date # muestra fecha actual
 date --set "2019-11-31 15:20" # modifica fecha actualice
