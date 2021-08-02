@@ -1,5 +1,10 @@
+<<<<<<< HEAD
 # -- Fechas
 mo#Dice la fecha
+=======
+#-- Fechas
+#Dice la fecha
+>>>>>>> 1d2d5e69292a0a1756f0737db5346ea2748c8937
 date # muestra fecha actual
 date --set "2019-11-31 15:20" # modifica fecha actualice
 
