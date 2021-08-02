@@ -8,10 +8,31 @@ mo#Dice la fecha
 date # muestra fecha actual
 date --set "2019-11-31 15:20" # modifica fecha actualice
 
-# -- Apaga en 30 m
+# -- Apagar en 30 m
 sudo shutdown -h +30
 
-sudo shutdown now
+# -- <F> Para contectarme por ssh
+ssh ary@<IP/HOST>
+
+
+# -- Instala ssh
+sudo apt install ssh <Ubuntu>
+
+# -- Muestra estado de ssh
+systemctl status ssh.service
+
+sudo shutdown now # apaga en el movimiento
+
+sudo sutdown -r  # <F> Reinicia el sistema operativo
+
+# -- Escanea los puertos abiertos de un Host o IP Los escanea por TCP o UDB
+sudo nmap -s<U/T> -O Ip/<IP/Host>
+
+# -- <?>
+sudo lsof -i -P -n # <?> Se que escanea puertos pero no me quedo claro porque entrega mucha informacion https://ubunlog.com/como-comprobar-los-puertos-en-uso-en-linux/
+
+# -- <?>
+netstat -putona | grep numero-de-puerto # <?> Se que escanea puertos No lo mire lo saque https://ubunlog.com/como-comprobar-los-puertos-en-uso-en-linux/
 
 #-- Crear un USB de instalacion linux
 # IDENTIFICA EL USB
@@ -178,10 +199,18 @@ mv Archivo\ Origen Archivo\ Destino
 # Copiar Archivos
 cp archivo.txt /Directorio
 cp -r -v archivo.txt /Directorio # -r Copiar directorio -v ver movimiento de archivos
+cp -a # <?> Creo que suma algunos argumentos como -r
+
 # --Ve el contenido de el dicrectiorio acutal
 ls
-ls -l Se #-- musetra las fechas de modificacion de el archivos
+ls -l Se # musetra los archivos en una lista \Fecha modificacion\
+ls -a # Muestra todos los archivos ocultos
+ls -h # Muestra el peso de los archivos en formatio umano no en SublimeText
+ls -lah # todo lo de arriba
 
+
+# Muestra el contenido de un archivos
+ll
 
 # -- Crear Directorio
 mkdir Nombre\ de\ Directorio
