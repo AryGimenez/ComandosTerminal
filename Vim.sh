@@ -29,4 +29,7 @@ p
 # -- Entra a modo vicion 
 v
 
+# -- Salta palabara acia atras 
+b
+
 
