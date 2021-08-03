@@ -1,4 +1,6 @@
 
+# -------------------------------<<LINUX>>-------------------------------------
+
 #-- Fechas
 #Dice la fecha
 
@@ -14,10 +16,10 @@ ssh ary@<IP/HOST>
 sudo vim /etc/apt/sources.list
 
 # -- Agrega Repositorio
-sudo add-apt-repository ppa:webupd8team/atom 
+sudo add-apt-repository ppa:webupd8team/atom
 
 # -- Remueve Repositorio
-sudo add-apt-repository --remove ppa:webupd8team/atom 
+sudo add-apt-repository --remove ppa:webupd8team/atom
 
 # -- Instala ssh
 sudo apt install ssh <Ubuntu>
@@ -56,17 +58,17 @@ xfreerdp /u:administrador /p:spudla.1 /w:1280 /h:720 /v:192.168.1.3
 # -- Para borrar un pakete travado
 sudo  dpkg --remove --force-remove-reinstreq * # <ubuntu>
 
-# -- Instalr archivos deb 
+# -- Instalr archivos deb
 sudo dpkg -i archivo.deb # <Ubuntu>
 
 
-# -- Instalar Visual Studio Code <F>	
+# -- Instalar Visual Studio Code <F>
 sudo snap install --classic code # <Ubuntu> https://ubunlog.com/visual-studio-code-editor-codigo-abierto-ubuntu-20-04/
 
 
 # -- Instalar archivos *.run <F>
-sudo chmod +x  # Creo que le da pemiso de ejecucion 
-./archivo.run 
+sudo chmod +x  # Creo que le da pemiso de ejecucion
+./archivo.run
 
 
 # -- Como saber que vercion de kali tengo instlada
@@ -103,9 +105,9 @@ ntfsresize -i -f -v /dev/sda4 # - Metodo para repara particiones <?>
 # -- Crear una unidad usb de instalacion de fedora USB
 yum install liveusb-creator # Instla el en el entorno grafico para crear usb booteable Fedora
 
-# -- Instalar  Tor Browser Navegador DarWeb  
-sudo add-apt-repository universe && sudo apt update 
-sudo apt install torbrowser-launcher  
+# -- Instalar  Tor Browser Navegador DarWeb
+sudo add-apt-repository universe && sudo apt update
+sudo apt install torbrowser-launcher
 
 # -- Repara Disco mediante FSCK https://www.solvetic.com/tutoriales/article/6126-comando-fsck-linux-para-reparar-error-sistema-de-archivos/
 sudo fsck /dev/sda
@@ -114,31 +116,7 @@ sudo fsck /dev/sda
 
 sudo badblocks -s -v -f /dev/sdb
 
-# -- Instalar Temux https://www.hostinger.es/tutoriales/usar-tmux-cheat-sheet
-sudo dnf -y install  tmux # - <Fedora>
 
-sudp apt install tmux
-
-# -- Ve la vercion de Temux
-tmux -v
-
-# -- Partir a la mitad
-# CTR+B "
-
-# -- Crea Bentana nueva
-# CTR+B C
-
-# -- Cambia a Ventana Siguiente
-# CTR+B N
-
-# -- Cambia a Venta Anterior
-# CTR+B P
-
-## -- Camtia a venta segun Numero
-# CTR+B Numero
-
-# -- Cierra venta acutal
-# CTR+B &
 
 
 # -- Abrir archivo SublimeText
@@ -310,3 +288,460 @@ airmon-ng stop wlp020f3 d
 airodump-ng wlp0s20f3 # monitoriza Red inalambrica
 
 airodump-ng wlp0s20f3 -c 11 --essid MYWIFI -w psk
+
+# -------------------------------<<TEMUX>>-------------------------------------
+
+# -- Instalar Temux https://www.hostinger.es/tutoriales/usar-tmux-cheat-sheet
+sudo dnf -y install  tmux # - <Fedora>
+
+sudp apt install tmux
+
+# -- Ve la vercion de Temux
+tmux -v
+
+# -- Dividir pantalla Verticalmente
+#  CTR+B "
+
+# -- Dividir pantalla horizontalmente  <F>
+CTB+B %
+
+# --  Se mueve verticalmente por la terminal
+CTB+B [
+
+# -- Crea Bentana nueva
+CTR+B C
+
+ # -- Cierra venta acutal
+ CTR+B &
+
+ # -- Cambia a Ventana Siguiente
+ CTR+B N
+
+ # -- Cambia a Venta Anterior
+ CTR+B P
+
+ ## -- Camtia a venta segun Numero
+ CTR+B Numero
+
+# --
+CTB+B
+
+# --
+CTB+B
+
+
+
+
+
+
+
+
+
+# -------------------------------<<Docker>>-------------------------------------
+
+# -- Laboratorio de docker web
+https://labs.play-with-docker.com/
+
+# -- Instalacion Doker en Ubuntu  https://docs.docker.com/engine/install/ubuntu/
+  # Elimina verciones enteriores
+  sudo apt-get remove docker docker-engine docker.io containerd runc
+
+  sudo apt-get update
+
+  sudo apt-get install \
+      apt-transport-https \
+      ca-certificates \
+      curl \
+      gnupg-agent \
+      software-properties-common
+
+
+# -- Instalar dorke fedora 31
+
+
+#    <PROBAR>
+    # -- Instalar nginex
+      apt-get install nginx #-- Debian Ubuntu
+      cd /etc/nginx # Dirigirme archivo configuracines
+      cp default domino.nuevo # copiamos el archivo devault
+      vim dominio.nuevo
+      # dentro de el archivo modificiamos root y le agregamos el dierectorio deonde se
+      # encuentra nuestro sitio web seria algo como /var/www/html/dominio_nuevo;
+      # ademas modificacmos server_name domino.nuevo
+      vim sites-avilable
+
+# -- Iniciar nginex en dentro de un Docker
+
+# crearmos un dirietorio donde fa a contoner el archivo
+vim docker-compose.yaml  # creamos el archivo yaml
+docker-compose up -d
+
+
+# -- Ejecuta un contenedor y asigna un nombre
+docker run -d --name NuevoNombreContenedor imagen # <?> -d no se lo que es
+
+
+# Agregue la clave GPG oficial de Docker:
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+
+
+
+# Verifique clave de huella digital
+sudo apt-key fingerprint 0EBFCD88
+
+# Configurar repocitorio estable
+sudo add-apt-repository \
+   "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+   $(lsb_release -cs) \
+   stable"
+
+# -- Ver que vercion de docker esta instalado
+docker --version
+
+# -- Ver mas informacion de docker
+docker info
+
+# -- ejecuta una imagen de contenedor
+docker run "imagen"
+
+# -- Ejecuta la imagen y entra a el contenedor
+docker run -it Imagen
+
+# -- comitiar
+docker commit id
+
+# -- Crear DockerFil: Es un conjunto de instrucciones que seirve
+#    para crear imagenes
+
+vim Dockerfile
+
+# -- Creamos una imagen vasada en el Dockerfile
+docker build -t NombreImagen:v1
+
+# -- docker tagear esto se usa normalmente par colocar verciones
+docker imag tag "id" "name" # Si agregamos agrega el tag:1.0
+
+# -- ve el istroiral de los comandos corridos en la imagen
+docker imag history "id"
+
+
+# -- Ve las imagenes en el sistema
+docker image ls # si le agregamos |head muestra las primeras 10
+
+# -- muestra los contenedores
+docker ps # los que estan en ejecucion acutalmente
+docker ps -a # Los que ya no estan en uso
+
+# -- Muestra informacion de el dicker
+docker inspect id-o-namber
+docker inspect --format '{{.stat.Pid}}'id-o-namber # Filtra dentro de la salida que entrega en la salida jeison
+# -- Elimina el docker segun el id
+docker rm id
+
+#-- elimina el contenedor con el Name
+docker rm -f Name
+
+# -- Elimina todos los contenedores de el sistema
+docker system prune
+# -- Para eliminar adicionalmente los contenedores detenidos y todas
+#  las imágenes no utilizadas (no solo aquellas pendientes), \
+#  añada el indicador -a al comando:
+docker system prune -a
+
+
+# -- Doker en web pra purebas
+
+
+# -- Le asigna nombre al contenedor H
+docker --rename imagen nuevo-Nombre #-?
+
+# -- Utiizar valid mount para Espejar un directorio dentro de el contenedor y scarlo para afuera
+# para percistir los datos cuando el contenedor muera
+ docker run -d --name db -v /DirectorioeEnMiPc:/DirectorioEnContenedor imagen
+
+
+
+
+# -- Renombrar un contenedor
+docker renombrar names-Anterior names-Nuevo  #-?
+
+
+
+# -- Muestra los volumenes que se encuentran en docker
+docker volume ls
+
+# -- Crear un volumen
+docker volume create NombreDeVolumen
+
+
+# -- Montar volumen a imagen
+docker run -d --name NombreImagenAsignado --mount src=Voumen,dst=RutaDeContendeor Imagen
+
+
+# -- Copiar archivo dentro de el contenedor
+docker cp ArchivoACopiarODirectorio Contendedor:Directorio/NombreArchivo
+
+# -- Mantar un foluen a un contenedor
+docker run imagen # -ti entra al contenedor
+
+# -- baja la imagen de DokckerHab
+docker pull "imagen" # si agregamos :1.0 baja la vercion 1.0
+
+# -- Entra en el contenedor en ejecucion
+docker exec -it NAMES ComandoDentroDeContenedor
+
+
+
+
+
+# -------------------------------<<GIT>>-------------------------------------
+
+
+
+
+# -- Muestra la vercion de el git
+git version
+
+# -- Coloca el nombre a git  (En caso de no aver configurado en forma global se debe sacar --global)
+git config --global user.name "Nombre usuairo"
+
+# -- Colocar el Mail de el que subeel codigo
+git config --global user.email "Mail de el responsable del codigo"
+
+
+# -- muestra la lista de configuraciones de git
+git config --list #  <!> REVISAR
+
+# -- clona seguna el repositorio paso por url
+git clone URL
+
+# -- Crear credencial para guarcar
+#    Usuario y Password de GitHub
+#    https://blog.openalfa.com/como-evitar-que-git-solicite-usuario-y-contrasena-cada-vez
+git config --global credential.helper store
+
+#   si no queres cuardar en el disoc esto lo hace por tanto timpeo como dice el numero
+#   En este caso son Mili Segundos
+git config --global credential.helper 'cache --timeout=3600'
+
+# -- Ve las difernecias entre mi maquina y el repocitorio
+git diff # <!> NO FUNCIONA
+
+
+# -- para que un archivo no este en git se debe crear un archivo .gitignore
+vim .gitignore
+-
+
+# -- iniciar mi proyecto a git
+
+git init
+
+# -- agrega al staging area
+git add Directoreio_o_archivo
+	# - Agrega al Staging area Todos lo archivos en este Repocitorio
+	git add .
+
+	git add -A #-- <?> diferencias entre add .
+
+
+# -- remover del steting area
+git rm --cached Archivo_a_eliminar
+
+# git rm -r  --cached si es directorio
+git rm --force #- Elimina el archivo de el disoco
+
+# -- le indica a donde va a subir el repositorio
+git remote add origin URLRepocitorios
+
+# -- envia el archivo a el gestor de verciones
+git push origin master
+
+# -- trae el codigo de el Gestor de verciones
+git pull origin master
+
+# -- Para comitiar el codigo
+	git commit -m "Mensaje"
+
+# -- Historial de el codigo
+git log
+	#- muestra el historial de el gin
+	git log archivo
+
+
+
+# -- Muestra el historial de los cambios de el archivos
+git show
+
+# -- Estado de repocitorio
+git status
+
+# -- mustra las diferencias de el codigo
+git diff  # <?> NO ME MUESTRA
+
+
+
+#Todo cambia a la vercion anterior
+git reset Commit --hard
+
+#-- Muestra los Repocitiorios remotos
+git remote -v
+
+
+
+#  14:00 Jueves 29 Bulebar artigas 408 esquina solano Garcia.
+
+# -- Crear una nueva branch
+# Rama master -- Rama principal
+# Rama development -- Rama Experimental
+# Rama hotfix -- Rama Arreglo en caleinte
+git branch NombreDeBranch   <?>
+
+# -- Crea una branch
+git checkout -b NombreDeBranch
+
+# -- Pasarnos a branck
+git checkut NombreDeBranch
+
+
+
+
+# -- muestra las branch
+	git branch
+#  agregando -A muesra las que estan en el remoto
+# y en el local
+git branch -a
+
+
+# -- mustra las branch que emos mergeado
+git branch --merged # <?> Que es mergead
+
+
+# -- Mergear branch
+git merge NombreDeBranch
+
+
+# -- sube el codigo a el gestor de verciones
+# en la branch asignada
+git push -u origin NombreDeBranch
+
+# -- Eliminar mi branch de el Repocitorio Externo
+git push origin --delete miNuevaBranch
+
+# -- Elimina la branch LOCALMENTE
+git branch -d miNuevaBranch
+
+
+
+
+
+# -------------------------------<<NPM>>-------------------------------------
+
+
+
+-- Muestra la verion acutal de npm
+npm -v
+
+-- Muestra la vercion acutal de Node.Js
+node -v
+
+node src
+
+# -- Ejectua el Node.js
+npm start
+
+# -- Desintala dependencia
+
+npm rm --save dependencia
+
+# -- Pasa un paquete de modo
+#  desarollo a produccion
+npm install --save-prod howler
+
+# -- muestra menu donde ves los paquetes disponibles
+# -- para la instlacion
+npm search howler
+
+# -- inica un proyecto generando un
+#    archivo packate.json
+npm init
+
+# -- MUESTRA INFROMACION DE LE paquete
+npm show,
+
+npm init -f # -- inicia proyecto sin hacr las preguntas frecuetes
+
+# -- ejecuta en este caso dev
+npm run dev
+
+
+# -- Para trabajar codigo en el servidro mas facil
+npm install express
+
+#-- motor de codigo html es para trabajar mas de el lado del servidor
+#    tranfomran  codigo a html
+npm install ejs
+
+# -- ve las peticiones de los usuario al servidor
+npm install morgan
+
+# -- Se utiliza para ecuchar cambios en el codigo
+#    y meterlo en el servicro -D porque es algo que se
+#    Va a usar en el modo ejecucion
+npm install nodemon -D
+
+# -- Lo que ace es lanza el servidor por defecto busca index.js
+noumod src
+
+npm install -D	# instlacion de dependencia de desarrollo es decir se usa
+                # para la etapa de desarollo poero no para produccion
+
+
+#-- Muestra la vercion de el paquete show
+npm show @vue/cli versions
+
+-- actualiza npm
+npm install npm@lastest -g
+
+# -- Desitnala Paquetres
+npm unistall 'paquete'
+
+
+
+
+
+
+# -------------------------------<<VIM>>-------------------------------------
+
+# -- Ve la configuracion de el movimiento
+vim.vimrc
+
+# -- Sale del archivo
+:q
+# -- Se pone el el comando insercion
+i
+
+# -- Guarda los cambios Archivo
+:w
+
+#-- Fuersa
+
+#-- Agrega numero de linea
+:set nu
+
+:set nu! # Saca Nuemro de lineas
+
+# -- Corta la linea
+dd
+
+# -- Copia la linea
+yy
+
+# -- Pega la linea debajo de el cursor
+p
+
+
+# -- Entra a modo vicion
+v
+
+# -- Salta palabara acia atras
+b
