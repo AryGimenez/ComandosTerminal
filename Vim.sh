@@ -24,3 +24,9 @@ yy
 
 # -- Pega la linea debajo de el cursor
 p
+
+
+# -- Entra a modo vicion 
+v
+
+

@@ -1,19 +1,23 @@
-<<<<<<< HEAD
-# -- Fechas
-mo#Dice la fecha
-=======
+
 #-- Fechas
 #Dice la fecha
->>>>>>> 1d2d5e69292a0a1756f0737db5346ea2748c8937
+
 date # muestra fecha actual
 date --set "2019-11-31 15:20" # modifica fecha actualice
-
 # -- Apagar en 30 m
 sudo shutdown -h +30
 
 # -- <F> Para contectarme por ssh
 ssh ary@<IP/HOST>
 
+# -- editar Repositorio
+sudo vim /etc/apt/sources.list
+
+# -- Agrega Repositorio
+sudo add-apt-repository ppa:webupd8team/atom 
+
+# -- Remueve Repositorio
+sudo add-apt-repository --remove ppa:webupd8team/atom 
 
 # -- Instala ssh
 sudo apt install ssh <Ubuntu>
@@ -52,9 +56,18 @@ xfreerdp /u:administrador /p:spudla.1 /w:1280 /h:720 /v:192.168.1.3
 # -- Para borrar un pakete travado
 sudo  dpkg --remove --force-remove-reinstreq * # <ubuntu>
 
+# -- Instalr archivos deb 
+sudo dpkg -i archivo.deb # <Ubuntu>
 
-# -- Comando instlar deb
-dpkg -i #  <ubuntu>
+
+# -- Instalar Visual Studio Code <F>	
+sudo snap install --classic code # <Ubuntu> https://ubunlog.com/visual-studio-code-editor-codigo-abierto-ubuntu-20-04/
+
+
+# -- Instalar archivos *.run <F>
+sudo chmod +x  # Creo que le da pemiso de ejecucion 
+./archivo.run 
+
 
 # -- Como saber que vercion de kali tengo instlada
 lsb_release -a # <Kali>
@@ -68,7 +81,7 @@ deb http://http.kali.org/kali kali-rolling main non-free contrib
 deb-src http://http.kali.org/kali kali-rolling main non-free contrib
 
 
-# -- Para reparar alguna instlacion (guscar mas informacion)
+ Para reparar alguna instlacion (guscar mas informacion)
 apt -f install # <ubuntu> Ver la diferencia con apt-get install -f
 
 
@@ -89,6 +102,10 @@ ntfsresize -i -f -v /dev/sda4 # - Metodo para repara particiones <?>
 
 # -- Crear una unidad usb de instalacion de fedora USB
 yum install liveusb-creator # Instla el en el entorno grafico para crear usb booteable Fedora
+
+# -- Instalar  Tor Browser Navegador DarWeb  
+sudo add-apt-repository universe && sudo apt update 
+sudo apt install torbrowser-launcher  
 
 # -- Repara Disco mediante FSCK https://www.solvetic.com/tutoriales/article/6126-comando-fsck-linux-para-reparar-error-sistema-de-archivos/
 sudo fsck /dev/sda
