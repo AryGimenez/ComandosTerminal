@@ -4,10 +4,38 @@
 #-- Fechas
 #Dice la fecha
 
+
+# -- Instalar sudo  <Debian> https://profesorweb.es/2017/03/instalar-sudo-en-debian/
+apt-get install sudo
+vim /etc/sudoers
+tu_usuario ALL=(ALL) ALL # <F> Modificar el archivo y agregar la linea
+# debajko de
+  #User privilege specification
+  root ALL=(ALL) ALL
+
+
+# -- Activar el esritorio <Ubuntu-Server> https://www.solvetic.com/tutoriales/article/9231-como-instalar-interfaz-grafica-en-ubuntu-server-21-04-escritorio/
+lsb_release -a # comprobar vercion ubuntu
+sudo apt update
+sudo apt upgrade
+sudo apt install tasksel
+sudo tasksel # accedemos a tasksel
+# Desntro de las opciones seleccionamos el escritorio que deseamos
+
+
+# -- Eliminar esritorio
+sudo apt-get purge ubuntu-desktop
+sudo apt-get purge ubuntu-desktop-minim
+sudo apt-get remov genome-*
+apt-get autoremove
+
 date # muestra fecha actual
 date --set "2019-11-31 15:20" # modifica fecha actualice
 # -- Apagar en 30 m
 sudo shutdown -h +30
+
+# -- Sierra cesion <Ubuntu>
+gnome-session-quit
 
 # -- <F> Para contectarme por ssh
 ssh ary@<IP/HOST>
@@ -43,14 +71,20 @@ netstat -putona | grep numero-de-puerto # <?> Se que escanea puertos No lo mire 
 #-- Crear un USB de instalacion linux
 # IDENTIFICA EL USB
 fdisk -l
-
 dd if=Linux.iso of=/dev/sdf bs=512k
+
+
+
 
 # no lo entendi bien    <?>
 diff #-- aca lo esplica https://linuxize.com/post/diff-command-in-linux/
 diff #-- me surgio por la siguiete lina  diff -qr ./x ./y | awk '{print $2}' | xargs -n1 -J% cp % ./y/ que encontre https://unix.stackexchange.com/questions/29845/how-can-i-do-a-copy-if-changed-operation NO ME QUEDO CLARO !
 
-#-- Crear Servidor NginExt con sertificado SSL <PEL-N>
+# --  Instalar WinBox
+# <Ubuntu> https://snapcraft.io/install/winbox/ubuntu#install
+sudo apt update
+sudo apt install snapd
+sudo snap install winbox
 
 # -- Para entrar en escritorio de windows
 xfreerdp /u:administrador /p:spudla.1 /w:1280 /h:720 /v:192.168.1.3
@@ -171,7 +205,7 @@ sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
 sudo sh -c 'echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/yum.repos.d/vscode.repo'
 
 sudo dnf check-update
-sudo dnf install code # O en versiones anteriores que usan yum:
+sudo dnf install code # O en es anteriores que usan yum:
 
 yum check-update # S
 sudo yum install code # <?>
@@ -226,7 +260,7 @@ wget URL # <ubuntu>
 
 # -- Instalacion jdk en Fedroa 31
 #    https://blog.desdelinux.net/java-dos-formas-diferentes-de-instalarlo-en-fedora-31/
-java --version # saber si tengo java instalados
+java -- # saber si tengo java instalados
 sudo dnf search openjdk # instalamos OupenJDK
 
 sudo dnf install java-11-openjdk # instalamos java 11
@@ -407,7 +441,11 @@ docker run "imagen"
 # -- Ejecuta la imagen y entra a el contenedor
 docker run -it Imagen
 
-# -- comitiar
+
+# -- Meterme en un contenedor correindo
+docker exec -it "Container Id" sh
+
+# -- Crea una imagen de un contenedor
 docker commit id
 
 # -- Crear DockerFil: Es un conjunto de instrucciones que seirve
@@ -428,14 +466,21 @@ docker imag history "id"
 # -- Ve las imagenes en el sistema
 docker image ls # si le agregamos |head muestra las primeras 10
 
-# -- muestra los contenedores
+# -- baja la imagen de DokckerHab
+docker pull "imagen" # si agregamos :1.0 baja la vercion 1.0
+
+
+# -- Mostrar o ver los contenedores
 docker ps # los que estan en ejecucion acutalmente
 docker ps -a # Los que ya no estan en uso
+docker ps -a | head # Los ultimos 10 que ya no estan en uso
 
-# -- Muestra informacion de el dicker
+
+# -- Mostrar informacion de el contenedor
 docker inspect id-o-namber
-docker inspect --format '{{.stat.Pid}}'id-o-namber # Filtra dentro de la salida que entrega en la salida jeison
-# -- Elimina el docker segun el id
+docker inspect --format '{{.stat.Pid}}' id-o-namber # <?> Filtra dentro de la salida que entrega en la salida jeison
+
+# -- Eliminar el docker segun el id
 docker rm id
 
 #-- elimina el contenedor con el Name
@@ -481,14 +526,7 @@ docker run -d --name NombreImagenAsignado --mount src=Voumen,dst=RutaDeContendeo
 # -- Copiar archivo dentro de el contenedor
 docker cp ArchivoACopiarODirectorio Contendedor:Directorio/NombreArchivo
 
-# -- Mantar un foluen a un contenedor
-docker run imagen # -ti entra al contenedor
 
-# -- baja la imagen de DokckerHab
-docker pull "imagen" # si agregamos :1.0 baja la vercion 1.0
-
-# -- Entra en el contenedor en ejecucion
-docker exec -it NAMES ComandoDentroDeContenedor
 
 
 
@@ -500,7 +538,7 @@ docker exec -it NAMES ComandoDentroDeContenedor
 
 
 # -- Muestra la vercion de el git
-git version
+git
 
 # -- Coloca el nombre a git  (En caso de no aver configurado en forma global se debe sacar --global)
 git config --global user.name "Nombre usuairo"
@@ -704,9 +742,6 @@ npm install npm@lastest -g
 
 # -- Desitnala Paquetres
 npm unistall 'paquete'
-
-
-
 
 
 
