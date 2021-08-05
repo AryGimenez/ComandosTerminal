@@ -1,8 +1,15 @@
 
 # -------------------------------<<LINUX>>-------------------------------------
 
+
+# -- Me perite escribir de forma bonita <F>
+figlet "Mensaje bonito"
+
 #-- Fechas
 #Dice la fecha
+
+#  Determinación de si un host remoto está accesible
+ping hostname  # <?>  En mi server no me anduvo
 
 
 # -- Instalar sudo  <Debian> https://profesorweb.es/2017/03/instalar-sudo-en-debian/
@@ -306,6 +313,19 @@ umount /media/Particion_A_Desmontar
 # -- Muestra la informacion de la red
 ifconfig
 
+# -- Desconecta una interfas de red
+
+ifconfig "INTERFACE" down
+
+# -- Conecta la interfase
+ifconfig "INTERFACE" start
+
+# -- Cambiar ip 
+ifconfig "INTERFACE" "IP" netmask 255.255.255.0 
+
+
+
+
 sudo apt install net-tools # <Ubuntu> Si no anda te instala los paquetes necesarios
 
 # -- Instalar RPM
@@ -315,7 +335,6 @@ sudo rpm -ifh *-rpm
 # https://www.agix.com.au/cracking-wifi-with-aircrack-ng-fedora-centos-rhel/
 # https://www.aircrack-ng.org/doku.php?id=es:cracking_wpa
 yum install aircrack-ng # <ReadHost> Instalar
-
 
 ifconfig wlp0s20f3 down
 airmon-ng stop wlp020f3 d
@@ -340,38 +359,33 @@ tmux -v
 CTB+B %
 
 # --  Se mueve verticalmente por la terminal
-CTB+B [
+# CTB+B [
 
 # -- Crea Bentana nueva
-CTR+B C
+CTR+B c
 
- # -- Cierra venta acutal
+ # -- Cierra la venta acutal
  CTR+B &
 
+ # -- Cambia el nombre de la bentan
+ CTB+B ,
  # -- Cambia a Ventana Siguiente
- CTR+B N
+ CTR+B n
 
  # -- Cambia a Venta Anterior
- CTR+B P
+ CTR+B p
 
  ## -- Camtia a venta segun Numero
- CTR+B Numero
+ CTR+B NUM
 
-# --
-CTB+B
+ # --
+ CTB+B
 
-# --
-CTB+B
-
-
+ # --
+ CTB+B
 
 
-
-
-
-
-
-# -------------------------------<<Docker>>-------------------------------------
+# -------------------------------<<DOCKER>>-------------------------------------
 
 # -- Laboratorio de docker web
 https://labs.play-with-docker.com/
@@ -382,6 +396,7 @@ https://labs.play-with-docker.com/
 
   sudo apt-get update
 
+  # -- sUSOAO 
   sudo apt-get install \
       apt-transport-https \
       ca-certificates \
@@ -445,22 +460,26 @@ docker run -it Imagen
 # -- Meterme en un contenedor correindo
 docker exec -it "Container Id" sh
 
+# -- Salir Contenedor <F>
+exit
+
+
 # -- Crea una imagen de un contenedor
 docker commit id
 
 # -- Crear DockerFil: Es un conjunto de instrucciones que seirve
 #    para crear imagenes
 
-vim Dockerfile
+vim dockerfile
 
 # -- Creamos una imagen vasada en el Dockerfile
 docker build -t NombreImagen:v1
 
 # -- docker tagear esto se usa normalmente par colocar verciones
-docker imag tag "id" "name" # Si agregamos agrega el tag:1.0
+docker image tag "id" "name" # Si agregamos agrega el tag:1.0
 
 # -- ve el istroiral de los comandos corridos en la imagen
-docker imag history "id"
+docker image history "id"
 
 
 # -- Ve las imagenes en el sistema
@@ -758,7 +777,15 @@ i
 # -- Guarda los cambios Archivo
 :w
 
-#-- Fuersa
+#-- Ir al inicia de el Documento
+gg
+
+# -- Ir al fin de el Documento
+MAYUS+g
+
+# -- Ir a la linea segun el NUM
+NUM+G
+
 
 #-- Agrega numero de linea
 :set nu
@@ -778,5 +805,16 @@ p
 # -- Entra a modo vicion
 v
 
-# -- Salta palabara acia atras
+# -- Eliminar linea actual 
+dd
+
+# -- Elimina la cantidad de lineas segun NUM
+d+NM
+
+
+# -- Mueve palabra acia atras <F>
 b
+
+# -- Mueve palabra acia delante <F>
+w
+
