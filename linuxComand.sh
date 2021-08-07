@@ -21,6 +21,15 @@ tu_usuario ALL=(ALL) ALL # <F> Modificar el archivo y agregar la linea
   root ALL=(ALL) ALL
 
 
+# -- Instalar Inkscape
+
+sudo add-apt-repository ppa:inkscape.dev/stable
+sudo apt update
+sudo apt install inkscape
+
+# -- Instalar GIMP
+
+
 # -- Activar el esritorio <Ubuntu-Server> https://www.solvetic.com/tutoriales/article/9231-como-instalar-interfaz-grafica-en-ubuntu-server-21-04-escritorio/
 lsb_release -a # comprobar vercion ubuntu
 sudo apt update
@@ -55,6 +64,14 @@ sudo add-apt-repository ppa:webupd8team/atom
 
 # -- Remueve Repositorio
 sudo add-apt-repository --remove ppa:webupd8team/atom
+
+# -- Instalar Oh my ZSH Mejora la terminal <Ubuntu> https://geekytheory.com/como-instalar-oh-my-zsh-en-ubuntu
+sudo apt-get install zsh
+sudo apt-get install git-core
+
+wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | zsh
+chsh -s `which zsh`
+
 
 # -- Instala ssh
 sudo apt install ssh <Ubuntu>
@@ -314,12 +331,15 @@ umount /media/Particion_A_Desmontar
 ifconfig
 
 # -- Desconecta una interfas de red
-
 ifconfig "INTERFACE" down
+ifdown "INTERFACE"
+
+# -- Reiniciar la configuracion de todas las interfaces 
+service networking reload
 
 # -- Conecta la interfase
-ifconfig "INTERFACE" start
-
+ifconfig "INTERFACE" start #  <?> NO da de alta la interface al usar ifconfig interfase down luego no la encuentro
+
 # -- Cambiar ip 
 ifconfig "INTERFACE" "IP" netmask 255.255.255.0 
 
@@ -390,23 +410,27 @@ CTR+B c
 # -- Laboratorio de docker web
 https://labs.play-with-docker.com/
 
-# -- Instalacion Doker en Ubuntu  https://docs.docker.com/engine/install/ubuntu/
+# -- Instalacion Doker <Ubuntu>  https://docs.docker.com/engine/install/ubuntu/
   # Elimina verciones enteriores
   sudo apt-get remove docker docker-engine docker.io containerd runc
 
   sudo apt-get update
 
-  # -- sUSOAO 
+  # -- Actualice el aptíndice de paquetes e instale paquetes para permitir el aptuso de un repositorio sobre HTTPS:
+
   sudo apt-get install \
       apt-transport-https \
       ca-certificates \
       curl \
       gnupg-agent \
       software-properties-common
+  # -- Agregue la clave GPG oficial de Docker:
 
+  curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
 
-# -- Instalar dorke fedora 31
+  sudo apt-get update
 
+  sudo apt-get install docker-ce docker-ce-cli containerd.io
 
 #    <PROBAR>
     # -- Instalar nginex
