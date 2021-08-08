@@ -1,6 +1,41 @@
 
 # -------------------------------<<LINUX>>-------------------------------------
 
+# -- Ver contenido de un archivo
+cat
+
+# -- Trabajo con Usuarios https://eltallerdelbit.com/usuarios-grupos-linux/
+
+# -- Crear Usuario
+useradd 
+
+# --<F> Modificar Usuario
+usermod
+
+#-- <F> Agregar Grupo de usuario 
+groupadd
+
+# -- Modificar Grupo de usarios <F>
+gropumod
+
+# -- Elimina Grupo de Usuarios <F>
+groupdel 
+
+# -- en este archivo podemos ver todos los usuarios creados, sus UID y sus GID.
+vim /etc/passwd 
+
+# -- En este archivo podemos ver los GID de los grupos existentes en el sistema, y los usuarios pertenecientes a cada grupo.
+vim /etc/group
+
+# -- En este archivo se encuentran cifradas las contraseñas de los usuarios.
+
+
+
+# -- Compartir directorio linux 
+groupadd migrupo  # Crea un grupo 
+
+useradd -d /home/compartido/ -g migrupo -m useradmin
+
 
 # -- Me perite escribir de forma bonita <F>
 figlet "Mensaje bonito"
@@ -410,29 +445,23 @@ CTR+B c
 # -- Laboratorio de docker web
 https://labs.play-with-docker.com/
 
+
+
 # -- Instalacion Doker <Ubuntu>  https://docs.docker.com/engine/install/ubuntu/
   # Elimina verciones enteriores
   sudo apt-get remove docker docker-engine docker.io containerd runc
-
-  sudo apt-get update
-
-  # -- Actualice el aptíndice de paquetes e instale paquetes para permitir el aptuso de un repositorio sobre HTTPS:
-
-  sudo apt-get install \
-      apt-transport-https \
-      ca-certificates \
-      curl \
-      gnupg-agent \
-      software-properties-common
-  # -- Agregue la clave GPG oficial de Docker:
-
+  
+  # Actualice el índice de paquetes de apt e instale paquetes para permitir que apt use un repositorio sobre HTTPS:
+  
+  # Agregue la clave GPG oficial de Docker:
   curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
 
   sudo apt-get update
 
+  # Actualice el índice del paquete apt e instale la última versión de Docker Engine y containerd
   sudo apt-get install docker-ce docker-ce-cli containerd.io
 
-#    <PROBAR>
+#   <PROBAR>
     # -- Instalar nginex
       apt-get install nginx #-- Debian Ubuntu
       cd /etc/nginx # Dirigirme archivo configuracines
@@ -804,7 +833,7 @@ i
 #-- Ir al inicia de el Documento
 gg
 
-# -- Ir al fin de el Documento
+# `-- Ir al fin de el Documento
 MAYUS+g
 
 # -- Ir a la linea segun el NUM
@@ -827,7 +856,7 @@ p
 
 
 # -- Entra a modo vicion
-v
+	v
 
 # -- Eliminar linea actual 
 dd
