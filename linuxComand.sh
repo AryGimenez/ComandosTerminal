@@ -4,6 +4,16 @@
 # -- Ver contenido de un archivo
 cat
 
+# -- Si el sisetma Operativo no inicia hay que desectivar la tarjeta grafic 
+# al arrancar mantenemos la tecla Sift precionada si arrancamos cmos y si usamos UEFI mantenemos precionado ESC 
+# Dentro de el menu GRUB Precionamos e
+# dentro de el manuscrito busacmaos la linea que dice 
+linux	/boot/vimlinux ..... 
+# y agregamos al final de la linea 
+nomodeset # Esto desactivara la tarjta grafica en este inicio 
+# precionamos F10
+
+
 # -- Trabajo con Usuarios https://eltallerdelbit.com/usuarios-grupos-linux/
 
 # -- Crear Usuario
@@ -132,6 +142,7 @@ netstat -putona | grep numero-de-puerto # <?> Se que escanea puertos No lo mire 
 fdisk -l
 dd if=Linux.iso of=/dev/sdf bs=512k
 
+# -- Clonar Disco
 
 
 
@@ -218,7 +229,7 @@ sudo badblocks -s -v -f /dev/sdb
 #-- Instalar Terminator Una terminal que te permite devidir la ventana en varaias
 	sudo dnf install terminator
 
-#-- Saber Tamaño de un directorio
+#-- Ver tamaño de un directorio https://www.hostinger.es/tutoriales/espacio-en-el-disco-linux
 	du -sh directorio/ # Te da el tamaño del directorio en GB Sialido 20G	Directorio
 
 #-- Instalar Inskape
