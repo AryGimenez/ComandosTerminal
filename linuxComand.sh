@@ -1,9 +1,29 @@
 
 # -------------------------------<<LINUX>>-------------------------------------
 
+
+# -- Copiar entre terminales xclip <F>
+#<?> No lo entendi bien 
+
+# -- Buscar archivo con <F>
+
+ # - locate
+ sudo apt install locate 
+
+ sudo updatedb # indexa los archivos para alludar a locate <?><F>
+ 
+ # - find
+ find # <?> Terminar 
+
+
+
+
 # -- Ver contenido de un archivo
 cat
 
+
+
+# <NO anduvo>
 # -- Si el sisetma Operativo no inicia hay que desectivar la tarjeta grafic 
 # al arrancar mantenemos la tecla Sift precionada si arrancamos cmos y si usamos UEFI mantenemos precionado ESC 
 # Dentro de el menu GRUB Precionamos e
@@ -12,6 +32,11 @@ linux	/boot/vimlinux .....
 # y agregamos al final de la linea 
 nomodeset # Esto desactivara la tarjta grafica en este inicio 
 # precionamos F10
+
+
+#  -- Reparar Driver Nvidia
+sudo ubnutu-drivers devices # Veo los drives disponible - y el Recomendado <F>
+sudo apt install "Driver a instalar"
 
 
 # -- Trabajo con Usuarios https://eltallerdelbit.com/usuarios-grupos-linux/
@@ -37,7 +62,9 @@ vim /etc/passwd
 # -- En este archivo podemos ver los GID de los grupos existentes en el sistema, y los usuarios pertenecientes a cada grupo.
 vim /etc/group
 
-# -- En este archivo se encuentran cifradas las contraseñas de los usuarios.
+
+# -- Clonar Disco 
+sudo dd bs=1M if=/dev/sda of=/dev/sdb
 
 
 
@@ -47,7 +74,8 @@ groupadd migrupo  # Crea un grupo
 useradd -d /home/compartido/ -g migrupo -m useradmin
 
 
-# -- Me perite escribir de forma bonita <F>
+
+# -- Me permite escribir de forma bonita
 figlet "Mensaje bonito"
 
 #-- Fechas
@@ -356,17 +384,12 @@ sudo apt-get install aptitude
 
 sudo aptitude # Ejecuta la interfaz 
 
-
-
 # -- Abilitar Himbernacion Suspencion <Fedora> https://blog.desdelinux.net/como-hibernar-o-suspender-mediante-comandos-en-la-terminal/
 cat /sys/power/state # Nos dice si nuestro ordenador nos permitira himbernar o suspender  «mem» Se puede suspender «disk» se puede himbernar
 sudo pm-suspend # para suspender
 sudo pm-hibernate # Para himbernar
 
 sudo pm-suspend-hybrid # ambos
-
-
-
 
 
 # -- Para saber l qrquitectura (x86-64)
@@ -390,21 +413,21 @@ umount /media/Particion_A_Desmontar
 # -- Muestra la informacion de la red
 ifconfig
 
-# -- Desconecta una interfas de red
+ifconfig -a # muestra todas las inteface aun la que no estan en uso <F>
+
+# -- Desconecta la interfas de red
 ifconfig "INTERFACE" down
+
 ifdown "INTERFACE"
+
+# -- Conecta la interface de red 
+ifconfig "Interface" up
 
 # -- Reiniciar la configuracion de todas las interfaces 
 service networking reload
 
 # -- Conecta la interfase
-ifconfig "INTERFACE" start #  <?> NO da de alta la interface al usar ifconfig interfase down luego no la encuentro
-
-# -- Cambiar ip 
-ifconfig "INTERFACE" "IP" netmask 255.255.255.0 
-
-
-
+ifconfig "INTERFACE" 
 
 sudo apt install net-tools # <Ubuntu> Si no anda te instala los paquetes necesarios
 
@@ -430,7 +453,7 @@ sudo dnf -y install  tmux # - <Fedora>
 sudp apt install tmux
 
 # -- Ve la vercion de Temux
-tmux -v
+tmux -V
 
 # -- Dividir pantalla Verticalmente
 #  CTR+B "
