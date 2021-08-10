@@ -527,8 +527,34 @@ vim docker-compose.yaml  # creamos el archivo yaml
 docker-compose up -d
 
 
+# -- ejecuta una imagen de contenedor
+docker run "imagen"
+
+docker run "imagen":"tag" # Esto ejecute la vercion espesifica de la imagen
+
+# -- Ejecuta la imagen y entra a el contenedor
+docker run -it "imagen"
+
 # -- Ejecuta un contenedor y asigna un nombre
 docker run -d --name NuevoNombreContenedor imagen # <?> -d no se lo que es
+
+
+# -- Muestra los log de el contenedor <F>
+docker log "ContainerId"
+
+docker log 
+
+# -- Ejecuta el contenedor que ya a muerto. Esto nos da la posibilidad de recupera datos, hay que tener en cuenta que lo deja en batGraund <F> 
+docker start "Container id" 
+
+# -- Ejecuta un comando en un contenedor corriendo <F>
+docker exec "ContainerID" # Ejecuta y sale
+docker exec -it "ContainerID" sh #Ejecuta y entra
+
+
+# -- Salir Contenedor <F>
+exit
+
 
 
 # Agregue la clave GPG oficial de Docker:
@@ -551,20 +577,6 @@ docker --version
 # -- Ver mas informacion de docker
 docker info
 
-# -- ejecuta una imagen de contenedor
-docker run "imagen"
-
-# -- Ejecuta la imagen y entra a el contenedor
-docker run -it Imagen
-
-
-# -- Meterme en un contenedor correindo
-docker exec -it "Container Id" sh
-
-# -- Salir Contenedor <F>
-exit
-
-
 # -- Crea una imagen de un contenedor
 docker commit id
 
@@ -577,14 +589,17 @@ vim dockerfile
 docker build -t NombreImagen:v1
 
 # -- docker tagear esto se usa normalmente par colocar verciones
-docker image tag "id" "name" # Si agregamos agrega el tag:1.0
+docker images tag "id" "name" # Si agregamos agrega el tag:1.0
 
 # -- ve el istroiral de los comandos corridos en la imagen
-docker image history "id"
+docker images history "id"
 
 
-# -- Ve las imagenes en el sistema
-docker image ls # si le agregamos |head muestra las primeras 10
+# -- Ve las imagenes hosteadas en el sistema <F>
+docker images ls # si le agregamos |head muestra las primeras 10
+
+# -- Ve las ultimas 10 imagenes usadas o Hosteadas no se  de el sistema <F> <?>
+docker images | head
 
 # -- baja la imagen de DokckerHab
 docker pull "imagen" # si agregamos :1.0 baja la vercion 1.0
@@ -622,7 +637,7 @@ docker --rename imagen nuevo-Nombre #-?
 
 # -- Utiizar valid mount para Espejar un directorio dentro de el contenedor y scarlo para afuera
 # para percistir los datos cuando el contenedor muera
- docker run -d --name db -v /DirectorioeEnMiPc:/DirectorioEnContenedor imagen
+ uocker run -d --name db -v /DirectorioeEnMiPc:/DirectorioEnContenedor imagen
 
 
 
