@@ -4,6 +4,9 @@
 # -- Ver contenido de un archivo
 cat
 
+
+
+# <NO anduvo>
 # -- Si el sisetma Operativo no inicia hay que desectivar la tarjeta grafic 
 # al arrancar mantenemos la tecla Sift precionada si arrancamos cmos y si usamos UEFI mantenemos precionado ESC 
 # Dentro de el menu GRUB Precionamos e
@@ -12,6 +15,11 @@ linux	/boot/vimlinux .....
 # y agregamos al final de la linea 
 nomodeset # Esto desactivara la tarjta grafica en este inicio 
 # precionamos F10
+
+
+#  -- Reparar Driver Nvidia
+sudo ubnutu-drivers devices # Veo los drives disponible - y el Recomendado <F>
+sudo apt install "Driver a instalar"
 
 
 # -- Trabajo con Usuarios https://eltallerdelbit.com/usuarios-grupos-linux/
@@ -37,7 +45,9 @@ vim /etc/passwd
 # -- En este archivo podemos ver los GID de los grupos existentes en el sistema, y los usuarios pertenecientes a cada grupo.
 vim /etc/group
 
-# -- En este archivo se encuentran cifradas las contraseñas de los usuarios.
+
+# -- Clonar Disco 
+sudo dd bs=1M if=/dev/sda of=/dev/sdb
 
 
 
@@ -47,7 +57,8 @@ groupadd migrupo  # Crea un grupo
 useradd -d /home/compartido/ -g migrupo -m useradmin
 
 
-# -- Me perite escribir de forma bonita <F>
+
+# -- Me permite escribir de forma bonita
 figlet "Mensaje bonito"
 
 #-- Fechas
