@@ -174,11 +174,6 @@ sudo snap install --classic code # <Ubuntu> https://ubunlog.com/visual-studio-co
 sudo chmod +x  # Creo que le da pemiso de ejecucion
 ./archivo.run
 
-
-# -- Como saber que vercion de kali tengo instlada
-lsb_release -a # <Kali>
-
-
 # -- Para Reparar cuando no puede acutalizar hay que <kali>
 # modificar /etc/apt/sources.list
 #	Repocitorio Regular
@@ -339,10 +334,29 @@ sudo dnf install java-1.8.0-openjdk # instalamos java 8
 
 
 
+# -- Sabre la versión actual
+lsb_release -a 
 
-# -- Saber vercion de Fedora actual
-#	-- Saber la Vercion del kernel acual
-	uname -r
+# -- Saber la Vercion del kernel acual
+uname -r
+
+# -- Muesta las verciones de el kernel Guardado <F>
+dpkg -l | grep linux-image # Este muestra mas informacion
+
+dpkg --get-selections | grep linux-headers #Este muestra las instladas 
+
+# -- Instalar un kernel espesifico
+sudo apt-get install linux-image-5.4.0-37-generic
+
+# -- Eliminar Kernels de la lista Grub <T> https://trastetes.blogspot.com/2016/07/eliminar-kernel-del-grub2-o-arrancar.html
+sudo apt-get remove --purge linux-image-4.4.0-28-generic linux-image-extra-4.4.0-28-generic
+
+# -- Gestor de paquetes Aprirude <F> https://computernewage.com/2015/02/22/como-instalar-aplicaciones-en-ssudo%20apt-get%20install%20aptitudesudo%20apt-get%20install%20aptitudeudo%20apt-get%20install%20aptitudeubusudo%20apt-get%20install%20aptitudentu-desde-la-terminal-con-apt-apt-get-y-aptitude/#aptitude
+sudo apt-get install aptitude 
+
+sudo aptitude # Ejecuta la interfaz 
+
+
 
 # -- Abilitar Himbernacion Suspencion <Fedora> https://blog.desdelinux.net/como-hibernar-o-suspender-mediante-comandos-en-la-terminal/
 cat /sys/power/state # Nos dice si nuestro ordenador nos permitira himbernar o suspender  «mem» Se puede suspender «disk» se puede himbernar
