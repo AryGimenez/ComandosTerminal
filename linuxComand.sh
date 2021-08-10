@@ -185,11 +185,6 @@ sudo snap install --classic code # <Ubuntu> https://ubunlog.com/visual-studio-co
 sudo chmod +x  # Creo que le da pemiso de ejecucion
 ./archivo.run
 
-
-# -- Como saber que vercion de kali tengo instlada
-lsb_release -a # <Kali>
-
-
 # -- Para Reparar cuando no puede acutalizar hay que <kali>
 # modificar /etc/apt/sources.list
 #	Repocitorio Regular
@@ -351,9 +346,19 @@ sudo dnf install java-1.8.0-openjdk # instalamos java 8
 
 
 
+
+
+# -- Saber la Vercion del sisterma Operativo <F>
+lsb_release -a
+
+
+
+
 # -- Saber vercion de Fedora actual
-#	-- Saber la Vercion del kernel acual
+#	-- Saber la vercion kernel acutal
 	uname -r
+
+
 
 # -- Abilitar Himbernacion Suspencion <Fedora> https://blog.desdelinux.net/como-hibernar-o-suspender-mediante-comandos-en-la-terminal/
 cat /sys/power/state # Nos dice si nuestro ordenador nos permitira himbernar o suspender  «mem» Se puede suspender «disk» se puede himbernar
