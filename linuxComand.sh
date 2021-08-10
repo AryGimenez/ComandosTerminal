@@ -38,6 +38,9 @@ nomodeset # Esto desactivara la tarjta grafica en este inicio
 sudo ubnutu-drivers devices # Veo los drives disponible - y el Recomendado <F>
 sudo apt install "Driver a instalar"
 
+# -- Instalar un controlador que funciona supuestamente desde 5.4 a 5.11
+udo apt-get update
+sudo apt-get install nvidia-legacy-340xx-kernel-dkms
 
 # -- Trabajo con Usuarios https://eltallerdelbit.com/usuarios-grupos-linux/
 
