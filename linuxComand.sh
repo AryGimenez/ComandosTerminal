@@ -3,35 +3,23 @@
 
 
 # -- Copiar entre terminales xclip <F>
-#<?> No lo entendi bien 
+#<?> No lo entendi bien
 
 # -- Buscar archivo con <F>
 
  # - locate
- sudo apt install locate 
+ sudo apt install locate
 
  sudo updatedb # indexa los archivos para alludar a locate <?><F>
- 
+
  # - find
- find # <?> Terminar 
+ find # <?> Terminar
 
 
 
 
 # -- Ver contenido de un archivo
 cat
-
-
-
-# <NO anduvo>
-# -- Si el sisetma Operativo no inicia hay que desectivar la tarjeta grafic 
-# al arrancar mantenemos la tecla Sift precionada si arrancamos cmos y si usamos UEFI mantenemos precionado ESC 
-# Dentro de el menu GRUB Precionamos e
-# dentro de el manuscrito busacmaos la linea que dice 
-linux	/boot/vimlinux ..... 
-# y agregamos al final de la linea 
-nomodeset # Esto desactivara la tarjta grafica en este inicio 
-# precionamos F10
 
 
 #  -- Reparar Driver Nvidia
@@ -44,35 +32,38 @@ sudo apt-get install nvidia-legacy-340xx-kernel-dkms
 
 # -- Trabajo con Usuarios https://eltallerdelbit.com/usuarios-grupos-linux/
 
-# -- Crear Usuario
-useradd 
+# -- Crear Usuariouseradd
 
 # --<F> Modificar Usuario
 usermod
 
-#-- <F> Agregar Grupo de usuario 
+#-- <F> Agregar Grupo de usuario
 groupadd
 
 # -- Modificar Grupo de usarios <F>
 gropumod
 
 # -- Elimina Grupo de Usuarios <F>
-groupdel 
+groupdel
 
 # -- en este archivo podemos ver todos los usuarios creados, sus UID y sus GID.
-vim /etc/passwd 
+vim /etc/passwd
+
+# -- Ver Hardware instalado 
+lshw -short
+
 
 # -- En este archivo podemos ver los GID de los grupos existentes en el sistema, y los usuarios pertenecientes a cada grupo.
 vim /etc/group
 
 
-# -- Clonar Disco 
+# -- Clonar Disco
 sudo dd bs=1M if=/dev/sda of=/dev/sdb
 
 
 
-# -- Compartir directorio linux 
-groupadd migrupo  # Crea un grupo 
+# -- Compartir directorio linux
+groupadd migrupo  # Crea un grupo
 
 useradd -d /home/compartido/ -g migrupo -m useradmin
 
@@ -142,11 +133,24 @@ sudo add-apt-repository ppa:webupd8team/atom
 sudo add-apt-repository --remove ppa:webupd8team/atom
 
 # -- Instalar Oh my ZSH Mejora la terminal <Ubuntu> https://geekytheory.com/como-instalar-oh-my-zsh-en-ubuntu
-sudo apt-get install zsh
-sudo apt-get install git-core
+  # Web Oficial https://ohmyz.sh/
+  sudo apt-get install zsh
+  sudo apt-get install git-core
 
-wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | zsh
-chsh -s `which zsh`
+  wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | zsh
+  chsh -s `which zsh`
+  
+  # Hacer que ZSH funcione en  ROOT <F> https://askubuntu.com/questions/521469/oh-my-zsh-for-the-root-and-for-all-user
+
+    sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+    sudo ln -s /root/.zshrc $HOME/.zshrc
+
+    sudo chmod 744 /root/.zshrc
+  # Cambiar de tema ZSH https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
+    vim /"DirectorioHomeUsuario"/.zshrc
+    # Modivicamos la linea ZSH_THEME="TemaNuevo"
+
 
 
 # -- Instala ssh
@@ -155,7 +159,7 @@ sudo apt install ssh <Ubuntu>
 # -- Muestra estado de ssh
 systemctl status ssh.service
 
-# -- Modifica estado de ssh <F> 
+# -- Modifica estado de ssh <F>
 sudo nano /etc/ssh/sshd_config
 
 
@@ -181,6 +185,9 @@ netstat -putona | grep numero-de-puerto # <?> Se que escanea puertos No lo mire 
 fdisk -l
 dd if=Linux.iso of=/dev/sdf bs=512k
 
+# -- Herramienta para crear usb de instalacion
+sudo apt-get update
+sudo apt-get install gnome-multi-writer
 # -- Clonar Disco
 
 
@@ -292,14 +299,22 @@ unzip -v arcivo.unzip
 # - Instala el plugin de actualización
 	sudo dnf install dnf-plugin-system-upgrade
 
-# -- Instalar Virutal Box
-sudo dnf -y install @development-tools
+# -- Instalar Virutal B/x
 
-sudo dnf -y install kernel-headers kernel-devel dkms elfutils-libelf-devel qt5-qtx11extras
+  # <?> Creo que es para Fedora
+  sudo dnf -y install @development-tools
 
-sudo dnf search virtualbox
+  sudo dnf -y install kernel-headers kernel-devel dkms elfutils-libelf-devel qt5-qtx11extras
 
-sudo dnf install VirtualBox
+  sudo dnf search virtualbox
+
+  sudo dnf install VirtualBox
+
+  # Ubuntu
+
+  sudo apt-get install virtualbos # INSTALAR
+
+
 
 
 # -- Instlacion de Visual Studio Code / Nodejs
@@ -329,18 +344,24 @@ su -c "yum install gparted" -Teine que tener la terminal permisos de administrad
 # 		lo unico que no se cambia la ruta)
 mv Archivo\ Origen Archivo\ Destino
 
-# Copiar Archivos
+# -- Copiar Archivos
 cp archivo.txt /Directorio
 cp -r -v archivo.txt /Directorio # -r Copiar directorio -v ver movimiento de archivos
-cp -a # <?> Creo que suma algunos argumentos como -r
+cp -a /origen/. /destino/ # <?> no anubo por un tempa de permiso copio pero algunas cosas no
+
+
+
 
 # --Ve el contenido de el dicrectiorio acutal
-ls
-ls -l Se # musetra los archivos en una lista \Fecha modificacion\
-ls -a # Muestra todos los archivos ocultos
-ls -h # Muestra el peso de los archivos en formatio umano no en SublimeText
-ls -lah # todo lo de arriba
+  ls
+  ls -l Se # musetra los archivos en una lista \Fecha modificacion\
+  ls -a # Muestra todos los archivos ocultos
+  ls -h # Muestra el peso de los archivos en formatio umano no en SublimeText
+  ls -lah # todo lo de arriba
 
+# -- Muestra la estructura de directorios
+  sudo apt-ge install tree #<F>Instala tree <Ubunru>
+  tree
 
 # Muestra el contenido de un archivos
 ll
@@ -374,7 +395,7 @@ sudo dnf install java-1.8.0-openjdk # instalamos java 8
 
 
 # -- Sabre la versión actual
-lsb_release -a 
+lsb_release -a
 
 # -- Saber la Vercion del kernel acual
 uname -r
@@ -382,7 +403,7 @@ uname -r
 # -- Muesta las verciones de el kernel Guardado <F>
 dpkg -l | grep linux-image # Este muestra mas informacion
 
-dpkg --get-selections | grep linux-headers #Este muestra las instladas 
+dpkg --get-selections | grep linux-headers #Este muestra las instladas
 
 # -- Instalar un kernel espesifico
 sudo apt-get install linux-image-5.4.0-37-generic
@@ -391,9 +412,9 @@ sudo apt-get install linux-image-5.4.0-37-generic
 sudo apt-get remove --purge linux-image-4.4.0-28-generic linux-image-extra-4.4.0-28-generic
 
 # -- Gestor de paquetes Aprirude <F> https://computernewage.com/2015/02/22/como-instalar-aplicaciones-en-ssudo%20apt-get%20install%20aptitudesudo%20apt-get%20install%20aptitudeudo%20apt-get%20install%20aptitudeubusudo%20apt-get%20install%20aptitudentu-desde-la-terminal-con-apt-apt-get-y-aptitude/#aptitude
-sudo apt-get install aptitude 
+sudo apt-get install aptitude
 
-sudo aptitude # Ejecuta la interfaz 
+sudo aptitude # Ejecuta la interfaz
 
 # -- Abilitar Himbernacion Suspencion <Fedora> https://blog.desdelinux.net/como-hibernar-o-suspender-mediante-comandos-en-la-terminal/
 cat /sys/power/state # Nos dice si nuestro ordenador nos permitira himbernar o suspender  «mem» Se puede suspender «disk» se puede himbernar
@@ -421,6 +442,12 @@ mount /dev/sdb1 /media/Directorio --
 # -- Desmontar una partincion
 umount /media/Particion_A_Desmontar
 
+
+# -- Formatear Dico <F> <?> NO logre hacerlo andar
+   # Fat 32
+   sudo mkfs.vfat -F 32 -n Mi_Memoria /dev/sdc1
+
+
 # -- Muestra la informacion de la red
 ifconfig
 
@@ -431,14 +458,14 @@ ifconfig "INTERFACE" down
 
 ifdown "INTERFACE"
 
-# -- Conecta la interface de red 
+# -- Conecta la interface de red
 ifconfig "Interface" up
 
-# -- Reiniciar la configuracion de todas las interfaces 
+# -- Reiniciar la configuracion de todas las interfaces
 service networking reload
 
 # -- Conecta la interfase
-ifconfig "INTERFACE" 
+ifconfig "INTERFACE"
 
 sudo apt install net-tools # <Ubuntu> Si no anda te instala los paquetes necesarios
 
@@ -475,22 +502,27 @@ CTB+B %
 # --  Se mueve verticalmente por la terminal
 # CTB+B [
 
+# -- Cierra Terminal dentro de temux 
+CTR+B x 
+
 # -- Crea Bentana nueva
 CTR+B c
 
- # -- Cierra la venta acutal
- CTR+B &
+# -- Cierra la venta acutal
+CTR+B &
 
- # -- Cambia el nombre de la bentan
- CTB+B ,
- # -- Cambia a Ventana Siguiente
- CTR+B n
 
- # -- Cambia a Venta Anterior
- CTR+B p
+# -- Cambia el nombre de la bentan
+CTB+B ,
+ 
+# -- Cambia a Ventana Siguiente
+CTR+B n
 
- ## -- Camtia a venta segun Numero
- CTR+B NUM
+# -- Cambia a Venta Anterior
+CTR+B p
+
+# -- Camtia a venta segun Numero
+CTR+B NUM
 
  # --
  CTB+B
@@ -499,23 +531,49 @@ CTR+B c
  CTB+B
 
 
-# -------------------------------<<DOCKER>>-------------------------------------
+# -------------------------------<DOCKER>>-------------------------------------
 
 # -- Laboratorio de docker web
 https://labs.play-with-docker.com/
+
+# -- Instalar docker-compose https://docs.docker.com/compose/install/
+  # instalo docker-compose
+  sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+
+  sudo chmod +x /usr/local/bin/docker-compose # Aplicar permisos ejecutables al binario: <F>
+  sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose # Crea un vinculo fisico <F> <?>
+
+# -- Ver vercion Instalda de Docker-Compose
+docker-compose --version
+
+# -- Para autocompletar Terminal- Bash
+sudo curl \
+	     -L https://raw.githubusercontent.com/docker/compose/1.29.2/contrib/completion/bash/docker-compose \
+	         -o /etc/bash_completion.d/docker-compose
+# -- Para Desintalar docker-compose
+sudo rm /usr/local/bin/docker-compose
+
+# -- para ejecutar un docker-compose
+docker-compose up -d
+
+
 
 
 
 # -- Instalacion Doker <Ubuntu>  https://docs.docker.com/engine/install/ubuntu/
   # Elimina verciones enteriores
   sudo apt-get remove docker docker-engine docker.io containerd runc
-  
+
   # Actualice el índice de paquetes de apt e instale paquetes para permitir que apt use un repositorio sobre HTTPS:
-  
+
   # Agregue la clave GPG oficial de Docker:
   curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
 
   sudo apt-get update
+  
+    # Si no queres instlar recomendaciones Recomendado para los Dockerfiles
+    --no-install-recommends 
+
 
   # Actualice el índice del paquete apt e instale la última versión de Docker Engine y containerd
   sudo apt-get install docker-ce docker-ce-cli containerd.io
@@ -531,48 +589,65 @@ https://labs.play-with-docker.com/
       # ademas modificacmos server_name domino.nuevo
       vim sites-avilable
 
-# -- Iniciar nginex en dentro de un Docker
+# -- Loguearse a Docker hub en terminal
+sudo docker login -u "usuario" -p "password" docker.io
 
-# crearmos un dirietorio donde fa a contoner el archivo
-vim docker-compose.yaml  # creamos el archivo yaml
-docker-compose up -d
-
-
-# -- ejecuta una imagen de contenedor
+# -- Ejecuta una imagen de contenedor
 docker run "imagen"
 
 docker run "imagen":"tag" # Esto ejecute la vercion espesifica de la imagen
 
-# -- Ejecuta la imagen y entra a el contenedor
+# -- Ejecuta un contenedor nuevo a partir de la imagen  y entra al mismo.
 docker run -it "imagen"
 
+# -- Ejecuta un contenedor nuevo a partir de la imagen y la corre en  BackGraund <F>
+docker run -d "imagen"
+
+# -- Ejecuta una imagen y la termina despues de utilizar  (--rm) Ademas expone el puerto
+docker run --rm -p 8888:3001 
+
+
 # -- Ejecuta un contenedor y asigna un nombre
-docker run -d --name NuevoNombreContenedor imagen # <?> -d no se lo que es
+docker run --name NuevoNombreContenedor imagen 
+
+# --<?> Montar volumen a imagen
+docker run -d --name NombreImagenAsignado --mount src=Voumen,dst=RutaDeContendeor Imagen
+
+# -- <?> Ejecunta  la imagen y monta el volumen 
+docker run  -v /DirectorioeEnMiPc:/DirectorioEnContenedor "imagen"
+
+# -- Muestra los volumenes que se encuentran en docker
+docker volume ls
+
+# -- Crear un volumen <F>
+docker volume create "NombreDeVolumen"
+
+# -- Eliminar volumen <F>
+docker volume rm "NombreDeVolumen"
+
+# -- Inspeccionar el volumen <F>
+docker volume inspect "NombreDeVolumen"
+
+# -- Elimina todos los volúmenes que no están siendo usados
+docker volume prune
+
+# -- Creao una Network de docker 
+mkdir "Directorio"
+cd "Directorio"
+
+# -- Para crear Network de Docker
+  docker network create todo-app
 
 
-# -- Muestra los logs de el contenedor <F>
-docker logs "ContainerId"
+  # Para unir los contenedores a la network creada 
+    # Agreuge a docker run 
+      --network "NameNetwork" #
+      --network-alias "Alias" # Este Alias se utiliza para poder identificar mejor el contenedor en la Network de doekder creada <F>
+# -- Para ver las network de docker en el sistema 
+  docker network ls
 
-docker logs 'Names' 
-
-docker logs -f # Queda esperando el log 
-
-# -- Ejecuta el contenedor que ya a muerto. Esto nos da la posibilidad de recupera datos, hay que tener en cuenta que lo deja en batGraund <F> 
-docker start "Container id" 
-
-# -- Ejecuta un comando en un contenedor corriendo <F>
-docker exec "ContainerID" # Ejecuta y sale
-docker exec -it "ContainerID" sh #Ejecuta y entra
-
-
-# -- Salir Contenedor <F>
-exit
-
-
-
-# Agregue la clave GPG oficial de Docker:
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-
+# -- Ver informacion de la red de docker 
+  docker run -it --network "NetworkDocker" nicolaka/netshoot 
 
 
 # Verifique clave de huella digital
@@ -593,30 +668,36 @@ docker info
 # -- Crea una imagen de un contenedor
 docker commit id
 
-# -- Crear DockerFil: Es un conjunto de instrucciones que seirve
-#    para crear imagenes
-
-vim dockerfile
-
-# -- Creamos una imagen vasada en el Dockerfile
-docker build -t NombreImagen:v1
-
-# -- docker tagear esto se usa normalmente par colocar verciones
-docker images tag "id" "name" # Si agregamos agrega el tag:1.0
-
-# -- ve el istroiral de los comandos corridos en la imagen
-docker images history "id"
-
-
-# -- Ve las imagenes hosteadas en el sistema <F>
-docker images ls # si le agregamos |head muestra las primeras 10
-
-# -- Ve las ultimas 10 imagenes usadas o Hosteadas no se  de el sistema <F> <?>
-docker images | head
 
 # -- baja la imagen de DokckerHab
 docker pull "imagen" # si agregamos :1.0 baja la vercion 1.0
 
+# -- Crear una imagen a partir de un Dockerfile
+
+# docker build . 
+
+# docker build -t "name":"tag" . 
+
+# -- Taguea la imagen <F>
+docker tag  "ImageId" "UsuarioDockerHob/Name:tag"  # Si agregamos agrega el tag:1.0
+
+
+
+
+# -- Muestra las imagenes de el sistema que coincidan con una palabra
+docker images | grep "palagra"
+
+
+# -- Ve el historial de los comandos corridos en la imagen
+docker images history "id"
+
+
+# -- Ve las imagenes hosteadas en el sistema
+docker images # si le agregamos |head muestra las primeras 10
+docker images -a # muestra hasta las no tgueadas <F>
+
+# -- Eliminar una imagen
+sudo docker rmi "REPOSITORY"
 
 # -- Mostrar o ver los contenedores
 docker ps # los que estan en ejecucion acutalmente
@@ -628,47 +709,27 @@ docker ps -a | head # Los ultimos 10 que ya no estan en uso
 docker inspect id-o-namber
 docker inspect --format '{{.stat.Pid}}' id-o-namber # <?> Filtra dentro de la salida que entrega en la salida jeison
 
-# -- Eliminar el docker segun el id
-docker rm id
+# -- Eliminar contenedor sugun su DockerID
+docker rm "DockerId"
 
 #-- elimina el contenedor con el Name
 docker rm -f Name
 
 # -- Elimina todos los contenedores de el sistema
-docker system prune
-# -- Para eliminar adicionalmente los contenedores detenidos y todas
-#  las imágenes no utilizadas (no solo aquellas pendientes), \
-#  añada el indicador -a al comando:
-docker system prune -a
+  docker system prune
 
-
-# -- Doker en web pra purebas
+  # -- Para eliminar adicionalmente los contenedores detenidos y todas
+  #  las imágenes no utilizadas (no solo aquellas pendientes), \
+  #  añada el indicador -a al comando:
+  docker system prune -a
 
 
 # -- Le asigna nombre al contenedor H
-docker --rename imagen nuevo-Nombre #-?
-
-# -- Utiizar valid mount para Espejar un directorio dentro de el contenedor y scarlo para afuera
-# para percistir los datos cuando el contenedor muera
- uocker run -d --name db -v /DirectorioeEnMiPc:/DirectorioEnContenedor imagen
-
-
+docker --rename imagen nuevo-Nombre #- <?>
 
 
 # -- Renombrar un contenedor
-docker renombrar names-Anterior names-Nuevo  #-?
-
-
-
-# -- Muestra los volumenes que se encuentran en docker
-docker volume ls
-
-# -- Crear un volumen
-docker volume create NombreDeVolumen
-
-
-# -- Montar volumen a imagen
-docker run -d --name NombreImagenAsignado --mount src=Voumen,dst=RutaDeContendeor Imagen
+docker renombrar names-Anterior names-Nuevo  #-<?> Dudo que ande
 
 
 # -- Copiar archivo dentro de el contenedor
@@ -822,12 +883,19 @@ git branch -d miNuevaBranch
 
 # -------------------------------<<NPM>>-------------------------------------
 
+# -- Instalar Node.js
+sudo apt-get update
+sudo apt-get install node
+sudo apt-get install nodejs
 
+nodejs -v
+# -- Instala npm
+sudo apt-get install npm #<Ubuntu>
 
--- Muestra la verion acutal de npm
+# -- Muestra la verion acutal de npm
 npm -v
 
--- Muestra la vercion acutal de Node.Js
+# -- Muestra la vercion acutal de Node.Js
 node -v
 
 node src
@@ -934,7 +1002,7 @@ p
 # -- Entra a modo vicion
 	v
 
-# -- Eliminar linea actual 
+# -- Eliminar linea actual
 dd
 
 # -- Elimina la cantidad de lineas segun NUM
@@ -946,4 +1014,3 @@ b
 
 # -- Mueve palabra acia delante <F>
 w
-
