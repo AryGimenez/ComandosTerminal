@@ -155,6 +155,14 @@ sudo apt install ssh <Ubuntu>
 # -- Muestra estado de ssh
 systemctl status ssh.service
 
+# -- Modifica estado de ssh <F> 
+sudo nano /etc/ssh/sshd_config
+
+
+
+
+
+
 sudo shutdown now # apaga en el movimiento
 
 sudo sutdown -r  # <F> Reinicia el sistema operativo
@@ -542,10 +550,12 @@ docker run -it "imagen"
 docker run -d --name NuevoNombreContenedor imagen # <?> -d no se lo que es
 
 
-# -- Muestra los log de el contenedor <F>
-docker log "ContainerId"
+# -- Muestra los logs de el contenedor <F>
+docker logs "ContainerId"
 
-docker log 
+docker logs 'Names' 
+
+docker logs -f # Queda esperando el log 
 
 # -- Ejecuta el contenedor que ya a muerto. Esto nos da la posibilidad de recupera datos, hay que tener en cuenta que lo deja en batGraund <F> 
 docker start "Container id" 
