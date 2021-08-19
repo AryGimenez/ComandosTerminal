@@ -830,10 +830,24 @@ git diff  # <?> NO ME MUESTRA
 #Todo cambia a la vercion anterior
 git reset Commit --hard
 
-#-- Muestra los Repocitiorios remotos
+#-- Muestra los Repocitiorios remotos 
 git remote -v
 
+# -- Cambiar el origen de git 
+git remote set-url orogin "UrlACambiar"
 
+
+#-- Generar Clave ssh Publica y Privada https://docs.github.com/es/github/authenticating-to-github/connecting-to-github-with-ssh
+ssh-keygen -t rsa -b 4096 -C "EmailGitHub"
+
+  #-- Agregar un clave al agente que tenemos en el ordenador
+  Inicia el agente SSH en segundo plano.
+  eval "$(ssh-agent -s)"
+
+  # Agrega la clave a el agente
+  ssh-add ~/.ssh/id_rsa
+
+  
 
 #  14:00 Jueves 29 Bulebar artigas 408 esquina solano Garcia.
 
