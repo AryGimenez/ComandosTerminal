@@ -39,7 +39,7 @@ sudo apt-get install nvidia-legacy-340xx-kernel-dkms
 
 # -- Trabajo con Usuarios https://eltallerdelbit.com/usuarios-grupos-linux/
 
-# -- Crear Usuariouseradd
+# --<?> Crear Usuariouseradd
 
 # --<F> Modificar Usuario
 usermod
@@ -127,8 +127,12 @@ sudo shutdown -h +30
 # -- Sierra cesion <Ubuntu>
 gnome-session-quit
 
-# -- <F> Para contectarme por ssh
+# -- <F> Para contectarme por cp Documentos/Red-MontevideoColors/Servidor/docker-compose.yml root@192.168.43.123:/services-dockersh
 ssh ary@<IP/HOST>
+
+# -- Copiar archivos atraves de ssh <F> <?> 
+scp Documentos/Red-MontevideoColors/Servidor/docker-compose.yml root@192.168.43.123:/services-docker
+
 
 # -- editar Repositorio
 sudo vim /etc/apt/sources.list
@@ -361,10 +365,13 @@ cp -a /origen/. /destino/ # <?> no anubo por un tempa de permiso copio pero algu
 
 # --Ve el contenido de el dicrectiorio acutal
   ls
-  ls -l Se # musetra los archivos en una lista \Fecha modificacion\
+  ls -l Se # musetra los archivos en una lista \Fecha modificacion\ Permisos\ Propiedad 
   ls -a # Muestra todos los archivos ocultos
   ls -h # Muestra el peso de los archivos en formatio umano no en SublimeText
   ls -lah # todo lo de arriba
+
+# -- Trabajar con Permisos <?> <F>
+https://blog.desdelinux.net/permisos-y-derechos-en-linux/
 
 # -- Muestra la estructura de directorios
   sudo apt-ge install tree #<F>Instala tree <Ubunru>
@@ -560,12 +567,8 @@ sudo curl \
 # -- Para Desintalar docker-compose
 sudo rm /usr/local/bin/docker-compose
 
-# -- para ejecutar un docker-compose
+# -- ejecuta un docker-compose
 docker-compose up -d
-
-
-
-
 
 # -- Instalacion Doker <Ubuntu>  https://docs.docker.com/engine/install/ubuntu/
   # Elimina verciones enteriores
@@ -711,6 +714,8 @@ docker ps # los que estan en ejecucion acutalmente
 docker ps -a # Los que ya no estan en uso
 docker ps -a | head # Los ultimos 10 que ya no estan en uso
 
+# -- Deterner un contendeor 
+docker stop "CONTAINERID"
 
 # -- Mostrar informacion de el contenedor
 docker inspect id-o-namber
