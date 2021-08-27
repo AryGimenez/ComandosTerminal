@@ -35,6 +35,10 @@ set ip 192.168.0.2 255.255.255.0
 # -- define el protocolo de acceso a esta interface
 set allowaccess 
 
+
+# -- Acer ping 
+execute ping "IP"
+
 #-- Recetear modo fabrica
 execute factoryreset
 
