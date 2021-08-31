@@ -550,6 +550,43 @@ CTR+B NUM
 # -- Laboratorio de docker web
 https://labs.play-with-docker.com/
 
+# -- Instalacion Doker <Ubuntu>  https://docs.docker.com/engine/install/ubuntu/
+  # Elimina verciones enteriores
+  sudo apt-get remove docker docker-engine docker.io containerd runc
+  
+
+
+  # Actualice el índice de paquetes de apt e instale paquetes para permitir que apt use un repositorio sobre HTTPS:
+
+  sudo apt-get update
+
+  sudo apt-get install \
+	  apt-transport-https \
+	  ca-certificates \
+          curl \
+	  gnupg \
+	  lsb-release
+
+  # Agregue la clave GPG oficial de Docker:
+  curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+
+  sudo apt-get update
+ 
+  # x86_64 / amd64
+  echo \
+	"deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu \
+	$(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+
+  # Instalar Docker Energine 
+  sudo apt-get update
+
+  sudo apt-get install docker-ce docker-ce-cli containerd.io
+
+
+    # Si no queres instlar recomendaciones Recomendado para los Dockerfiles
+    --no-install-recommends 
+
+
 # -- Instalar docker-compose https://docs.docker.com/compose/install/
   # instalo docker-compose
   sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
@@ -569,24 +606,6 @@ sudo rm /usr/local/bin/docker-compose
 
 # -- ejecuta un docker-compose
 docker-compose up -d
-
-# -- Instalacion Doker <Ubuntu>  https://docs.docker.com/engine/install/ubuntu/
-  # Elimina verciones enteriores
-  sudo apt-get remove docker docker-engine docker.io containerd runc
-
-  # Actualice el índice de paquetes de apt e instale paquetes para permitir que apt use un repositorio sobre HTTPS:
-
-  # Agregue la clave GPG oficial de Docker:
-  curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
-
-  sudo apt-get update
-  
-    # Si no queres instlar recomendaciones Recomendado para los Dockerfiles
-    --no-install-recommends 
-
-
-  # Actualice el índice del paquete apt e instale la última versión de Docker Engine y containerd
-  sudo apt-get install docker-ce docker-ce-cli containerd.io
 
 #   <PROBAR>
     # -- Instalar nginex
