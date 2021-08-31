@@ -16,6 +16,13 @@
  find # <?> Terminar
 
 
+# -- Trabajar con Permisos <?>
+  
+  # Cambiar el propietario  <?>
+  sudo chown "Usuario" -R "Directiorio" # Directorio
+
+  sudo chwn "Usuario" "Archivo" # Archivo
+  
 
 
 # -- Ver contenido de un archivo
@@ -859,7 +866,10 @@ ssh-keygen -t rsa -b 4096 -C "EmailGitHub"
   # Agrega la clave a el agente
   ssh-add ~/.ssh/id_rsa
 
-  
+  # Resolver el error WARNING: UNPROTECTED PRIVATE KEY FILE!  <?>
+  sudo chmod 600 ~ /.ssh/"ssl a resolver"
+
+
 
 #  14:00 Jueves 29 Bulebar artigas 408 esquina solano Garcia.
 
