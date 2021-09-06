@@ -932,7 +932,8 @@ git push origin --delete miNuevaBranch
 # -- Elimina la branch LOCALMENTE
 git branch -d miNuevaBranch
 
-
+# -- Elimina la branch de forma Remato 
+git push origni :"Branch"
 
 
 
