@@ -377,6 +377,10 @@ cp -a /origen/. /destino/ # <?> no anubo por un tempa de permiso copio pero algu
   ls -h # Muestra el peso de los archivos en formatio umano no en SublimeText
   ls -lah # todo lo de arriba
 
+# -- Ve los ips y los puertos de mi host creo <?> <F>
+ sudo lsof -i -P -n # https://geekflare.com/es/lsof-command-examples/
+
+
 # -- Trabajar con Permisos <?> <F>
 https://blog.desdelinux.net/permisos-y-derechos-en-linux/
 
@@ -673,6 +677,13 @@ cd "Directorio"
 
 # -- Para crear Network de Docker
   docker network create todo-app
+
+# -- crear una Macvlan Docker network 
+
+docker network create -d macvlan \
+	  --subnet=192.168.1.0 \
+	    --gateway=172.16.86.1 \
+	      -o parent=eth0 Red-MacVlan
 
 
   # Para unir los contenedores a la network creada 
