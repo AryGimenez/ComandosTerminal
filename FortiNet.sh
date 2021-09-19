@@ -45,4 +45,9 @@ execute factoryreset
 # --Ver las interfaces en Fortinet
 get system interface
    
+
    
+# -- Confiturar Sorware Swithc https://docs.fortinet.com/document/fortigate/6.0.0/handbook/42807/virtual-switch
+ config system virtual-switch
+    edit "HS_RedServidor"
+    

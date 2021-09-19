@@ -136,7 +136,7 @@ gnome-session-quit
 
 # -- <F> Para contectarme por cp Documentos/Red-MontevideoColors/Servidor/docker-compose.yml root@192.168.43.123:/services-dockersh
 ssh ary@<IP/HOST>
-
+ssh ary@"IP/Host" -p "Puerto"
 # -- Copiar archivos atraves de ssh <F> <?> 
 scp Documentos/Red-MontevideoColors/Servidor/docker-compose.yml root@192.168.43.123:/services-docker
 
@@ -652,6 +652,9 @@ docker run -d --name NombreImagenAsignado --mount src=Voumen,dst=RutaDeContendeo
 # -- <?> Ejecunta  la imagen y monta el volumen 
 docker run  -v /DirectorioeEnMiPc:/DirectorioEnContenedor "imagen"
 
+# -- <F> Entrar a un contenedor en ejecucion 
+docker exec -it "Name/ContinerID" bash
+	
 # -- Muestra los volumenes que se encuentran en docker
 docker volume ls
 
@@ -754,7 +757,6 @@ docker rm "DockerId"
 docker rm -f Name
 
 # -- Elimina todos los contenedores de el sistema
-  docker system prune
 
   # -- Para eliminar adicionalmente los contenedores detenidos y todas
   #  las imágenes no utilizadas (no solo aquellas pendientes), \
