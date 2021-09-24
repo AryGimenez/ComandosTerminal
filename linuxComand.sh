@@ -17,12 +17,12 @@
 
 
 # -- Trabajar con Permisos <?>
-  
+
   # Cambiar el propietario  <?>
   sudo chown "Usuario" -R "Directiorio" # Directorio
 
   sudo chwn "Usuario" "Archivo" # Archivo
-  
+
 
 
 # -- Ver contenido de un archivo
@@ -63,7 +63,7 @@ groupdel
 # -- en este archivo podemos ver todos los usuarios creados, sus UID y sus GID.
 vim /etc/passwd
 
-# -- Ver Hardware instalado 
+# -- Ver Hardware instalado
 lshw -short
 
 
@@ -137,7 +137,7 @@ gnome-session-quit
 # -- <F> Para contectarme por cp Documentos/Red-MontevideoColors/Servidor/docker-compose.yml root@192.168.43.123:/services-dockersh
 ssh ary@<IP/HOST>
 ssh ary@"IP/Host" -p "Puerto"
-# -- Copiar archivos atraves de ssh <F> <?> 
+# -- Copiar archivos atraves de ssh <F> <?>
 scp Documentos/Red-MontevideoColors/Servidor/docker-compose.yml root@192.168.43.123:/services-docker
 
 
@@ -157,7 +157,7 @@ sudo add-apt-repository --remove ppa:webupd8team/atom
 
   wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | zsh
   chsh -s `which zsh`
-  
+
   # Hacer que ZSH funcione en  ROOT <F> https://askubuntu.com/questions/521469/oh-my-zsh-for-the-root-and-for-all-user
 
     sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
@@ -191,9 +191,6 @@ sudo sutdown -r  # <F> Reinicia el sistema operativo
 
 # -- Escanea los puertos abiertos de un Host o IP Los escanea por TCP o UDB
 sudo nmap -s<U/T> -O Ip/<IP/Host>
-
-# -- <?>
-sudo lsof -i -P -n # <?> Se que escanea puertos pero no me quedo claro porque entrega mucha informacion https://ubunlog.com/como-comprobar-los-puertos-en-uso-en-linux/
 
 # -- <?>
 netstat -putona | grep numero-de-puerto # <?> Se que escanea puertos No lo mire lo saque https://ubunlog.com/como-comprobar-los-puertos-en-uso-en-linux/
@@ -372,7 +369,7 @@ cp -a /origen/. /destino/ # <?> no anubo por un tempa de permiso copio pero algu
 
 # --Ve el contenido de el dicrectiorio acutal
   ls
-  ls -l Se # musetra los archivos en una lista \Fecha modificacion\ Permisos\ Propiedad 
+  ls -l Se # musetra los archivos en una lista \Fecha modificacion\ Permisos\ Propiedad
   ls -a # Muestra todos los archivos ocultos
   ls -h # Muestra el peso de los archivos en formatio umano no en SublimeText
   ls -lah # todo lo de arriba
@@ -527,8 +524,8 @@ CTB+B %
 # --  Se mueve verticalmente por la terminal
 # CTB+B [
 
-# -- Cierra Terminal dentro de temux 
-CTR+B x 
+# -- Cierra Terminal dentro de temux
+CTR+B x
 
 # -- Crea Bentana nueva
 CTR+B c
@@ -539,7 +536,7 @@ CTR+B &
 
 # -- Cambia el nombre de la bentan
 CTB+B ,
- 
+
 # -- Cambia a Ventana Siguiente
 CTR+B n
 
@@ -564,7 +561,7 @@ https://labs.play-with-docker.com/
 # -- Instalacion Doker <Ubuntu>  https://docs.docker.com/engine/install/ubuntu/
   # Elimina verciones enteriores
   sudo apt-get remove docker docker-engine docker.io containerd runc
-  
+
 
 
   # Actualice el índice de paquetes de apt e instale paquetes para permitir que apt use un repositorio sobre HTTPS:
@@ -582,20 +579,20 @@ https://labs.play-with-docker.com/
   curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
 
   sudo apt-get update
- 
+
   # x86_64 / amd64
   echo \
 	"deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu \
 	$(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 
-  # Instalar Docker Energine 
+  # Instalar Docker Energine
   sudo apt-get update
 
   sudo apt-get install docker-ce docker-ce-cli containerd.io
 
 
     # Si no queres instlar recomendaciones Recomendado para los Dockerfiles
-    --no-install-recommends 
+    --no-install-recommends
 
 
 # -- Instalar docker-compose https://docs.docker.com/compose/install/
@@ -644,21 +641,21 @@ docker run -it "imagen"
 docker run -d "imagen"
 
 # -- Ejecuta una imagen y la termina despues de utilizar  (--rm) Ademas expone el puerto
-docker run --rm -p 8888:3001 
+docker run --rm -p 8888:3001
 
 
 # -- Ejecuta un contenedor y asigna un nombre
-docker run --name NuevoNombreContenedor imagen 
+docker run --name NuevoNombreContenedor imagen
 
 # --<?> Montar volumen a imagen
 docker run -d --name NombreImagenAsignado --mount src=Voumen,dst=RutaDeContendeor Imagen
 
-# -- <?> Ejecunta  la imagen y monta el volumen 
+# -- <?> Ejecunta  la imagen y monta el volumen
 docker run  -v /DirectorioeEnMiPc:/DirectorioEnContenedor "imagen"
 
-# -- <F> Entrar a un contenedor en ejecucion 
+# -- <F> Entrar a un contenedor en ejecucion
 docker exec -it "Name/ContinerID" bash
-	
+
 # -- Muestra los volumenes que se encuentran en docker
 docker volume ls
 
@@ -674,14 +671,14 @@ docker volume inspect "NombreDeVolumen"
 # -- Elimina todos los volúmenes que no están siendo usados
 docker volume prune
 
-# -- Creao una Network de docker 
+# -- Creao una Network de docker
 mkdir "Directorio"
 cd "Directorio"
 
 # -- Para crear Network de Docker
   docker network create todo-app
 
-# -- crear una Macvlan Docker network 
+# -- crear una Macvlan Docker network
 
 docker network create -d macvlan \
 	  --subnet=192.168.1.0 \
@@ -689,15 +686,15 @@ docker network create -d macvlan \
 	      -o parent=eth0 Red-MacVlan
 
 
-  # Para unir los contenedores a la network creada 
-    # Agreuge a docker run 
+  # Para unir los contenedores a la network creada
+    # Agreuge a docker run
       --network "NameNetwork" #
       --network-alias "Alias" # Este Alias se utiliza para poder identificar mejor el contenedor en la Network de doekder creada <F>
-# -- Para ver las network de docker en el sistema 
+# -- Para ver las network de docker en el sistema
   docker network ls
 
-# -- Ver informacion de la red de docker 
-  docker run -it --network "NetworkDocker" nicolaka/netshoot 
+# -- Ver informacion de la red de docker
+  docker run -it --network "NetworkDocker" nicolaka/netshoot
 
 
 # Verifique clave de huella digital
@@ -724,9 +721,9 @@ docker pull "imagen" # si agregamos :1.0 baja la vercion 1.0
 
 # -- Crear una imagen a partir de un Dockerfile
 
-# docker build . 
+# docker build .
 
-# docker build -t "name":"tag" . 
+# docker build -t "name":"tag" .
 
 # -- Taguea la imagen <F>
 docker tag  "ImageId" "UsuarioDockerHob/Name:tag"  # Si agregamos agrega el tag:1.0
@@ -754,7 +751,7 @@ docker ps # los que estan en ejecucion acutalmente
 docker ps -a # Los que ya no estan en uso
 docker ps -a | head # Los ultimos 10 que ya no estan en uso
 
-# -- Deterner un contendeor 
+# -- Deterner un contendeor
 docker stop "CONTAINERID"
 
 # -- Mostrar informacion de el contenedor
@@ -881,10 +878,10 @@ git diff  # <?> NO ME MUESTRA
 #Todo cambia a la vercion anterior
 git reset Commit --hard
 
-#-- Muestra los Repocitiorios remotos 
+#-- Muestra los Repocitiorios remotos
 git remote -v
 
-# -- Cambiar el origen de git 
+# -- Cambiar el origen de git
 git remote set-url orogin "UrlACambiar"
 
 
@@ -940,12 +937,18 @@ git merge NombreDeBranch
 git push -u origin NombreDeBranch
 
 # -- Eliminar mi branch de el Repocitorio Externo
-git push origin --delete miNuevaBranch
+git push origin --delete miNuevaBranch 
 
 # -- Elimina la branch LOCALMENTE
 git branch -d miNuevaBranch
 
-# -- Elimina la branch de forma Remato 
+  # --  En caso de el siguiente mensaje de error podemos forzar la eliminación de la branch  
+  # The branch 'nombre-rama' is not an ancestor of your current HEAD.
+  # If you are sure you want to delete it, run 'git branch -D nombre-rama'.
+  git branch -D miNuevaBranch
+
+
+# -- Elimina la branch de forma Remato
 git push origni :"Branch"
 
 

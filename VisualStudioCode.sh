@@ -13,6 +13,8 @@ CTR + Shift + P # -- Agre ventana de Comandos
 
 CTR+k + fechas # -- Moverse la venta segun la pocicion de la flecha
 
-CTR+k + CTR+c # -- Comentar codigo 
+CTR+k + CTR+c # -- Comentar codigo
+
+CTR+k + CTR+u # -- Descomentar Codigo
 
 Alt+Shift #-- Duplica el cursor permiente escribir lo mismo en varias lineas
