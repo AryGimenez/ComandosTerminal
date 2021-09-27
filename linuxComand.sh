@@ -15,6 +15,15 @@
  # - find
  find # <?> Terminar
 
+# -- Personalizar login (inicio sesion)  So https://geekland.eu/personalizar-y-configurar-lightdm/ <linuxMin> sp probo 
+vim /etc/lightdm/lightdm.conf # El el archivo lightdm.conf se encuentra la configuracion de inicio 
+
+
+
+# -- Instalar Gimp
+sudo apt-get install aptitude
+sudo aptitude install gimp 
+
 
 # -- Trabajar con Permisos <?>
 
