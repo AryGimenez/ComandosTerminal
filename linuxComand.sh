@@ -1,6 +1,8 @@
 
 # -------------------------------<<LINUX>>-------------------------------------
 
+# -- Descomprimir RAR
+unrar e "archivo.rar" "directorio Destino"
 
 # -- Copiar entre terminales xclip <F>
 #<?> No lo entendi bien
@@ -27,12 +29,15 @@ sudo aptitude install gimp
 
 # -- Trabajar con Permisos <?>
 
-  # Cambiar el propietario  <?>
+  # Cambiar el propietario   <?>
   sudo chown "Usuario" -R "Directiorio" # Directorio
 
-  sudo chwn "Usuario" "Archivo" # Archivo
+  sudo chown "Usuario" "Archivo" # Archivo
 
+  # cambiar el propietrio y el grupo 
+  sudo chown "Grupo":"Usuario" -R "Directorio" # Directorio
 
+  sudo chown "Grupo":"Usuario" "Archivo" # Archivo
 
 # -- Ver contenido de un archivo
 cat
@@ -495,6 +500,11 @@ ifconfig "Interface" up
 # -- Reiniciar la configuracion de todas las interfaces
 service networking reload
 
+# -- Colocar ip fijo http://somebooks.es/establecer-una-direccion-ip-estatica-en-ubuntu-server-20-04/
+vim /etc/netplan/00-installer-config.yaml # modificamos la configuracion en este archivo
+sudo netplan apply # aplicamos los cambios 
+
+
 # -- Conecta la interfase
 ifconfig "INTERFACE"
 
@@ -895,8 +905,11 @@ git remote set-url orogin "UrlACambiar"
 
 
 #-- Generar Clave ssh Publica y Privada https://docs.github.com/es/github/authenticating-to-github/connecting-to-github-with-ssh
-ssh-keygen -t rsa -b 4096 -C "EmailGitHub"
-
+ssh-keygen -f "nombre de el fechero" -t rsa -b 4096 -C "EmailGitHub"
+   # -b Establese el nuero de bits de la clave 
+   # -t <1?>
+   # -C comentario el comentario a añadir en la correspondiente línea de la clave pública. Si se omite es username@host:
+  
   #-- Agregar un clave al agente que tenemos en el ordenador
   Inicia el agente SSH en segundo plano.
   eval "$(ssh-agent -s)"
