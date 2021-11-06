@@ -417,6 +417,12 @@ wget URL # <ubuntu>
 # -- Ver el estado de el  disco <?>
 #  Al parecer lo tiene que estar la opcion S M A R T  desde la biso par apoder usarlo https://computernewage.com/2015/03/14/como-detectar-errores-y-comprobar-el-estado-de-salud-de-tu-disco-duro-en-linux/
 
+# -- Instalar jdk en ubuntu https://www.digitalocean.com/community/tutorials/how-to-install-java-with-apt-on-ubuntu-20-04-es
+sudo apt install default-jre  # Instala OpenJDK
+sudo apt install default-jdk # Instala las herramientas desarollo JDK
+java -version  # muestra la vercion de java instalada 
+
+
 
 
 # -- Instalacion jdk en Fedroa 31
