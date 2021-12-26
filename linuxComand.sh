@@ -447,6 +447,13 @@ dpkg -l | grep linux-image # Este muestra mas informacion
 
 dpkg --get-selections | grep linux-headers #Este muestra las instladas
 
+# -- Utilizacion  CAT https://www.tiendalinux.com/docs/manuales/redhat/rhl-gsg-es-7.3/s1-navigating-usingcat.php3 
+cat archivo.txt
+
+  # Salir cat
+  CTR+D
+
+
 # -- Instalar un kernel espesifico
 sudo apt-get install linux-image-5.4.0-37-generic
 
@@ -460,6 +467,7 @@ sudo aptitude # Ejecuta la interfaz
 
 # -- Abilitar Himbernacion Suspencion <Fedora> https://blog.desdelinux.net/como-hibernar-o-suspender-mediante-comandos-en-la-terminal/
 cat /sys/power/state # Nos dice si nuestro ordenador nos permitira himbernar o suspender  «mem» Se puede suspender «disk» se puede himbernar
+
 sudo pm-suspend # para suspender
 sudo pm-hibernate # Para himbernar
 
