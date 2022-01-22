@@ -18,3 +18,7 @@ CTR+k + CTR+c # -- Comentar codigo
 CTR+k + CTR+u # -- Descomentar Codigo
 
 Alt+Shift #-- Duplica el cursor permiente escribir lo mismo en varias lineas
+
+Shift + Tabular # -- Des tabular código
+
+

@@ -26,10 +26,35 @@ vim /etc/lightdm/lightdm.conf # El el archivo lightdm.conf se encuentra la confi
 sudo apt-get install aptitude
 sudo aptitude install gimp 
 
+# -- Trabajar con Permisos <?> <F>
+# Mas complejo  https://blog.desdelinux.net/permisos-y-derechos-en-linux/
+# Mas simple 
 
-# -- Trabajar con Permisos <?>
+# __Tabla a tener en cuenta --
+# 1 = --x = ejecución
+# 2 = -w- = escritura
+# 3 = -wx = escritura y ejecución
+# 4 = r-- = lectura
+# 5 = r-x = lectura y ejecución
+# 6 = rw- = lectura y escritura
+# 7 = rwx = lectura, escritura y ejecución-- Trabajar con Permisos <?>
 
-  # Cambiar el propietario   <?>
+# u 	dueño	dueño del archivo o directorio
+# g	grupo	grupo al que pertenece el archivo
+# o	otros	todos los demás usuarios que no son el dueño ni del grupo
+
+#Entonces decimos que 
+
+# +r Sumamos permisos de lectura.
+# +w # Sumamos permisos de Escritura.
+# +x # Sumamos permisos de ejecución 
+
+
+
+chmod archivoOdirectorio
+
+
+# Cambiar el propietario   <?>
   sudo chown "Usuario" -R "Directiorio" # Directorio
 
   sudo chown "Usuario" "Archivo" # Archivo
@@ -122,6 +147,8 @@ sudo add-apt-repository ppa:inkscape.dev/stable
 sudo apt update
 sudo apt install inkscape
 
+
+
 # -- Instalar GIMP
 
 
@@ -151,8 +178,18 @@ gnome-session-quit
 # -- <F> Para contectarme por cp Documentos/Red-MontevideoColors/Servidor/docker-compose.yml root@192.168.43.123:/services-dockersh
 ssh ary@<IP/HOST>
 ssh ary@"IP/Host" -p "Puerto"
-# -- Copiar archivos atraves de ssh <F> <?>
+
+
+# -- Copiar archivos atraves de ssh <F>  https://www.zeppelinux.es/copiar-archivos-y-carpetas-con-scp-secure-copy-protocol/
 scp Documentos/Red-MontevideoColors/Servidor/docker-compose.yml root@192.168.43.123:/services-docker
+
+
+# Copia directorio local a un directorio remoto
+scp -r  /path/to/library root@192.168.4.2:/path/to
+
+
+# Copia mas de un directorio a la ves Esto tambien aplica a archivos
+scp -r  /Dir1 /Dir2 root@192.168.4.2:/path/to
 
 
 # -- editar Repositorio
@@ -178,75 +215,7 @@ sudo add-apt-repository --remove ppa:webupd8team/atom
 
     sudo ln -s /root/.zshrc $HOME/.zshrc
 
-    sudo chmod 744 /root/.zshrc
-  # Cambiar de tema ZSH https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-    vim /"DirectorioHomeUsuario"/.zshrc
-    # Modivicamos la linea ZSH_THEME="TemaNuevo"
-
-
-
-# -- Instala ssh
-sudo apt install ssh <Ubuntu>
-
-# -- Muestra estado de ssh
-systemctl status ssh.service
-
-# -- Modifica estado de ssh <F>
-sudo nano /etc/ssh/sshd_config
-
-
-
-
-
-
-sudo shutdown now # apaga en el movimiento
-
-sudo sutdown -r  # <F> Reinicia el sistema operativo
-
-# -- Escanea los puertos abiertos de un Host o IP Los escanea por TCP o UDB
-sudo nmap -s<U/T> -O Ip/<IP/Host>
-
-# -- <?>
-netstat -putona | grep numero-de-puerto # <?> Se que escanea puertos No lo mire lo saque https://ubunlog.com/como-comprobar-los-puertos-en-uso-en-linux/
-
-#-- Crear un USB de instalacion linux
-# IDENTIFICA EL USB
-fdisk -l
-dd if=Linux.iso of=/dev/sdf bs=512k
-
-# -- Herramienta para crear usb de instalacion
-sudo apt-get update
-sudo apt-get install gnome-multi-writer
-# -- Clonar Disco
-
-
-
-# no lo entendi bien    <?>
-diff #-- aca lo esplica https://linuxize.com/post/diff-command-in-linux/
-diff #-- me surgio por la siguiete lina  diff -qr ./x ./y | awk '{print $2}' | xargs -n1 -J% cp % ./y/ que encontre https://unix.stackexchange.com/questions/29845/how-can-i-do-a-copy-if-changed-operation NO ME QUEDO CLARO !
-
-# --  Instalar WinBox
-# <Ubuntu> https://snapcraft.io/install/winbox/ubuntu#install
-sudo apt update
-sudo apt install snapd
-sudo snap install winbox
-
-# -- Para entrar en escritorio de windows
-xfreerdp /u:administrador /p:spudla.1 /w:1280 /h:720 /v:192.168.1.3
-
-# -- Para borrar un pakete travado
-sudo  dpkg --remove --force-remove-reinstreq * # <ubuntu>
-
-# -- Instalr archivos deb
-sudo dpkg -i archivo.deb # <Ubuntu>
-
-
-# -- Instalar Visual Studio Code <F>
-sudo snap install --classic code # <Ubuntu> https://ubunlog.com/visual-studio-code-editor-codigo-abierto-ubuntu-20-04/
-
-
-# -- Instalar archivos *.run <F>
-sudo chmod +x  # Creo que le da pemiso de ejecucion
+    sudo chmod +x  # Creo que le da pemiso de ejecucion
 ./archivo.run
 
 # -- Para Reparar cuando no puede acutalizar hay que <kali>
@@ -391,10 +360,6 @@ cp -a /origen/. /destino/ # <?> no anubo por un tempa de permiso copio pero algu
 # -- Ve los ips y los puertos de mi host creo <?> <F>
  sudo lsof -i -P -n # https://geekflare.com/es/lsof-command-examples/
 
-
-# -- Trabajar con Permisos <?> <F>
-https://blog.desdelinux.net/permisos-y-derechos-en-linux/
-
 # -- Muestra la estructura de directorios
   sudo apt-ge install tree #<F>Instala tree <Ubunru>
   tree
@@ -410,6 +375,8 @@ du -sh Directorio/
 
 # -- Ver los discos instalado en el sistema
 fdisk -l
+lsblk # muestra un resumen mas fasil de leer 
+
 
 # -- Descargar paquetes
 wget URL # <ubuntu>
@@ -446,6 +413,10 @@ uname -r
 dpkg -l | grep linux-image # Este muestra mas informacion
 
 dpkg --get-selections | grep linux-headers #Este muestra las instladas
+
+# -- Instalar *.deb en ubuntu
+sudo dpkg -i archivo.deb
+
 
 # -- Utilizacion  CAT https://www.tiendalinux.com/docs/manuales/redhat/rhl-gsg-es-7.3/s1-navigating-usingcat.php3 
 cat archivo.txt
@@ -491,6 +462,12 @@ mount /dev/sdb1 /media/Directorio --
 
 # -- Desmontar una partincion
 umount /media/Particion_A_Desmontar
+
+# -- Ejecutar script al inicio
+cd /etc/init.d # dirigirse al directoiro 
+sudo vim scrip.sh # crear el sdrip a ejecutar
+sudo chmod +x scrip.sh # darle permiso de ejecucion 
+sudo update-rc.d scrip defaults
 
 
 # -- Formatear Dico <F> <?> NO logre hacerlo andar
@@ -930,10 +907,6 @@ ssh-keygen -f "nombre de el fechero" -t rsa -b 4096 -C "EmailGitHub"
 
   # Agrega la clave a el agente
   ssh-add ~/.ssh/id_rsa
-
-  # Resolver el error WARNING: UNPROTECTED PRIVATE KEY FILE!  <?>
-  sudo chmod 600 ~ /.ssh/"ssl a resolver"
-
 
 
 #  14:00 Jueves 29 Bulebar artigas 408 esquina solano Garcia.
