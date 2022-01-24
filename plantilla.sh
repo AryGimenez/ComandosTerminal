@@ -46,7 +46,7 @@ sudo docker stop plex
 
 # DuckDNS
 docker run -d \
-  --rm 
+  --rm \
   --name=duckdns \
   -e PUID=1000 `#optional` \
   -e PGID=1000 `#optional` \
@@ -133,8 +133,8 @@ docker run -d \
   -e TZ=Europe/London \
   -e SERVERURL=arycasa.duckdns.org `#optional` \
   -e SERVERPORT=51820 `#optional` \
-  -e PEERS=arycel,ary-notebook,nego-notebook,nego-cel,fede-notegook,fede-cel `#optional` \
-  -e PEERDNS=auto `#optional` \
+  -e PEERS=ary_cel,ary_notebook,ary_ssd,fede_cel,fede_notebook,nego_cel,nego_notegook,renzo_cel,renzo_notebook `#optional` \
+  -e PEERDNS=8.8.8.8 `#optional` \
   -e INTERNAL_SUBNET=10.0.2.0 `#optional` \
   -e ALLOWEDIPS=0.0.0.0/0 `#optional` \
   -p 51820:51820/udp \
@@ -157,6 +157,38 @@ mount /dev/sdb2 /media/data
 # documentar
 
 printf ‘Primera línea de texto\n’ nombrearchivo.txt
+
+
+# Servidor ftp
+docker run \
+  -d \
+  --rm \
+  -v /media/data/Movies:/home/vsftpd \
+  -p 20:20 \
+  -p 21:21 \
+  -p 21100-21110:21100-21110 \
+  -e FTP_USER=test \
+  -e FTP_PASS=test \
+  -e XFERLOG_STD_FORMAT=YES \
+  -e LOG_STDOUT \
+  --name vsftpd \
+  fauria/vsftpd
+
+
+docker run \
+-d \
+-v /my/data/directory:/home/vsftpd \
+-p 20:20 
+-p 21:21 \
+-p 21100-21110:21100-21110 \
+-e FTP_USER=myuser 
+-e FTP_PASS=mypass \
+-e PASV_ADDRESS=127.0.0.1 \
+-e PASV_MIN_PORT=21100 
+-e PASV_MAX_PORT=21110 \
+--name vsftpd \
+--restart=always 
+fauria/vsftpd
 
 
 
