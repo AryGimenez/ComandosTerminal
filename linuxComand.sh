@@ -1,6 +1,12 @@
 
 # -------------------------------<<LINUX>>-------------------------------------
 
+# -- Actualizar Ubuntu 
+sudo apt-get update
+
+# -- Actualizar Manjaro 
+sudo pacman -Syyu
+
 # -- Descomprimir RAR
 unrar e "archivo.rar" "directorio Destino"
 
@@ -113,6 +119,8 @@ vim /etc/group
 # -- Clonar Disco
 sudo dd bs=1M if=/dev/sda of=/dev/sdb
 
+# -- Crear Pendriver de instalacion 
+sudo dd bs=1M if=/dev/sda of=imagen.iso 
 
 
 # -- Compartir directorio linux
@@ -347,6 +355,8 @@ cp archivo.txt /Directorio
 cp -r -v archivo.txt /Directorio # -r Copiar directorio -v ver movimiento de archivos
 cp -a /origen/. /destino/ # <?> no anubo por un tempa de permiso copio pero algunas cosas no
 
+# -- Comando pàra monitorizar recursos 
+htop 
 
 
 
@@ -612,8 +622,7 @@ https://labs.play-with-docker.com/
   sudo chmod +x /usr/local/bin/docker-compose # Aplicar permisos ejecutables al binario: <F>
   sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose # Crea un vinculo fisico <F> <?>
 
-# -- Ver vercion Instalda de Docker-Compose
-docker-compose --version
+# -- Ver vercion Instalda de Docker-Composedocker-compose --version
 
 # -- Para autocompletar Terminal- Bash
 sudo curl \
@@ -668,6 +677,9 @@ docker exec -it "Name/ContinerID" bash
 
 # -- Muestra los volumenes que se encuentran en docker
 docker volume ls
+
+#-- Ver los logs de mi contenedor 
+docker logs "Name/ContinerID"
 
 # -- Crear un volumen <F>
 docker volume create "NombreDeVolumen"
@@ -761,8 +773,14 @@ docker ps # los que estan en ejecucion acutalmente
 docker ps -a # Los que ya no estan en uso
 docker ps -a | head # Los ultimos 10 que ya no estan en uso
 
-# -- Deterner un contendeor
+# -- Deterner un contendeor - Parar un contenedor
 docker stop "CONTAINERID"
+
+# -- Detener todos los contenedores al mismo tiempo 
+docker stop $(docker ps -q)
+
+ # si tenes algun error podes solucionarlo con
+ sudo chmod 666 /var/run/docker.sock
 
 # -- Mostrar informacion de el contenedor
 docker inspect id-o-namber
@@ -814,7 +832,7 @@ git config --global user.name "Nombre usuairo"
 git config --global user.email "Mail de el responsable del codigo"
 
 
-# -- muestra la lista de configuraciones de git
+# -- Ver la configuracion de Git
 git config --list #  <!> REVISAR
 
 # -- clona seguna el repositorio paso por url

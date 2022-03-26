@@ -15,14 +15,29 @@ docker run --name nagios  \
 
 
 docker run \
---rm \
---name vsftpd \
--v /var/log/ftp:/var/log \
--p 21:21 \
--p 4559-4564:4559-4564 \
--e FTP_USER=ftp \
--e FTP_PASSWORD=ftp \
-docker.io/panubo/vsftpd:latest
+  --rm \
+  --name vsftpd \
+  -v /var/log/ftp:/var/log \
+  -p 21:21 \
+  -p 4559-4564:4559-4564 \
+  -e FTP_USER=ftp \
+  -e FTP_PASSWORD=ftp \
+  docker.io/panubo/vsftpd:latest
+
+
+## -- Docker networks
+
+ip link add mac0 link eth0 type macvlan mode bridge
+
+    sudo docker network create \
+        -d \
+        macvlan \
+        --subnet=192.168.4.0/24 \
+        --gateway=192.168.4.1 \
+        -o \
+        parent=enp0s25 Prueba
+
+
 
 
 ## -- Plex 
@@ -46,16 +61,25 @@ sudo docker stop plex
 
 # DuckDNS
 docker run -d \
-  --rm \
-  --name=duckdns \
-  -e PUID=1000 `#optional` \
-  -e PGID=1000 `#optional` \
-  -e TZ=Europe/London \
-  -e SUBDOMAINS=arycasa.duckdns.org \
-  -e TOKEN=04e49b80-78e9-4d42-8c27-7f508672984c \
-  -e LOG_FILE=false `#optional` \
-  -v /home/docker/duckdns/config:/config `#optional` \
-  lscr.io/linuxserver/duckdns
+    --rm \
+    --name=duckdns \
+    -e PUID=1000 `#optional` \
+    -e PGID=1000 `#optional` \
+    -e TZ=Europe/London \
+    -e SUBDOMAINS=arycasa.duckdns.org \
+    -e TOKEN=04e49b80-78e9-4d42-8c27-7f508672984c \
+    -e LOG_FILE=false `#optional` \
+        -v /home/docker/duckdns/config:/config `#optional` \
+    lscr.io/linuxserver/duckdns
+
+# MySQL
+
+    docker run
+        --name some-mysql
+        -e MYSQL_ROOT_PASSWORD=my-secret
+        -pw
+        -d
+        mysql:tag
 
 
 # Netdata DockerCompose
@@ -87,6 +111,22 @@ docker run -d \
         - Red-APP
 
 #   Run Netdata Docker 
+sudo docker run -d \
+    --name=netdata \
+    --rm \
+    -p 19999:19999 \
+    -v /etc/passwd:/host/etc/passwd:ro \
+    -v /etc/group:/host/etc/group:ro \
+    -v /proc:/host/proc:ro \
+    -v /sys:/host/sys:ro \
+    -v /var/run/docker.sock:/var/run/docker.sock:ro \
+    --cap-add SYS_PTRACE \
+    --security-opt apparmor=unconfined \
+    netdata/netdata
+
+
+
+
     docker run -d \
       --name=netdata \
       --rm \
@@ -99,6 +139,14 @@ docker run -d \
       --cap-add SYS_PTRACE \
       --security-opt apparmor=unconfined \
       netdata/netdata
+
+
+
+
+
+
+
+
 
 
 # Servidro torren
@@ -124,24 +172,24 @@ docker run -d \
 #  Docker Wireguard 
 
 docker run -d \
-  --rm \
-  --name=wireguard \
-  --cap-add=NET_ADMIN \
-  --cap-add=SYS_MODULE \
-  -e PUID=1000 \
-  -e PGID=1000 \
-  -e TZ=Europe/London \
-  -e SERVERURL=arycasa.duckdns.org `#optional` \
-  -e SERVERPORT=51820 `#optional` \
-  -e PEERS=ary_cel,ary_notebook,ary_ssd,fede_cel,fede_notebook,nego_cel,nego_notegook,renzo_cel,renzo_notebook `#optional` \
-  -e PEERDNS=8.8.8.8 `#optional` \
-  -e INTERNAL_SUBNET=10.0.2.0 `#optional` \
-  -e ALLOWEDIPS=0.0.0.0/0 `#optional` \
-  -p 51820:51820/udp \
-  -v /home/docker/wireguard/config:/config \
-  -v /home/docker/wireguard/lib/modules:/lib/modules \
-  --sysctl="net.ipv4.conf.all.src_valid_mark=1" \
-  lscr.io/linuxserver/wireguard
+    --rm \
+    --name=wireguard \
+    --cap-add=NET_ADMIN \
+    --cap-add=SYS_MODULE \
+    -e PUID=1000 \
+    -e PGID=1000 \
+    -e TZ=Europe/London \
+    -e SERVERURL=arycasa.duckdns.org `#optional` \
+    -e SERVERPORT=51820 `#optional` \
+    -e PEERS=ary_cel,ary_notebook,ary_ssd,fede_cel,fede_notebook,nego_cel,nego_notegook,renzo_cel,renzo_notebook,pepe_notebook,pepe_cel `#optional` \
+    -e PEERDNS=8.8.8.8 `#optional` \
+    -e INTERNAL_SUBNET=10.0.2.0 `#optional` \
+    -e ALLOWEDIPS=0.0.0.0/0 `#optional` \
+    -p 51820:51820/udp \
+    -v /home/docker/wireguard/config:/config \
+    -v /home/docker/wireguard/lib/modules:/lib/modules \
+    --sysctl="net.ipv4.conf.all.src_valid_mark=1" \
+    lscr.io/linuxserver/wireguard
 
 # meter al inicio 
 mount /dev/sdb2 /media/data 
