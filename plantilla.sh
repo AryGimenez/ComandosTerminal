@@ -60,7 +60,7 @@ sudo docker stop plex
 
 
 # DuckDNS
-docker run -d \
+sudo docker run -d \
     --rm \
     --name=duckdns \
     -e PUID=1000 `#optional` \
@@ -74,13 +74,66 @@ docker run -d \
 
 # MySQL
 
-    docker run
-        --name some-mysql
-        -e MYSQL_ROOT_PASSWORD=my-secret
-        -pw
-        -d
-        mysql:tag
+sudo docker run \
+    --name bd_zabix \
+    -e MYSQL_ROOT_PASSWORD=hmq7381 \
+    -e MYSQL_USER=zabbix \
+    -e MYSQL_PASSWORD=hmq7381 \
+    -p  3306:3306 \
+    -d \
+    -v /home/docker/zabbix/database_mySQL:/var/lib/mysql \
+    --network zabbix-network \
+    --hostname mysql \
+    --rm \
+    mysql
 
+    
+# mi vercion de comandos sadaco de https://medium.com/adessoturkey/execute-scripts-on-zabbix-host-8c79782022fd
+
+
+sudo docker run \
+    --name mysql-server \
+    --network zabbix-network \
+    -dt \
+    --mount type=volume,source=mysql,target=/var/lib/mysql \
+    -e MYSQL_DATABASE="zabbix" \
+    -e MYSQL_USER="zabbix" \
+    -e MYSQL_PASSWORD="evren123" \
+    -e MYSQL_ROOT_PASSWORD="YjA0OTYajskjadhBiN2EwNWFjMTRjZGU3Yjcy" \
+    --restart unless-stopped \
+    --character-set-server=utf8 \
+    --collation-server=utf8_bin \
+    --default-authentication-plugin=mysql_native_password/
+    mysql
+    
+    
+    
+    
+    
+    
+    
+    
+# Zabbix 
+    
+sudo docker run \
+    --name zabbix-5 \
+    -e DB_SERVER_HOST="mysql" \
+    -e MYSQL_USER="zabbix" \
+    -e MYSQL_PASSWORD="hmq7381" \
+    -d \
+    --rm \
+    zabbix/zabbix-server-mysql
+    
+    
+sudo docker run \
+    --name zabbix-5 \
+    -e DB_SERVER_HOST="mysql" \
+    -e MYSQL_USER="zabbix" \
+    -e MYSQL_PASSWORD="hmq7381" \
+    -d \
+    --rm \
+    zabbix/zabbix-server-mysql    
+    
 
 # Netdata DockerCompose
 

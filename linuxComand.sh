@@ -299,6 +299,12 @@ zip arcivo.zip fichero
 unzip arcivo.zip
 unzip -v arcivo.unzip
 
+
+# -- Instalar gzip
+sudo apt-get update
+sudo apt-get install gzip
+
+
 # -- Actualizar Fedor | Informacion: https://yourgeekweb.com/es/2019/03/24/como-actualizar-fedora-desde-la-terminal/
 # - Para instlar todas las actualizaciones
 	sudo dnf upgrade --refresh
@@ -734,9 +740,13 @@ docker --version
 # -- Ver mas informacion de docker
 docker info
 
-# -- Crea una imagen de un contenedor
-docker commit id
+# -- Crea una imagen de un contenedor - https://tecnotec.es/como-copiar-mover-un-contenedor-docker-a-otro-host/
+docker commit (id/name) alias_a_utilizar
 
+  # Crear un archivo para mover, a partir de una imagen 
+docker save alias_a_utilizar | gzip > mycontainerimage.tar.gz
+
+  # Descomprimir una imagen y montarla a docker  
 
 # -- baja la imagen de DokckerHab
 docker pull "imagen" # si agregamos :1.0 baja la vercion 1.0
@@ -881,6 +891,14 @@ git push origin master
 
 # -- trae el codigo de el Gestor de verciones
 git pull origin master
+
+
+# -- Traer el código del Gestor de versiones pisando el loca
+git fetch
+git reset --hard HEAD
+git merge '@{u}'
+
+
 
 # -- Para comitiar el codigo
 	git commit -m "Mensaje"
@@ -1113,3 +1131,25 @@ b
 
 # -- Mueve palabra acia delante <F>
 w
+
+
+# --  Buscar en el archivo  
+/
+
+
+# --  Que no haga diferencia entre mayúscula y minúscula durante la búsqueda
+:set ic 
+
+:set ignorecase
+
+# -- Que haga diferencia entre mayúscula y minúscula durante la búsqueda
+:set noic
+
+:set noignorecase
+
+
+# -------------------------------<<mysql>>-------------------------------------
+
+
+#  -- Muestra las bases de datos que se encuentran en MySql
+show database 
