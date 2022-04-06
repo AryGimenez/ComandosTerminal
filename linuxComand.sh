@@ -944,8 +944,8 @@ ssh-keygen -f "nombre de el fechero" -t rsa -b 4096 -C "EmailGitHub"
   # Agrega la clave a el agente
   ssh-add ~/.ssh/id_rsa
 
-
-#  14:00 Jueves 29 Bulebar artigas 408 esquina solano Garcia.
+  # Agregar la clave publica a GitHub https://docs.github.com/es/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account
+  Seting > SSH and GPG keys 
 
 # -- Crear una nueva branch
 # Rama master -- Rama principal
