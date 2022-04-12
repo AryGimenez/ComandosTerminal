@@ -957,7 +957,8 @@ git branch NombreDeBranch   <?>
 git checkout -b NombreDeBranch
 
 # -- Pasarnos a branck
-git checkut NombreDeBranch
+git checkout NombreDeBranch
+
 
 
 
