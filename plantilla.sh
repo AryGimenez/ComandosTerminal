@@ -96,9 +96,12 @@ sudo docker run -d \
   -e TZ=Etc/UTC \
   -v /home/docker/Omada/data:/opt/tplink/EAPController/data \
   -v /home/docker/Omada/work:/opt/tplink/EAPController/work \
-  -v /home/docker/Omada/data/logs:/opt/tplink/EAPController/logs \
+  -v /home/docker/Omada/logs:/opt/tplink/EAPController/logs \
   mbentley/omada-controller:5.1
-
+# Creo los directorios para los volúmenes 
+mkdir /home/docker/Omada /home/docker/Omada/logs /home/docker/Omada/work /home/docker/Omada/data
+# Asigno permisos como dice la documentación
+sudo chown -R 508:508 /home/docker/Omada/data /home/docker/Omada/work /home/docker/Omada/logs
 
 
 
