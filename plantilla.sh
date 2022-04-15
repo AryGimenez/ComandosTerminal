@@ -89,8 +89,8 @@ sudo docker run -d \
   -e MANAGE_HTTPS_PORT=8043 `#Puerto HTTS Interfaz de Gestion`\
   -e PORTAL_HTTP_PORT=8088 `#Puerto HTTP Interfaz de Usuario` \
   -e PORTAL_HTTPS_PORT=8843 `#Puerto HTTPS Interfaz de Usuario` \
-  -e SHOW_SERVER_LOGS=true \
-  -e SHOW_MONGODB_LOGS=false \
+  -e SHOW_SERVER_LOGS=true `#Habilita los logs del Servidor.`\
+  -e SHOW_MONGODB_LOGS=true \
   -e SSL_CERT_NAME="tls.crt" \
   -e SSL_KEY_NAME="tls.key" \
   -e TZ=Etc/UTC \
@@ -98,6 +98,9 @@ sudo docker run -d \
   -v /home/docker/Omada/work:/opt/tplink/EAPController/work \
   -v /home/docker/Omada/logs:/opt/tplink/EAPController/logs \
   mbentley/omada-controller:5.1
+
+
+  
 # Creo los directorios para los volúmenes 
 mkdir /home/docker/Omada /home/docker/Omada/logs /home/docker/Omada/work /home/docker/Omada/data
 # Asigno permisos como dice la documentación
