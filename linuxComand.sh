@@ -73,6 +73,9 @@ chmod archivoOdirectorio
 # -- Ver contenido de un archivo
 cat
 
+# -- Ver conenido de un archivo en terminal con fortato y nuemro de pagina 
+bat # https://github.com/sharkdp/bat
+
 
 #  -- Reparar Driver Nvidia
 sudo ubnutu-drivers devices # Veo los drives disponible - y el Recomendado <F>
