@@ -10,6 +10,24 @@ sudo pacman -Syyu
 # -- Descomprimir RAR
 unrar e "archivo.rar" "directorio Destino"
 
+
+
+# -- Mostrar contenido codigo QR
+zbarimg $HOME/codigoqr.png
+
+# Instalar zbrimg 
+sudo pacman -S zbar # ArchiLinux  y Derivados
+
+sudo apt-get install zbar-tools
+
+# -- Generar Codigo QR
+qrencode -o imagen2_qr.png -s 9 "Hola! ¿Como va eso?"
+
+# -- Mostrar en terminal Codigo QE
+curl qrcode.show -d @imp_details # https://muylinux.xyz/como-generar-codigo-qr-desde-la-terminal-de-linux/
+
+
+
 # -- Copiar entre terminales xclip <F>
 #<?> No lo entendi bien
 
@@ -72,6 +90,9 @@ chmod archivoOdirectorio
 
 # -- Ver contenido de un archivo
 cat
+
+# -- Ver conenido de un archivo en terminal con fortato y nuemro de pagina 
+bat # https://github.com/sharkdp/bat
 
 
 #  -- Reparar Driver Nvidia
@@ -503,6 +524,21 @@ ifdown "INTERFACE"
 
 # -- Conecta la interface de red
 ifconfig "Interface" up
+
+# -- Escanear puertos nmap 
+
+# Detectar el sistema operativo y mas datos del host
+nmap -A -v [IP]
+
+# Escanear todos los puertos 
+
+nmap -n -Pn -sS -p- [IP] # TCP
+
+nmap -n -Pn -sU -p- [IP] # UDP
+
+
+# Instalar nmap Ubuntu
+sudo apt install nmap
 
 # -- Reiniciar la configuracion de todas las interfaces
 service networking reload

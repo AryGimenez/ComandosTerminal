@@ -72,6 +72,43 @@ sudo docker run -d \
         -v /home/docker/duckdns/config:/config `#optional` \
     lscr.io/linuxserver/duckdns
 
+# Omada Controller 
+
+sudo docker run -d \
+  --name omada-controller \
+  --rm \
+  -p 8088:8088 \
+  -p 8043:8043 \
+  -p 8843:8843 \
+  -p 29810:29810/udp \
+  -p 29811:29811 \
+  -p 29812:29812 \
+  -p 29813:29813 \
+  -p 29814:29814 \
+  -e MANAGE_HTTP_PORT=8088 `#Puerto HTTP Interfaz de Gestion`\
+  -e MANAGE_HTTPS_PORT=8043 `#Puerto HTTS Interfaz de Gestion`\
+  -e PORTAL_HTTP_PORT=8088 `#Puerto HTTP Interfaz de Usuario` \
+  -e PORTAL_HTTPS_PORT=8843 `#Puerto HTTPS Interfaz de Usuario` \
+  -e SHOW_SERVER_LOGS=true `#Habilita los logs del Servidor.`\
+  -e SHOW_MONGODB_LOGS=true \
+  -e SSL_CERT_NAME="tls.crt" \
+  -e SSL_KEY_NAME="tls.key" \
+  -e TZ=Etc/UTC \
+  -v /home/docker/Omada/data:/opt/tplink/EAPController/data \
+  -v /home/docker/Omada/work:/opt/tplink/EAPController/work \
+  -v /home/docker/Omada/logs:/opt/tplink/EAPController/logs \
+  mbentley/omada-controller:5.1
+
+
+  
+# Creo los directorios para los volúmenes 
+mkdir /home/docker/Omada /home/docker/Omada/logs /home/docker/Omada/work /home/docker/Omada/data
+# Asigno permisos como dice la documentación
+sudo chown -R 508:508 /home/docker/Omada/data /home/docker/Omada/work /home/docker/Omada/logs
+
+
+
+
 # MySQL
 
 sudo docker run \
