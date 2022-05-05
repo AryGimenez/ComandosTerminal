@@ -1,6 +1,19 @@
 
 # -------------------------------<<LINUX>>-------------------------------------
 
+# -- VPN WireGuard 
+
+# Instalar en Ubuntu wireguar
+sudo apt install wireguard
+
+# Creo que activa el Wireguard 
+sudo modprode wireguard 
+
+# Revisar que WireGuard este activado
+lsmod | grep wireguard 
+
+
+
 # -- Actualizar Ubuntu 
 sudo apt-get update
 
