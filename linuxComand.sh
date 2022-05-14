@@ -13,6 +13,8 @@ sudo modprode wireguard
 lsmod | grep wireguard 
 
 
+# -- Instlar Visual Studio Code 
+sudo snap install --classic code
 
 # -- Actualizar Ubuntu 
 sudo apt-get update
