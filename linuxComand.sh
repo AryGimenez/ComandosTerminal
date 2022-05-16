@@ -12,6 +12,9 @@ sudo modprode wireguard
 # Revisar que WireGuard este activado
 lsmod | grep wireguard 
 
+# Conectarme al servidor VPN 
+
+sudo vim /etc/wireguard/wg0.conf
 
 # -- Instlar Visual Studio Code 
 sudo snap install --classic code
@@ -261,6 +264,15 @@ sudo add-apt-repository --remove ppa:webupd8team/atom
 
     sudo chmod +x  # Creo que le da pemiso de ejecucion
 ./archivo.run
+
+# Instalar plug-in para autocompletar en zsh 
+mkdir ~/.zsh/zsh-autosuggestions # Crear el directorio 
+git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions
+vim ~/.zshrc #modificar directorio de configuracion
+	source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh # agregar linia 
+
+
+
 
 # -- Para Reparar cuando no puede acutalizar hay que <kali>
 # modificar /etc/apt/sources.list
