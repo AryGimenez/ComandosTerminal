@@ -563,6 +563,8 @@ nmap -n -Pn -sS -p- [IP] # TCP
 
 nmap -n -Pn -sU -p- [IP] # UDP
 
+nmap -sP [IP]/24 # Escanea la red 
+
 
 # Instalar nmap Ubuntu
 sudo apt install nmap
