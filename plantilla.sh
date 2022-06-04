@@ -25,6 +25,22 @@ docker run \
   docker.io/panubo/vsftpd:latest
 
 
+## -- Docker Kali
+
+sudo docker run \
+  --rm \
+  -- name kali \
+  kalilinux/kali-rolling:latest
+
+
+sudo docker run \
+  -t \
+  -i \
+  kalilinux/kali-rolling \
+  /bin/bash
+
+
+  
 ## -- Docker networks
 
 ip link add mac0 link eth0 type macvlan mode bridge

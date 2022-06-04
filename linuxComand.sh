@@ -16,6 +16,12 @@ lsmod | grep wireguard
 
 sudo vim /etc/wireguard/wg0.conf
 
+
+# Levantar interfaz de coneccion wireguard <F>
+sudo wg-quick up wg0
+
+
+
 # -- Instlar Visual Studio Code 
 sudo snap install --classic code
 
@@ -565,6 +571,7 @@ nmap -n -Pn -sU -p- [IP] # UDP
 
 nmap -sP [IP]/24 # Escanea la red 
 
+nmap -sn [IP]/24 # Escanea Ip dante los mac
 
 # Instalar nmap Ubuntu
 sudo apt install nmap
