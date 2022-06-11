@@ -353,6 +353,17 @@ zip arcivo.zip fichero
 unzip arcivo.zip
 unzip -v arcivo.unzip
 
+# -- Empaquetar  gz
+gzip -9 index.php
+
+# -- Desempaquetar gz
+gzip -d index.php.gz
+
+# -- Empaquetar tar
+tar -cvf paquete.tar /dir/a/comprimir/
+
+# -- Desempaquetar 
+tar -xvf paquete.tar
 
 # -- Instalar gzip
 sudo apt-get update

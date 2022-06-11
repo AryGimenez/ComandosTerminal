@@ -1,0 +1,40 @@
+Starting Nmap 7.80 ( https://nmap.org ) at 2022-05-21 17:41 -03
+Nmap scan report for 192.168.3.3
+Host is up (0.047s latency).
+Nmap scan report for 192.168.3.6
+Host is up (0.00051s latency).
+Nmap scan report for 192.168.3.7
+Host is up (0.014s latency).
+Nmap scan report for 192.168.3.8
+Host is up (0.00042s latency).
+Nmap scan report for 192.168.3.11
+Host is up (0.094s latency).
+Nmap scan report for 192.168.3.12
+Host is up (0.00052s latency).
+Nmap scan report for 192.168.3.13
+Host is up (0.069s latency).
+Nmap scan report for 192.168.3.14
+Host is up (0.0011s latency).
+Nmap scan report for 192.168.3.21
+Host is up (0.062s latency).
+Nmap scan report for 192.168.3.22
+Host is up (0.090s latency).
+Nmap scan report for 192.168.3.26
+Host is up (0.0017s latency).
+Nmap scan report for 192.168.3.27
+Host is up (0.086s latency).
+Nmap scan report for 192.168.3.41
+Host is up (0.0090s latency).
+Nmap scan report for ary-HP-Pavilion-dv5-Notebook-PC (192.168.3.49)
+Host is up (0.00030s latency).
+Nmap scan report for 192.168.3.64
+Host is up (0.022s latency).
+Nmap scan report for 192.168.3.65
+Host is up (0.0030s latency).
+Nmap scan report for 192.168.3.71
+Host is up (0.0079s latency).
+Nmap scan report for 192.168.3.76
+Host is up (0.0038s latency).
+Nmap scan report for 192.168.3.254
+Host is up (0.00071s latency).
+Nmap done: 256 IP addresses (19 hosts up) scanned in 6.63 seconds
