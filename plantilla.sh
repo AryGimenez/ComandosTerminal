@@ -278,6 +278,9 @@ sudo docker run -d \
 
 sudo docker run -d \
   --name=unifi-controller \
+  --rm \
+  --network Red-AppExterna \
+  --ip 192.168.0.4 \
   -e PUID=1000 \
   -e PGID=1000 \
   -e MEM_LIMIT=1024 `#optional` \
@@ -292,7 +295,6 @@ sudo docker run -d \
   -p 6789:6789 `#optional` \
   -p 5514:5514/udp `#optional` \
   -v /home/docker/UniFi-Controller:/config \
-  --restart unless-stopped \
   lscr.io/linuxserver/unifi-controller:latest
 
   /home/docker/
