@@ -263,7 +263,7 @@ sudo add-apt-repository --remove ppa:webupd8team/atom
   chsh -s `which zsh`
 
   # Hacer que ZSH funcione en  ROOT <F> https://askubuntu.com/questions/521469/oh-my-zsh-for-the-root-and-for-all-user
-
+    sudo apt -i curl
     sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
     sudo ln -s /root/.zshrc $HOME/.zshrc
@@ -450,6 +450,9 @@ ll
 
 # -- Crear Directorio
 mkdir Nombre\ de\ Directorio
+
+# -- Crear enlace o acceso directo https://www.ionos.es/digitalguide/servidores/configuracion/comando-ln-de-linux/ 
+ln
 
 # -- Ver El tomaño total de un directorio en el  curo
 du -sh Directorio/
