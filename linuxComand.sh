@@ -74,6 +74,13 @@ vim /etc/lightdm/lightdm.conf # El el archivo lightdm.conf se encuentra la confi
 sudo apt-get install aptitude
 sudo aptitude install gimp 
 
+# -- Instlar inkscape https://inkscape.org/release/inkscape-1.2/gnulinux/ubuntu/ppa/dl/
+sudo add-apt-repository ppa:inkscape.dev/stable
+sudo apt update
+sudo apt install inkscape
+
+
+
 # -- Trabajar con Permisos <?> <F>
 # Mas complejo  https://blog.desdelinux.net/permisos-y-derechos-en-linux/
 # Mas simple 
