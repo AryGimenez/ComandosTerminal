@@ -433,6 +433,10 @@ cp archivo.txt /Directorio
 cp -r -v archivo.txt /Directorio # -r Copiar directorio -v ver movimiento de archivos
 cp -a /origen/. /destino/ # <?> no anubo por un tempa de permiso copio pero algunas cosas no
 
+
+# -- Copiar y verificar archivos con rsync https://www.hostinger.es/tutoriales/rsync-linux
+sudo rsync -av roms/ /media/ary/Storage      # Copia un Directorio (Hay detalles que agregar ) -v muestra una barra de progresos que no vi 
+
 # -- Comando pàra monitorizar recursos 
 htop 
 
