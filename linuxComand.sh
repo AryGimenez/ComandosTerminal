@@ -616,10 +616,13 @@ sudo rpm -ifh *-rpm
 # -- Desifrar Password WIFI WPA - WPA2 con aircrack-ng
 # https://www.agix.com.au/cracking-wifi-with-aircrack-ng-fedora-centos-rhel/
 # https://www.aircrack-ng.org/doku.php?id=es:cracking_wpa
-yum install aircrack-ng # <ReadHost> Instalar
+
+# Instalar aircrack-ng 
+  yum install aircrack-ng # <ReadHost> Instalar
+  sudo apt install aircrack-ng # Ubuntu 
 
 ifconfig wlp0s20f3 down
-airmon-ng stop wlp020f3 d
+airmon-ng stop wlp020f3 # Esto no se si va 
 airodump-ng wlp0s20f3 # monitoriza Red inalambrica
 
 airodump-ng wlp0s20f3 -c 11 --essid MYWIFI -w psk
