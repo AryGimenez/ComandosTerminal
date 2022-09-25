@@ -124,8 +124,33 @@ sudo chown -R 508:508 /home/docker/Omada/data /home/docker/Omada/work /home/dock
 
 
 
+#Zabbix 
 
-# MySQL
+sudo docker network create \
+  --driver bridge \
+  zabbix-network
+
+
+
+
+
+
+
+    # Vercion que anda https://medium.com/adessoturkey/execute-scripts-on-zabbix-host-8c79782022fd
+
+sudo docker run --network zabbix-network -dt --name mysql-server \
+--mount type=volume,source=mysql,target=/var/lib/mysql \
+-e MYSQL_DATABASE="zabbix" -e MYSQL_USER="zabbix" \
+-e MYSQL_PASSWORD="evren123" \
+-e MYSQL_ROOT_PASSWORD="YjA0OTYajskjadhBiN2EwNWFjMTRjZGU3Yjcy" \
+--restart unless-stopped mysql --character-set-server=utf8 \
+--collation-server=utf8_bin \
+--default-authentication-plugin=mysql_native_password
+
+
+
+
+# Contenedor Monitorizacion MySQL 
 
 sudo docker run \
     --name bd_zabix \
@@ -140,6 +165,21 @@ sudo docker run \
     --rm \
     mysql
 
+
+#Contenedor para 
+
+sudo docker run 
+  --network zabbix-network \
+  -dt 
+  --name mysql-server \
+  --mount type=volume,source=mysql,target=/var/lib/mysql \
+  -e MYSQL_DATABASE="zabbix" -e MYSQL_USER="zabbix" \
+  -e MYSQL_PASSWORD="evren123" \
+  -e MYSQL_ROOT_PASSWORD="YjA0OTYajskjadhBiN2EwNWFjMTRjZGU3Yjcy" \
+  --restart unless-stopped mysql \
+  --character-set-server=utf8 \
+  --collation-server=utf8_bin \
+  --default-authentication-plugin=mysql_native_password
     
 # mi vercion de comandos sadaco de https://medium.com/adessoturkey/execute-scripts-on-zabbix-host-8c79782022fd
 
@@ -276,11 +316,33 @@ sudo docker run -d \
 
 # UniFi Controller 
 
+# En otra red para no compartir el host
+    sudo docker run -d \
+      --name=unifi-controller \
+      --rm \
+      --network Red-AppExterna \
+      --ip 192.168.0.4 \
+      -e PUID=1000 \
+      -e PGID=1000 \
+      -e MEM_LIMIT=1024 `#optional` \
+      -e MEM_STARTUP=1024 `#optional` \
+      -p 8443:8443 \
+      -p 3478:3478/udp \
+      -p 10001:10001/udp \
+      -p 8080:8080 \
+      -p 1900:1900/udp `#optional` \
+      -p 8843:8843 `#optional` \
+      -p 8880:8880 `#optional` \
+      -p 6789:6789 `#optional` \
+      -p 5514:5514/udp `#optional` \
+      -v /home/docker/UniFi-Controller:/config \
+      lscr.io/linuxserver/unifi-controller:latest
+
+
+# en el mismo host 
 sudo docker run -d \
   --name=unifi-controller \
   --rm \
-  --network Red-AppExterna \
-  --ip 192.168.0.4 \
   -e PUID=1000 \
   -e PGID=1000 \
   -e MEM_LIMIT=1024 `#optional` \
@@ -296,6 +358,7 @@ sudo docker run -d \
   -p 5514:5514/udp `#optional` \
   -v /home/docker/UniFi-Controller:/config \
   lscr.io/linuxserver/unifi-controller:latest
+
 
   /home/docker/
 
