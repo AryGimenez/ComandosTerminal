@@ -131,21 +131,74 @@ sudo docker network create \
   zabbix-network
 
 
+    # Conenedor Mysql 
+    sudo docker run \
+      --network zabbix-network \
+      -dt \
+      --name mysql-server \
+      -v \home\ary\docker\zabbix\mysql:/var/lib/mysql \
+      -e MYSQL_DATABASE="zabbix" \
+      -e MYSQL_USER="ary" \
+      -e MYSQL_PASSWORD="hmq7381" \
+      -e MYSQL_ROOT_PASSWORD="YjA0OTYajskjadhBiN2EwNWFjMTRjZGU3Yjcy" \
+      --restart unless-stopped mysql \
+      --character-set-server=utf8 \
+      --collation-server=utf8_bin \
+      --default-authentication-plugin=mysql_native_password
 
 
+# Servidor zabbix
+
+sudo docker run \
+  --network zabbix-network \
+  --name zabbix-server-mysql \
+  -dt \
+  -e DB_SERVER_HOST="mysql-server" \
+  -e MYSQL_DATABASE="zabbix" \
+  -e MYSQL_USER="ary" \
+  -e MYSQL_PASSWORD="hmq7381" \
+  -e MYSQL_ROOT_PASSWORD="YjA0OTYajskjadhBiN2EwNWFjMTRjZGU3Yjcy" \
+  -e ZBX_TIMEOUT="10" \
+  -e ZBX_CACHESIZE=1G \
+  --hostname zabbix-server-mysql \
+  --restart unless-stopped zabbix/zabbix-server-mysql
+
+# Servidor Wen Zabbix nginx
+
+sudo docker run \
+  --network zabbix-network \
+  --name zabbix-web-nginx-mysql \
+  -dt \
+  -e DB_SERVER_HOST="mysql-server" \
+  -e MYSQL_DATABASE="zabbix" \
+  -e MYSQL_USER="ary" \
+  -e MYSQL_PASSWORD="hmq7381" \
+  -e MYSQL_ROOT_PASSWORD="YjA0OTYajskjadhBiN2EwNWFjMTRjZGU3Yjcy" \
+  -e ZBX_SERVER_HOST="zabbix-server-mysql" \
+  --restart unless-stopped \
+  -p 8081:8080 \
+  zabbix/zabbix-web-nginx-mysql
+
+# DockerHub: https://hub.docker.com/r/zabbix/zabbix-web-nginx-mysql
 
 
+sudo docker run \
+  --network zabbix-network \
+  --name zabbix-agent \
+  -dt \
+  --hostname zabbix-agent \
+  -e ZBX_TIMEOUT="10" \ 
+  -e ZBX_HOSTNAME="Zabbix server" \ 
+  -e ZBX_ALLOWKEY="system.run[*]" \  # No tengo ni idea 
+  -e ZBX_SERVER_HOST="zabbix-server-mysql" \ 
+  -e ZBX_SERVER_PORT="10051" 
+  -restart unless-stopped \
+  zabbix/zabbix-agent2
 
-    # Vercion que anda https://medium.com/adessoturkey/execute-scripts-on-zabbix-host-8c79782022fd
 
-sudo docker run --network zabbix-network -dt --name mysql-server \
---mount type=volume,source=mysql,target=/var/lib/mysql \
--e MYSQL_DATABASE="zabbix" -e MYSQL_USER="zabbix" \
--e MYSQL_PASSWORD="evren123" \
--e MYSQL_ROOT_PASSWORD="YjA0OTYajskjadhBiN2EwNWFjMTRjZGU3Yjcy" \
---restart unless-stopped mysql --character-set-server=utf8 \
---collation-server=utf8_bin \
---default-authentication-plugin=mysql_native_password
+   
+
+
 
 
 
