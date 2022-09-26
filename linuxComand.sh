@@ -36,6 +36,11 @@ unrar e "archivo.rar" "directorio Destino"
 
 
 
+# -- Listar claves GPG de el sistema
+sudo apt-key list
+
+
+
 # -- Mostrar contenido codigo QR
 zbarimg $HOME/codigoqr.png
 
@@ -449,8 +454,11 @@ htop
   ls -h # Muestra el peso de los archivos en formatio umano no en SublimeText
   ls -lah # todo lo de arriba
 
-# -- Ve los ips y los puertos de mi host creo <?> <F>
+# -- Ver los IP y los puertos de mi host
  sudo lsof -i -P -n # https://geekflare.com/es/lsof-command-examples/
+
+# -- Ver la información del puerto pasado por parámetro 
+netstat -putona | grep numero-de-puerto
 
 # -- Muestra la estructura de directorios
   sudo apt-ge install tree #<F>Instala tree <Ubunru>
