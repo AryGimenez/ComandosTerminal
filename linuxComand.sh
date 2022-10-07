@@ -240,6 +240,9 @@ sudo shutdown -h +30
 # -- Sierra cesion <Ubuntu>
 gnome-session-quit
 
+# -- Para instalar OpenSSH para coneccion ssh 
+sudo apt-get install openssh-server openssh-client
+
 # -- <F> Para contectarme por cp Documentos/Red-MontevideoColors/Servidor/docker-compose.yml root@192.168.43.123:/services-dockersh
 ssh ary@<IP/HOST>
 ssh ary@"IP/Host" -p "Puerto"
