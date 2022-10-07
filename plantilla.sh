@@ -77,7 +77,6 @@ sudo docker stop plex
 
 # DuckDNS
 sudo docker run -d \
-    --rm \
     --name=duckdns \
     -e PUID=1000 `#optional` \
     -e PGID=1000 `#optional` \
@@ -85,7 +84,8 @@ sudo docker run -d \
     -e SUBDOMAINS=arycasa.duckdns.org \
     -e TOKEN=04e49b80-78e9-4d42-8c27-7f508672984c \
     -e LOG_FILE=false `#optional` \
-        -v /home/docker/duckdns/config:/config `#optional` \
+    -v /home/docker/duckdns/config:/config `#optional` \
+    --restart unless-stopped \
     lscr.io/linuxserver/duckdns
 
 # Omada Controller 
@@ -126,9 +126,9 @@ sudo chown -R 508:508 /home/docker/Omada/data /home/docker/Omada/work /home/dock
 
 #Zabbix 
 
-sudo docker network create \
-  --driver bridge \
-  zabbix-network
+    sudo docker network create \
+      --driver bridge \
+      zabbix-network
 
 
     # Conenedor Mysql 
@@ -160,45 +160,42 @@ sudo docker run \
   -e MYSQL_ROOT_PASSWORD="YjA0OTYajskjadhBiN2EwNWFjMTRjZGU3Yjcy" \
   -e ZBX_TIMEOUT="10" \
   -e ZBX_CACHESIZE=1G \
+  -p 10051:10051 \
   --hostname zabbix-server-mysql \
   --restart unless-stopped zabbix/zabbix-server-mysql
 
 # Servidor Wen Zabbix nginx
 
-sudo docker run \
-  --network zabbix-network \
-  --name zabbix-web-nginx-mysql \
-  -dt \
-  -e DB_SERVER_HOST="mysql-server" \
-  -e MYSQL_DATABASE="zabbix" \
-  -e MYSQL_USER="ary" \
-  -e MYSQL_PASSWORD="hmq7381" \
-  -e MYSQL_ROOT_PASSWORD="YjA0OTYajskjadhBiN2EwNWFjMTRjZGU3Yjcy" \
-  -e ZBX_SERVER_HOST="zabbix-server-mysql" \
-  --restart unless-stopped \
-  -p 8081:8080 \
-  zabbix/zabbix-web-nginx-mysql
+    sudo docker run \
+      --network zabbix-network \
+      --name zabbix-web-nginx-mysql \
+      -dt \
+      -e DB_SERVER_HOST="mysql-server" \
+      -e MYSQL_DATABASE="zabbix" \
+      -e MYSQL_USER="ary" \
+      -e MYSQL_PASSWORD="hmq7381" \
+      -e MYSQL_ROOT_PASSWORD="YjA0OTYajskjadhBiN2EwNWFjMTRjZGU3Yjcy" \
+      -e ZBX_SERVER_HOST="zabbix-server-mysql" \
+      --restart unless-stopped \
+      -p 8081:8080 \
+      zabbix/zabbix-web-nginx-mysql
 
 # DockerHub: https://hub.docker.com/r/zabbix/zabbix-web-nginx-mysql
 
 
-sudo docker run \
-  --network zabbix-network \
-  --name zabbix-agent \
-  -dt \
-  --hostname zabbix-agent \
-  -e ZBX_TIMEOUT="10" \ 
-  -e ZBX_HOSTNAME="Zabbix server" \ 
-  -e ZBX_ALLOWKEY="system.run[*]" \  # No tengo ni idea 
-  -e ZBX_SERVER_HOST="zabbix-server-mysql" \ 
-  -e ZBX_SERVER_PORT="10051" 
-  -restart unless-stopped \
-  zabbix/zabbix-agent2
-
-
-   
-
-
+    sudo docker run \
+      --network zabbix-network \
+      --name zabbix-agent \
+      -dt \
+      --hostname zabbix-agent \
+      -e ZBX_TIMEOUT="10" \
+      -e ZBX_HOSTNAME="Zabbix server" \
+      -e ZBX_ALLOWKEY="system.run[*]" `#No tengo ni idea` \
+      -e ZBX_SERVER_HOST="127.0.0.1" \
+      -e ZBX_SERVER_PORT="10051" \
+      -p 10050:10050 \
+      --restart unless-stopped \
+      zabbix/zabbix-agent2
 
 
 
@@ -417,8 +414,7 @@ sudo docker run -d \
 
 #  Docker Wireguard 
 
-docker run -d \
-    --rm \
+sudo docker run -d \
     --name=wireguard \
     --cap-add=NET_ADMIN \
     --cap-add=SYS_MODULE \
@@ -435,6 +431,7 @@ docker run -d \
     -v /home/docker/wireguard/config:/config \
     -v /home/docker/wireguard/lib/modules:/lib/modules \
     --sysctl="net.ipv4.conf.all.src_valid_mark=1" \
+    --restart=always \
     lscr.io/linuxserver/wireguard
 
 # meter al inicio 
@@ -449,7 +446,7 @@ mount /dev/sdb2 /media/data
 
 
 # documentar
-
+ 
 printf ‘Primera línea de texto\n’ nombrearchivo.txt
 
 
