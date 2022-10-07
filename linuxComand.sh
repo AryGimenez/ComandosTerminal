@@ -358,6 +358,12 @@ sudo badblocks -s -v -f /dev/sdb
 #-- ver la informacion del sistema
 	hostnamectl
 
+# -- Cambiar el nombre del equipo (set hostname)
+ sudo hostname nuevonombre #Creo que no funciona 
+ # Editar los siguientes archivos y cambiar el nombre actual por el nuevo 
+ /etc/hostname
+ /etc/hosts
+
 #-- Empaquetacion *.tar https://blog.desdelinux.net/con-el-terminal-comprimir-descomprimir-archivos/
 tar -cvf archivo.tar # - empaquetar
 tar tar xvf arcivo.Tar # - desemaquetar
