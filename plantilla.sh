@@ -182,20 +182,21 @@ sudo docker run \
 
 # DockerHub: https://hub.docker.com/r/zabbix/zabbix-web-nginx-mysql
 
-
-    sudo docker run \
-      --network zabbix-network \
-      --name zabbix-agent \
-      -dt \
-      --hostname zabbix-agent \
-      -e ZBX_TIMEOUT="10" \
-      -e ZBX_HOSTNAME="Zabbix server" \
-      -e ZBX_ALLOWKEY="system.run[*]" `#No tengo ni idea` \
-      -e ZBX_SERVER_HOST="127.0.0.1" \
-      -e ZBX_SERVER_PORT="10051" \
-      -p 10050:10050 \
-      --restart unless-stopped \
-      zabbix/zabbix-agent2
+# Agente zabbix
+sudo docker run \
+  --network zabbix-network \
+  --name zabbix-agent \
+  -dt \
+  --hostname zabbix-agent \
+  -e ZBX_TIMEOUT="10" \
+  -e ZBX_HOSTNAME="Zabbix server" \
+  -e ZBX_ALLOWKEY="system.run[*]" `#No tengo ni idea` \
+  -e ZBX_SERVER_HOST="127.0.0.1" \
+  -e ZBX_SERVER_PORT="10051" \
+  -p 10050:10050 \
+  -v /home/docker/zabbix/agenteZabbix:/etc/zabbix \
+  --restart unless-stopped \
+  zabbix/zabbix-agent2
 
 
 

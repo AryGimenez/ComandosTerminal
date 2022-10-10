@@ -4,7 +4,7 @@
 # -- VPN WireGuard 
 
 # Instalar en Ubuntu wireguar
-sudo apt install wireguard
+sudo apt-get install wireguard
 
 # Creo que activa el Wireguard 
 sudo modprode wireguard 
@@ -532,6 +532,12 @@ sudo dpkg -i archivo.deb
 
 # -- Utilizacion  CAT https://www.tiendalinux.com/docs/manuales/redhat/rhl-gsg-es-7.3/s1-navigating-usingcat.php3 
 cat archivo.txt
+
+  # -- Alternativas a cat mas estilizadas https://www.genbeta.com/linux/9-alternativas-modernas-a-comandos-clasicos-linux
+
+# Muestra contenido más estilizado que cat   
+bat #https://github.com/sharkdp/bat 
+
 
   # Salir cat
   CTR+D
