@@ -4,7 +4,7 @@
 # -- VPN WireGuard 
 
 # Instalar en Ubuntu wireguar
-sudo apt install wireguard
+sudo apt-get install wireguard
 
 # Creo que activa el Wireguard 
 sudo modprode wireguard 
@@ -33,6 +33,11 @@ sudo pacman -Syyu
 
 # -- Descomprimir RAR
 unrar e "archivo.rar" "directorio Destino"
+
+
+
+# -- Listar claves GPG de el sistema
+sudo apt-key list
 
 
 
@@ -235,6 +240,9 @@ sudo shutdown -h +30
 # -- Sierra cesion <Ubuntu>
 gnome-session-quit
 
+# -- Para instalar OpenSSH para coneccion ssh 
+sudo apt-get install openssh-server openssh-client
+
 # -- <F> Para contectarme por cp Documentos/Red-MontevideoColors/Servidor/docker-compose.yml root@192.168.43.123:/services-dockersh
 ssh ary@<IP/HOST>
 ssh ary@"IP/Host" -p "Puerto"
@@ -350,6 +358,12 @@ sudo badblocks -s -v -f /dev/sdb
 #-- ver la informacion del sistema
 	hostnamectl
 
+# -- Cambiar el nombre del equipo (set hostname)
+ sudo hostname nuevonombre #Creo que no funciona 
+ # Editar los siguientes archivos y cambiar el nombre actual por el nuevo 
+ /etc/hostname
+ /etc/hosts
+
 #-- Empaquetacion *.tar https://blog.desdelinux.net/con-el-terminal-comprimir-descomprimir-archivos/
 tar -cvf archivo.tar # - empaquetar
 tar tar xvf arcivo.Tar # - desemaquetar
@@ -449,8 +463,11 @@ htop
   ls -h # Muestra el peso de los archivos en formatio umano no en SublimeText
   ls -lah # todo lo de arriba
 
-# -- Ve los ips y los puertos de mi host creo <?> <F>
+# -- Ver los IP y los puertos de mi host
  sudo lsof -i -P -n # https://geekflare.com/es/lsof-command-examples/
+
+# -- Ver la información del puerto pasado por parámetro 
+netstat -putona | grep numero-de-puerto
 
 # -- Muestra la estructura de directorios
   sudo apt-ge install tree #<F>Instala tree <Ubunru>
@@ -515,6 +532,12 @@ sudo dpkg -i archivo.deb
 
 # -- Utilizacion  CAT https://www.tiendalinux.com/docs/manuales/redhat/rhl-gsg-es-7.3/s1-navigating-usingcat.php3 
 cat archivo.txt
+
+  # -- Alternativas a cat mas estilizadas https://www.genbeta.com/linux/9-alternativas-modernas-a-comandos-clasicos-linux
+
+# Muestra contenido más estilizado que cat   
+bat #https://github.com/sharkdp/bat 
+
 
   # Salir cat
   CTR+D

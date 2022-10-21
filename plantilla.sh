@@ -77,7 +77,6 @@ sudo docker stop plex
 
 # DuckDNS
 sudo docker run -d \
-    --rm \
     --name=duckdns \
     -e PUID=1000 `#optional` \
     -e PGID=1000 `#optional` \
@@ -85,7 +84,8 @@ sudo docker run -d \
     -e SUBDOMAINS=arycasa.duckdns.org \
     -e TOKEN=04e49b80-78e9-4d42-8c27-7f508672984c \
     -e LOG_FILE=false `#optional` \
-        -v /home/docker/duckdns/config:/config `#optional` \
+    -v /home/docker/duckdns/config:/config `#optional` \
+    --restart unless-stopped \
     lscr.io/linuxserver/duckdns
 
 # Omada Controller 
@@ -124,8 +124,84 @@ sudo chown -R 508:508 /home/docker/Omada/data /home/docker/Omada/work /home/dock
 
 
 
+#Zabbix 
 
-# MySQL
+    sudo docker network create \
+      --driver bridge \
+      zabbix-network
+
+
+    # Conenedor Mysql 
+    sudo docker run \
+      --network zabbix-network \
+      -dt \
+      --name mysql-server \
+      -v \home\ary\docker\zabbix\mysql:/var/lib/mysql \
+      -e MYSQL_DATABASE="zabbix" \
+      -e MYSQL_USER="ary" \
+      -e MYSQL_PASSWORD="hmq7381" \
+      -e MYSQL_ROOT_PASSWORD="YjA0OTYajskjadhBiN2EwNWFjMTRjZGU3Yjcy" \
+      --restart unless-stopped mysql \
+      --character-set-server=utf8 \
+      --collation-server=utf8_bin \
+      --default-authentication-plugin=mysql_native_password
+
+
+# Servidor zabbix
+
+sudo docker run \
+  --network zabbix-network \
+  --name zabbix-server-mysql \
+  -dt \
+  -e DB_SERVER_HOST="mysql-server" \
+  -e MYSQL_DATABASE="zabbix" \
+  -e MYSQL_USER="ary" \
+  -e MYSQL_PASSWORD="hmq7381" \
+  -e MYSQL_ROOT_PASSWORD="YjA0OTYajskjadhBiN2EwNWFjMTRjZGU3Yjcy" \
+  -e ZBX_TIMEOUT="10" \
+  -e ZBX_CACHESIZE=1G \
+  -p 10051:10051 \
+  --hostname zabbix-server-mysql \
+  --restart unless-stopped zabbix/zabbix-server-mysql
+
+# Servidor Wen Zabbix nginx
+
+    sudo docker run \
+      --network zabbix-network \
+      --name zabbix-web-nginx-mysql \
+      -dt \
+      -e DB_SERVER_HOST="mysql-server" \
+      -e MYSQL_DATABASE="zabbix" \
+      -e MYSQL_USER="ary" \
+      -e MYSQL_PASSWORD="hmq7381" \
+      -e MYSQL_ROOT_PASSWORD="YjA0OTYajskjadhBiN2EwNWFjMTRjZGU3Yjcy" \
+      -e ZBX_SERVER_HOST="zabbix-server-mysql" \
+      --restart unless-stopped \
+      -p 8081:8080 \
+      zabbix/zabbix-web-nginx-mysql
+
+# DockerHub: https://hub.docker.com/r/zabbix/zabbix-web-nginx-mysql
+
+# Agente zabbix
+sudo docker run \
+  --network zabbix-network \
+  --name zabbix-agent \
+  -dt \
+  --hostname zabbix-agent \
+  -e ZBX_TIMEOUT="10" \
+  -e ZBX_HOSTNAME="Zabbix server" \
+  -e ZBX_ALLOWKEY="system.run[*]" `#No tengo ni idea` \
+  -e ZBX_SERVER_HOST="127.0.0.1" \
+  -e ZBX_SERVER_PORT="10051" \
+  -p 10050:10050 \
+  -v /home/docker/zabbix/agenteZabbix:/etc/zabbix \
+  --restart unless-stopped \
+  zabbix/zabbix-agent2
+
+
+
+
+# Contenedor Monitorizacion MySQL 
 
 sudo docker run \
     --name bd_zabix \
@@ -140,6 +216,21 @@ sudo docker run \
     --rm \
     mysql
 
+
+#Contenedor para 
+
+sudo docker run 
+  --network zabbix-network \
+  -dt 
+  --name mysql-server \
+  --mount type=volume,source=mysql,target=/var/lib/mysql \
+  -e MYSQL_DATABASE="zabbix" -e MYSQL_USER="zabbix" \
+  -e MYSQL_PASSWORD="evren123" \
+  -e MYSQL_ROOT_PASSWORD="YjA0OTYajskjadhBiN2EwNWFjMTRjZGU3Yjcy" \
+  --restart unless-stopped mysql \
+  --character-set-server=utf8 \
+  --collation-server=utf8_bin \
+  --default-authentication-plugin=mysql_native_password
     
 # mi vercion de comandos sadaco de https://medium.com/adessoturkey/execute-scripts-on-zabbix-host-8c79782022fd
 
@@ -276,11 +367,33 @@ sudo docker run -d \
 
 # UniFi Controller 
 
+# En otra red para no compartir el host
+    sudo docker run -d \
+      --name=unifi-controller \
+      --rm \
+      --network Red-AppExterna \
+      --ip 192.168.0.4 \
+      -e PUID=1000 \
+      -e PGID=1000 \
+      -e MEM_LIMIT=1024 `#optional` \
+      -e MEM_STARTUP=1024 `#optional` \
+      -p 8443:8443 \
+      -p 3478:3478/udp \
+      -p 10001:10001/udp \
+      -p 8080:8080 \
+      -p 1900:1900/udp `#optional` \
+      -p 8843:8843 `#optional` \
+      -p 8880:8880 `#optional` \
+      -p 6789:6789 `#optional` \
+      -p 5514:5514/udp `#optional` \
+      -v /home/docker/UniFi-Controller:/config \
+      lscr.io/linuxserver/unifi-controller:latest
+
+
+# en el mismo host 
 sudo docker run -d \
   --name=unifi-controller \
   --rm \
-  --network Red-AppExterna \
-  --ip 192.168.0.4 \
   -e PUID=1000 \
   -e PGID=1000 \
   -e MEM_LIMIT=1024 `#optional` \
@@ -297,12 +410,12 @@ sudo docker run -d \
   -v /home/docker/UniFi-Controller:/config \
   lscr.io/linuxserver/unifi-controller:latest
 
+
   /home/docker/
 
 #  Docker Wireguard 
 
-docker run -d \
-    --rm \
+sudo docker run -d \
     --name=wireguard \
     --cap-add=NET_ADMIN \
     --cap-add=SYS_MODULE \
@@ -319,6 +432,7 @@ docker run -d \
     -v /home/docker/wireguard/config:/config \
     -v /home/docker/wireguard/lib/modules:/lib/modules \
     --sysctl="net.ipv4.conf.all.src_valid_mark=1" \
+    --restart=always \
     lscr.io/linuxserver/wireguard
 
 # meter al inicio 
@@ -333,7 +447,7 @@ mount /dev/sdb2 /media/data
 
 
 # documentar
-
+ 
 printf ‘Primera línea de texto\n’ nombrearchivo.txt
 
 
