@@ -583,10 +583,12 @@ ifdown "INTERFACE"
 # -- Conecta la interface de red
 ifconfig "Interface" up
 
-# -- Escanear puertos nmap 
+# -- Escanear segun rango de  puertos nmap 
+nmap -p [RangoPuerto 13-32] [IP]
 
 # Detectar el sistema operativo y mas datos del host
 nmap -A -v [IP]
+
 
 # Escanear todos los puertos 
 
