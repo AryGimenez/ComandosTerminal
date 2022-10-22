@@ -131,20 +131,27 @@ sudo chown -R 508:508 /home/docker/Omada/data /home/docker/Omada/work /home/dock
       zabbix-network
 
 
-    # Conenedor Mysql 
-    sudo docker run \
-      --network zabbix-network \
-      -dt \
-      --name mysql-server \
-      -v \home\ary\docker\zabbix\mysql:/var/lib/mysql \
-      -e MYSQL_DATABASE="zabbix" \
-      -e MYSQL_USER="ary" \
-      -e MYSQL_PASSWORD="hmq7381" \
-      -e MYSQL_ROOT_PASSWORD="YjA0OTYajskjadhBiN2EwNWFjMTRjZGU3Yjcy" \
-      --restart unless-stopped mysql \
-      --character-set-server=utf8 \
-      --collation-server=utf8_bin \
-      --default-authentication-plugin=mysql_native_password
+# Conenedor Mysql - Para Zabbix 
+sudo docker run \
+  --network redPrueba \
+  --ip 192.168.100.10 \
+  --hostname=mysql-server2 \
+  -dt \
+  --name mysql-server2 \
+  -v /home/docker/zabbix/mysql:/var/lib/mysql `#Directorio donde se guarda la base de datos ` \
+  -e MYSQL_DATABASE="zabbix" \
+  -e MYSQL_USER="ary" \
+  -e MYSQL_PASSWORD="hmq7381" \
+  -e MYSQL_ROOT_PASSWORD="YjA0OTYajskjadhBiN2EwNWFjMTRjZGU3Yjcy" \
+  --restart unless-stopped mysql \
+  --character-set-server=utf8 \
+  --collation-server=utf8_bin \
+  --default-authentication-plugin=mysql_native_password
+
+
+-v /home/docker/zabbix/mysql/my.cnf:/etc/my.cnf `#Guarda la configuración del servidor` \
+
+-- ip 172.22.0.5 \
 
 
 # Servidor zabbix
@@ -166,19 +173,19 @@ sudo docker run \
 
 # Servidor Wen Zabbix nginx
 
-    sudo docker run \
-      --network zabbix-network \
-      --name zabbix-web-nginx-mysql \
-      -dt \
-      -e DB_SERVER_HOST="mysql-server" \
-      -e MYSQL_DATABASE="zabbix" \
-      -e MYSQL_USER="ary" \
-      -e MYSQL_PASSWORD="hmq7381" \
-      -e MYSQL_ROOT_PASSWORD="YjA0OTYajskjadhBiN2EwNWFjMTRjZGU3Yjcy" \
-      -e ZBX_SERVER_HOST="zabbix-server-mysql" \
-      --restart unless-stopped \
-      -p 8081:8080 \
-      zabbix/zabbix-web-nginx-mysql
+sudo docker run \
+  --network zabbix-network \
+  --name zabbix-web-nginx-mysql \
+  -dt \
+  -e DB_SERVER_HOST="mysql-server" \
+  -e MYSQL_DATABASE="zabbix" \
+  -e MYSQL_USER="ary" \
+  -e MYSQL_PASSWORD="hmq7381" \
+  -e MYSQL_ROOT_PASSWORD="YjA0OTYajskjadhBiN2EwNWFjMTRjZGU3Yjcy" \
+  -e ZBX_SERVER_HOST="zabbix-server-mysql" \
+  --restart unless-stopped \
+  -p 8081:8080 \
+  zabbix/zabbix-web-nginx-mysql
 
 # DockerHub: https://hub.docker.com/r/zabbix/zabbix-web-nginx-mysql
 
@@ -415,25 +422,48 @@ sudo docker run -d \
 
 #  Docker Wireguard 
 
+  #VPN Casa 
+  sudo docker run -d \
+      --name=wireguard \
+      --cap-add=NET_ADMIN \
+      --cap-add=SYS_MODULE \
+      -e PUID=1000 \
+      -e PGID=1000 \
+      -e TZ=Europe/London \
+      -e SERVERURL=arycasa.duckdns.org `#optional` \
+      -e SERVERPORT=51820 `#optional` \
+      -e PEERS=ary_cel,ary_notebook,ary_ssd,fede_cel,fede_notebook,nego_cel,nego_notegook,renzo_cel,renzo_notebook,pepe_notebook,pepe_cel `#optional` \
+      -e PEERDNS=8.8.8.8 `#optional` \
+      -e INTERNAL_SUBNET=10.0.2.0 `#optional` \
+      -e ALLOWEDIPS=0.0.0.0/0 `#optional` \
+      -p 51820:51820/udp \
+      -v /home/docker/wireguard/config:/config \
+      -v /home/docker/wireguard/lib/modules:/lib/modules \
+      --sysctl="net.ipv4.conf.all.src_valid_mark=1" \
+      --restart=always \
+      lscr.io/linuxserver/wireguard
+      
+
+# VPN Montevideo Colors     
 sudo docker run -d \
-    --name=wireguard \
-    --cap-add=NET_ADMIN \
-    --cap-add=SYS_MODULE \
-    -e PUID=1000 \
-    -e PGID=1000 \
-    -e TZ=Europe/London \
-    -e SERVERURL=arycasa.duckdns.org `#optional` \
-    -e SERVERPORT=51820 `#optional` \
-    -e PEERS=ary_cel,ary_notebook,ary_ssd,fede_cel,fede_notebook,nego_cel,nego_notegook,renzo_cel,renzo_notebook,pepe_notebook,pepe_cel `#optional` \
-    -e PEERDNS=8.8.8.8 `#optional` \
-    -e INTERNAL_SUBNET=10.0.2.0 `#optional` \
-    -e ALLOWEDIPS=0.0.0.0/0 `#optional` \
-    -p 51820:51820/udp \
-    -v /home/docker/wireguard/config:/config \
-    -v /home/docker/wireguard/lib/modules:/lib/modules \
-    --sysctl="net.ipv4.conf.all.src_valid_mark=1" \
-    --restart=always \
-    lscr.io/linuxserver/wireguard
+  --name=wireguard \
+  --cap-add=NET_ADMIN \
+  --cap-add=SYS_MODULE \
+  -e PUID=1000 \
+  -e PGID=1000 \
+  -e TZ=Europe/London \
+  -e SERVERURL=montevideocolors.duckdns.org `#optional` \
+  -e SERVERPORT=51820 `#optional` \
+  -e PEERS=ary_cel,ary_notebook,ary_ssd,martin,ary_compartir `#optional` \
+  -e PEERDNS=8.8.8.8 `#optional` \
+  -e INTERNAL_SUBNET=10.0.2.0 `#optional` \
+  -e ALLOWEDIPS=0.0.0.0/0 `#optional` \
+  -p 51820:51820/udp \
+  -v /home/docker/wireguard/config:/config \
+  -v /home/docker/wireguard/lib/modules:/lib/modules \
+  --sysctl="net.ipv4.conf.all.src_valid_mark=1" \
+  --restart=always \
+  lscr.io/linuxserver/wireguard
 
 # meter al inicio 
 mount /dev/sdb2 /media/data 

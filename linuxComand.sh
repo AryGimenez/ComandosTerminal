@@ -454,7 +454,10 @@ sudo rsync -av roms/ /media/ary/Storage      # Copia un Directorio (Hay detalles
 # -- Comando pàra monitorizar recursos 
 htop 
 
+ # -- Instalar
+ sudo apt-get install htop # Ubuntu
 
+ sudo yum install htop # Fedora Centos 
 
 # --Ve el contenido de el dicrectiorio acutal
   ls
@@ -591,6 +594,24 @@ sudo update-rc.d scrip defaults
 # -- Formatear Dico <F> <?> NO logre hacerlo andar
    # Fat 32
    sudo mkfs.vfat -F 32 -n Mi_Memoria /dev/sdc1
+
+
+# -- Agente de Zabbix 
+  
+  #Abilitar
+  sudo apt-get install zabbix-agent
+
+  #Ver estado
+  systemctl status zabbix-agent
+
+  #Configurar agente
+  vim /etc/zabbix/zabbix_agentd.conf
+  	Server= # [Pocicion 117] Ip o Dns de donde se permite la recoleccion de la informacion
+	ListenPort=10059  # [Pocicion 125] puerto de escucha de el agente 
+	ServerActive=  # [Pocicion ???]  Ip o DNS de el servidor o proxy zabbix donde se va a mandar la infromacion de el agente 
+	Hostname= # [Pocicion 167]  Nombre de el agente figura en el servidor 
+
+
 
 
 # -- Muestra la informacion de la red
@@ -838,11 +859,16 @@ docker network create -d macvlan \
     # Agreuge a docker run
       --network "NameNetwork" #
       --network-alias "Alias" # Este Alias se utiliza para poder identificar mejor el contenedor en la Network de doekder creada <F>
+
 # -- Para ver las network de docker en el sistema
   docker network ls
 
 # -- Ver informacion de la red de docker
   docker run -it --network "NetworkDocker" nicolaka/netshoot
+
+# Vincular contenedor en ejecucion a una docker network
+sudo docker network connect "docker network" "nombre contenedor"
+
 
 
 # Verifique clave de huella digital
