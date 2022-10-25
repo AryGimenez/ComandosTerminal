@@ -532,8 +532,11 @@ dpkg --get-selections | grep linux-headers #Este muestra las instladas
 # -- Instalar *.deb en ubuntu
 sudo dpkg -i archivo.deb
 
+# -- Buscar y remplazar contenido de un archivo https://geekland.eu/uso-del-comando-sed-en-linux-y-unix-con-ejemplos/
+sed 's/texto_a_buscar/texto_a_reemplazar/' <fichero_a_reemplazar >fichero_nuevo
 
-# -- Utilizacion  CAT https://www.tiendalinux.com/docs/manuales/redhat/rhl-gsg-es-7.3/s1-navigating-usingcat.php3 
+
+# -- Utilizacion  CATLeer contenido de un archivo en la terminal https://www.tiendalinux.com/docs/manuales/redhat/rhl-gsg-es-7.3/s1-navigating-usingcat.php3 
 cat archivo.txt
 
   # -- Alternativas a cat mas estilizadas https://www.genbeta.com/linux/9-alternativas-modernas-a-comandos-clasicos-linux
@@ -644,8 +647,12 @@ nmap -sP [IP]/24 # Escanea la red
 
 nmap -sn [IP]/24 # Escanea Ip dante los mac
 
+sudo nmap -n -sP [IP]/24 | awk '/Nmap scan report/{printf $5;printf " =>  ";getline;getline;print $3;}' # Lista IP y MAC
+
 # Instalar nmap Ubuntu
 sudo apt install nmap
+
+
 
 # -- Reiniciar la configuracion de todas las interfaces
 service networking reload
@@ -782,6 +789,10 @@ sudo curl \
 	         -o /etc/bash_completion.d/docker-compose
 # -- Para Desintalar docker-compose
 sudo rm /usr/local/bin/docker-compose
+
+# -- Ver el estado de el servicio docker 
+sudo systemctl status docker 
+
 
 # -- ejecuta un docker-compose
 docker-compose up -d

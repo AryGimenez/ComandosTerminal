@@ -126,24 +126,26 @@ sudo chown -R 508:508 /home/docker/Omada/data /home/docker/Omada/work /home/dock
 
 #Zabbix 
 
-    sudo docker network create \
-      --driver bridge \
-      zabbix-network
+sudo docker network create \
+  --driver bridge \
+  --subnet 192.168.100.0/16 \
+  --gateway 192.168.100.1 \
+  zabbix-network
 
 
 # Conenedor Mysql - Para Zabbix 
 sudo docker run \
-  --network redPrueba \
-  --ip 192.168.100.10 \
-  --hostname=mysql-server2 \
+  --network zabbix-network \
+  --ip 192.168.100.2 \
+  --hostname=mysql-server \
   -dt \
-  --name mysql-server2 \
+  --name mysql-server \
   -v /home/docker/zabbix/mysql:/var/lib/mysql `#Directorio donde se guarda la base de datos ` \
   -e MYSQL_DATABASE="zabbix" \
   -e MYSQL_USER="ary" \
   -e MYSQL_PASSWORD="hmq7381" \
   -e MYSQL_ROOT_PASSWORD="YjA0OTYajskjadhBiN2EwNWFjMTRjZGU3Yjcy" \
-  --restart unless-stopped mysql \
+  --restart unless-stopped mysql@sha256:b9532b1edea72b6cee12d9f5a78547bd3812ea5db842566e17f8b33291ed2921 \
   --character-set-server=utf8 \
   --collation-server=utf8_bin \
   --default-authentication-plugin=mysql_native_password
