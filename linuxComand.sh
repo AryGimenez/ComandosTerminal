@@ -535,6 +535,9 @@ sudo dpkg -i archivo.deb
 # -- Buscar y remplazar contenido de un archivo https://geekland.eu/uso-del-comando-sed-en-linux-y-unix-con-ejemplos/
 sed 's/texto_a_buscar/texto_a_reemplazar/' <fichero_a_reemplazar >fichero_nuevo
 
+# -- Se utiliza para dar formato a la saluda de un comando. https://geekland.eu/uso-del-comando-awk-en-linux-y-unix-con-ejemplos/ 
+ps | awk '{print $num_columna}'
+
 
 # -- Utilizacion  CATLeer contenido de un archivo en la terminal https://www.tiendalinux.com/docs/manuales/redhat/rhl-gsg-es-7.3/s1-navigating-usingcat.php3 
 cat archivo.txt
