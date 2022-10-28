@@ -145,7 +145,7 @@ sudo docker run \
   -e MYSQL_USER="ary" \
   -e MYSQL_PASSWORD="hmq7381" \
   -e MYSQL_ROOT_PASSWORD="YjA0OTYajskjadhBiN2EwNWFjMTRjZGU3Yjcy" \
-  --restart unless-stopped mysql@sha256:b9532b1edea72b6cee12d9f5a78547bd3812ea5db842566e17f8b33291ed2921 \
+  --restart unless-stopped mysql \
   --character-set-server=utf8 \
   --collation-server=utf8_bin \
   --default-authentication-plugin=mysql_native_password
