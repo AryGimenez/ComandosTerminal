@@ -277,8 +277,13 @@ sudo add-apt-repository --remove ppa:webupd8team/atom
   wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | zsh
   chsh -s `which zsh`
 
-  # Hacer que ZSH funcione en  ROOT <F> https://askubuntu.com/questions/521469/oh-my-zsh-for-the-root-and-for-all-user
-    sudo apt -i curl
+# Tema que uso por defecot para zsh https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
+vim ~/zshrc
+	ZSH_THEME="agnoster" # Modificar esta lina para que se vea de esta manera 
+
+
+# Hacer que ZSH funcione en  ROOT <F> https://askubuntu.com/questions/521469/oh-my-zsh-for-the-root-and-for-all-user
+    sudo apt -i curl # Corregir no anda 
     sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
     sudo ln -s /root/.zshrc $HOME/.zshrc
@@ -291,7 +296,6 @@ mkdir ~/.zsh/zsh-autosuggestions # Crear el directorio
 git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions
 vim ~/.zshrc #modificar directorio de configuracion
 	source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh # agregar linia 
-
 
 
 
