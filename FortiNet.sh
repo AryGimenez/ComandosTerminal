@@ -38,6 +38,10 @@ set allowaccess
 # -- Ver monitor dhcp
 execute dhcp lease-list
 
+# -- Capturar paquetes 
+diagnose sniffer packet any "host 192.168.0.26" 4
+
+
 
 # -- Acer ping 
 execute ping "IP"
