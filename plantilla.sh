@@ -91,6 +91,9 @@ sudo docker run -d \
 # Omada Controller 
 
 sudo docker run -d \
+  --network zabbix-network \
+  --ip 192.168.100.50 \
+  --hostname=omada-controller \
   --name omada-controller \
   --rm \
   -p 8088:8088 \
@@ -160,7 +163,9 @@ sudo docker run \
 
 sudo docker run \
   --network zabbix-network \
-  --name zabbix-server-mysql \
+  --ip 192.168.100.3 \
+  --hostname=zabbix-server \
+  --name zabbix-server \
   -dt \
   -e DB_SERVER_HOST="mysql-server" \
   -e MYSQL_DATABASE="zabbix" \
@@ -177,7 +182,9 @@ sudo docker run \
 
 sudo docker run \
   --network zabbix-network \
-  --name zabbix-web-nginx-mysql \
+  --ip 192.168.100.4 \
+  --hostname=zabbix-web-nginx \
+  --name zabbix-web-nginx \
   -dt \
   -e DB_SERVER_HOST="mysql-server" \
   -e MYSQL_DATABASE="zabbix" \
