@@ -76,12 +76,28 @@ sudo docker stop plex
 
 
 # DuckDNS
-sudo docker run -d \
+  # Casa ary
+  sudo docker run -d \
+      --name=duckdns \
+      -e PUID=1000 `#optional` \
+      -e PGID=1000 `#optional` \
+      -e TZ=Europe/London \
+      -e SUBDOMAINS=arycasa.duckdns.org \
+      -e TOKEN=04e49b80-78e9-4d42-8c27-7f508672984c \
+      -e LOG_FILE=false `#optional` \
+      -v /home/docker/duckdns/config:/config `#optional` \
+      --restart unless-stopped \
+      lscr.io/linuxserver/duckdns
+    
+
+    
+  # Montevideo Colors 
+  sudo docker run -d \
     --name=duckdns \
     -e PUID=1000 `#optional` \
     -e PGID=1000 `#optional` \
     -e TZ=Europe/London \
-    -e SUBDOMAINS=arycasa.duckdns.org \
+    -e SUBDOMAINS=montevideocolors.duckdns.org \
     -e TOKEN=04e49b80-78e9-4d42-8c27-7f508672984c \
     -e LOG_FILE=false `#optional` \
     -v /home/docker/duckdns/config:/config `#optional` \
@@ -91,6 +107,9 @@ sudo docker run -d \
 # Omada Controller 
 
 sudo docker run -d \
+  --network zabbix-network \
+  --ip 192.168.100.50 \
+  --hostname=omada-controller \
   --name omada-controller \
   --rm \
   -p 8088:8088 \
@@ -128,15 +147,12 @@ sudo chown -R 508:508 /home/docker/Omada/data /home/docker/Omada/work /home/dock
 
 sudo docker network create \
   --driver bridge \
-  --subnet 192.168.100.0/16 \
-  --gateway 192.168.100.1 \
   zabbix-network
 
 
 # Conenedor Mysql - Para Zabbix 
 sudo docker run \
   --network zabbix-network \
-  --ip 192.168.100.2 \
   --hostname=mysql-server \
   -dt \
   --name mysql-server \
@@ -160,7 +176,8 @@ sudo docker run \
 
 sudo docker run \
   --network zabbix-network \
-  --name zabbix-server-mysql \
+  --hostname=zabbix-server \
+  --name zabbix-server \
   -dt \
   -e DB_SERVER_HOST="mysql-server" \
   -e MYSQL_DATABASE="zabbix" \
@@ -177,14 +194,14 @@ sudo docker run \
 
 sudo docker run \
   --network zabbix-network \
-  --name zabbix-web-nginx-mysql \
+  --name zabbix-web-nginx \
   -dt \
   -e DB_SERVER_HOST="mysql-server" \
   -e MYSQL_DATABASE="zabbix" \
   -e MYSQL_USER="ary" \
   -e MYSQL_PASSWORD="hmq7381" \
   -e MYSQL_ROOT_PASSWORD="YjA0OTYajskjadhBiN2EwNWFjMTRjZGU3Yjcy" \
-  -e ZBX_SERVER_HOST="zabbix-server-mysql" \
+  -e ZBX_SERVER_HOST="zabbix-server" \
   --restart unless-stopped \
   -p 8081:8080 \
   zabbix/zabbix-web-nginx-mysql
