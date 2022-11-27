@@ -38,7 +38,7 @@ set allowaccess
 # -- Ver monitor dhcp
 execute dhcp lease-list
 
-# -- Capturar paquetes 
+# -- Capturar paquetes - capturar trafico  
 diagnose sniffer packet any "host 192.168.0.26" 4
 
 

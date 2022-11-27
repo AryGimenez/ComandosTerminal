@@ -21,4 +21,5 @@ Alt+Shift #-- Duplica el cursor permiente escribir lo mismo en varias lineas
 
 Shift + Tabular # -- Des tabular código
 
+Ctr + W # -- Cerrar paneles
 

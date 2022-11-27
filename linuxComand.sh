@@ -471,7 +471,7 @@ htop
   ls -lah # todo lo de arriba
 
 # -- Ver los IP y los puertos de mi host
- sudo lsof -i -P -n # https://geekflare.com/es/lsof-command-examples/
+sudo lsof -i -P -n # https://geekflare.com/es/lsof-command-examples/
 
 # -- Ver la información del puerto pasado por parámetro 
 netstat -putona | grep numero-de-puerto
@@ -522,7 +522,7 @@ sudo dnf install java-1.8.0-openjdk # instalamos java 8
 
 
 
-# -- Sabre la versión actual
+# -- Saber la versión de linux actual
 lsb_release -a
 
 # -- Saber la Vercion del kernel acual
@@ -621,6 +621,14 @@ sudo update-rc.d scrip defaults
 	ServerActive=  # [Pocicion ???]  Ip o DNS de el servidor o proxy zabbix donde se va a mandar la infromacion de el agente 
 	Hostname= # [Pocicion 167]  Nombre de el agente figura en el servidor 
 
+# -- Firewarll mediatne UFW  https://tutorialesit.com/configurar-firewall-de-ubuntu-mediante-ufw/
+sudo ufw allow 22/tcp # Abrir puerto
+
+sudo ufw enable # Abilitar Firewarll
+
+sudo ufw status # Ver puertos abiertos 
+
+sudo ufw disable # Desabilitar Firewarll
 
 
 
@@ -802,7 +810,21 @@ sudo systemctl status docker
 
 
 # -- ejecuta un docker-compose
+# El operador -b es para que se ejecute en ditach para poder seguir usando la consola
+# Par que el DockerCompose se reconsturya es usamos --build
+
 docker-compose up -d
+
+# -- Deterner docker-compose
+docker-compose down
+
+
+# -- Mirar contenedores 
+docker-compose ps 
+
+# -- Ver los log de el docker compose
+docker-compose logs -f 
+
 
 #   <PROBAR>
     # -- Instalar nginex
@@ -1045,9 +1067,8 @@ git add Directoreio_o_archivo
 
 	git add -A #-- <?> diferencias entre add .
 
-
-# -- remover del steting area
-git rm --cached Archivo_a_eliminar
+# -- Remover del área de Staied  <-> Remove stage area
+git restore --staged  [Archivo_a_Sacar]
 
 # git rm -r  --cached si es directorio
 git rm --force #- Elimina el archivo de el disoco
@@ -1070,7 +1091,20 @@ git merge '@{u}'
 
 
 # -- Para comitiar el codigo
-	git commit -m "Mensaje"
+  git commit -m "Mensaje"
+
+  # Crear comité con un editor <-> Create a committee with an editor 
+  git commit -a 
+
+
+
+# -- Cambiar de editor par realizar commit <-> Change editor to commit
+
+  # Para utilizar Nanao <-> To use nanao 
+  git config core.editor "nano"
+
+  # Para utilizar VIM <-> To use VIM
+  git config --global core.editor "vim --nofork"
 
 # -- Historial de el codigo
 git log
