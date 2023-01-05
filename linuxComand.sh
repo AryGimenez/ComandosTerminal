@@ -534,7 +534,10 @@ dpkg -l | grep linux-image # Este muestra mas informacion
 dpkg --get-selections | grep linux-headers #Este muestra las instladas
 
 # -- Instalar *.deb en ubuntu
-sudo dpkg -i archivo.deb
+sudo dpkg -i archivo.deb  # Desde el 03/1/2023 Esta dando error
+
+sudo apt -f install ./archivo.deb # No lo tengo claro pero funciona 
+1
 
 # -- Buscar y remplazar contenido de un archivo https://geekland.eu/uso-del-comando-sed-en-linux-y-unix-con-ejemplos/
 sed 's/texto_a_buscar/texto_a_reemplazar/' <fichero_a_reemplazar >fichero_nuevo
@@ -907,6 +910,10 @@ docker network create -d macvlan \
 
 # -- Para ver las network de docker en el sistema
   docker network ls
+
+# -- Elimina la docker network que no estamos utilizando <--> Delete the docker network that we are not using 
+ sudo docker network prune
+ 
 
 # -- Ver informacion de la red de docker
   docker run -it --network "NetworkDocker" nicolaka/netshoot
