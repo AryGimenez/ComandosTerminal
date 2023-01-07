@@ -648,6 +648,24 @@ ifdown "INTERFACE"
 # -- Conecta la interface de red
 ifconfig "Interface" up
 
+
+# -- Configurar interfaz de red Ubuntu Server
+cd /etc/netplan
+# Busco los archivos *.yaml y modifico
+vim archivo.yaml
+
+# Estructura de ejemplo
+ network:
+   ethernets:
+     enp3s0:
+       dhcp4: true
+     enxf8e43b2c7c53:
+       dhcp4: true
+   version: 2
+
+
+
+
 # -- Escanear segun rango de  puertos nmap 
 nmap -p [RangoPuerto 13-32] [IP]
 
