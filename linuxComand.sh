@@ -525,6 +525,29 @@ sudo dnf install java-1.8.0-openjdk # instalamos java 8
 # -- Saber la versión de linux actual
 lsb_release -a
 
+# -- Fecha actual
+date
+
+# -- Ver Zona Horaria
+timedatectl
+
+# -- Ver una lista de zona horarias
+timedatectl list-timezones
+
+
+# -- Modificar zona horaria Montevideo Uruguay
+timedatectl set-timezone America/Montevideo
+
+# -- Actualizar hora con el servidor 
+sudo ntpdate 0.pool.ntp.org 1.pool.ntp.org 2.pool.ntp.org 3.pool.ntp.org 0.south-america.pool.ntp.org
+
+
+
+
+# -- Modificar hora 
+
+
+
 # -- Saber la Vercion del kernel acual
 uname -r
 
