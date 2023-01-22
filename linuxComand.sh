@@ -547,6 +547,9 @@ sudo ntpdate 0.pool.ntp.org 1.pool.ntp.org 2.pool.ntp.org 3.pool.ntp.org 0.south
 # -- Modificar hora 
 
 
+# -- Saver vercion de ubuntu linux 
+lsb_release -a
+
 
 # -- Saber la Vercion del kernel acual
 uname -r
