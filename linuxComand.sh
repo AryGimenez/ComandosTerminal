@@ -674,6 +674,10 @@ ifdown "INTERFACE"
 # -- Conecta la interface de red
 ifconfig "Interface" up
 
+# -- Coneccion PPPOE http://imxing.cn/?p=1811
+sudo nm-connection-editor # Me muestra la interfaz grafica 
+
+
 
 # -- Configurar interfaz de red Ubuntu Server
 cd /etc/netplan
