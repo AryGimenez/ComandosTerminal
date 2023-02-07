@@ -470,6 +470,9 @@ htop
   ls -h # Muestra el peso de los archivos en formatio umano no en SublimeText
   ls -lah # todo lo de arriba
 
+# -- Saber el Tamaño de un directorio https://www.sysadmit.com/2017/09/linux-saber-tamano-directorio.html
+ du -sh Directorio_O_Artchivi
+
 # -- Ver los IP y los puertos de mi host
 sudo lsof -i -P -n # https://geekflare.com/es/lsof-command-examples/
 
