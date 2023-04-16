@@ -463,6 +463,13 @@ htop
 
  sudo yum install htop # Fedora Centos 
 
+# -- Ver memoria de el sistema 
+sudo dmidecode --type memory | less
+
+# -- Ver hardware de el sistema e informacion sistema
+lscpu
+
+
 # --Ve el contenido de el dicrectiorio acutal
   ls
   ls -l Se # musetra los archivos en una lista \Fecha modificacion\ Permisos\ Propiedad
