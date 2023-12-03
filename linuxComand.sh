@@ -463,6 +463,13 @@ htop
 
  sudo yum install htop # Fedora Centos 
 
+# -- Ver memoria de el sistema 
+sudo dmidecode --type memory | less
+
+# -- Ver hardware de el sistema e informacion sistema
+lscpu
+
+
 # --Ve el contenido de el dicrectiorio acutal
   ls
   ls -l Se # musetra los archivos en una lista \Fecha modificacion\ Permisos\ Propiedad
@@ -549,6 +556,9 @@ sudo ntpdate 0.pool.ntp.org 1.pool.ntp.org 2.pool.ntp.org 3.pool.ntp.org 0.south
 
 # -- Modificar hora 
 
+
+# -- Saver vercion de ubuntu linux 
+lsb_release -a
 
 
 # -- Saber la Vercion del kernel acual
@@ -673,6 +683,10 @@ ifdown "INTERFACE"
 
 # -- Conecta la interface de red
 ifconfig "Interface" up
+
+# -- Coneccion PPPOE http://imxing.cn/?p=1811
+sudo nm-connection-editor # Me muestra la interfaz grafica 
+
 
 
 # -- Configurar interfaz de red Ubuntu Server
