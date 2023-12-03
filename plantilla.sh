@@ -268,7 +268,22 @@ sudo docker run \
     
     
     
-    
+# Puertos Lacka Abiertos TCP
+
+ ✘ ary@ary-SSD128  ~  sudo nmap -n -Pn -sS -p- 192.168.0.234
+[sudo] contraseña para ary: 
+Starting Nmap 7.80 ( https://nmap.org ) at 2023-01-08 22:53 -03
+Nmap scan report for 192.168.0.234
+Host is up (0.000090s latency).
+Not shown: 65532 closed ports
+PORT    STATE SERVICE
+111/tcp open  rpcbind
+139/tcp open  netbios-ssn
+445/tcp open  microsoft-ds
+MAC Address: 00:1C:C0:6B:58:A9 (Intel Corporate)
+
+
+
     
     
     
@@ -384,26 +399,24 @@ sudo docker run -d \
 # UniFi Controller 
 
 # En otra red para no compartir el host
-    sudo docker run -d \
-      --name=unifi-controller \
-      --rm \
-      --network Red-AppExterna \
-      --ip 192.168.0.4 \
-      -e PUID=1000 \
-      -e PGID=1000 \
-      -e MEM_LIMIT=1024 `#optional` \
-      -e MEM_STARTUP=1024 `#optional` \
-      -p 8443:8443 \
-      -p 3478:3478/udp \
-      -p 10001:10001/udp \
-      -p 8080:8080 \
-      -p 1900:1900/udp `#optional` \
-      -p 8843:8843 `#optional` \
-      -p 8880:8880 `#optional` \
-      -p 6789:6789 `#optional` \
-      -p 5514:5514/udp `#optional` \
-      -v /home/docker/UniFi-Controller:/config \
-      lscr.io/linuxserver/unifi-controller:latest
+sudo docker run -d \
+  --name=unifi-controller \
+  -e PUID=1000 \
+  -e PGID=1000 \
+  -e MEM_LIMIT=1024 `#optional` \
+  -e MEM_STARTUP=1024 `#optional` \
+  -p 8443:8443 \
+  -p 3478:3478/udp \
+  -p 10001:10001/udp \
+  -p 8080:8080 \
+  -p 1900:1900/udp `#optional` \
+  -p 8843:8843 `#optional` \
+  -p 8880:8880 `#optional` \
+  -p 6789:6789 `#optional` \
+  -p 5514:5514/udp `#optional` \
+  -v /home/docker/UniFi-Controller:/config \
+  --restart=always \
+  lscr.io/linuxserver/unifi-controller:latest
 
 
 # en el mismo host 
@@ -434,7 +447,7 @@ sudo docker run -d \
   #VPN Casa 
   sudo docker run -d \
       --name=wireguard \
-      --cap-add=NET_ADMIN \
+      --cap-add=NET_ADMIN \d
       --cap-add=SYS_MODULE \
       -e PUID=1000 \
       -e PGID=1000 \
@@ -450,7 +463,7 @@ sudo docker run -d \
       -v /home/docker/wireguard/lib/modules:/lib/modules \
       --sysctl="net.ipv4.conf.all.src_valid_mark=1" \
       --restart=always \
-      lscr.io/linuxserver/wireguard
+      lscr.io/linuxserver/wireguard # imagen-docker 
       
 
 # VPN Montevideo Colors     
@@ -504,6 +517,7 @@ docker run \
   -e LOG_STDOUT \
   --name vsftpd \
   fauria/vsftpd
+ mysql-server
 
 
 docker run \
@@ -512,8 +526,7 @@ docker run \
 -p 20:20 
 -p 21:21 \
 -p 21100-21110:21100-21110 \
--e FTP_USER=myuser 
--e FTP_PASS=mypass \
+-e FTP_USER=myuser -e FTP_PASS=mypass \
 -e PASV_ADDRESS=127.0.0.1 \
 -e PASV_MIN_PORT=21100 
 -e PASV_MAX_PORT=21110 \
