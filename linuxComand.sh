@@ -177,7 +177,8 @@ vim /etc/group
 sudo dd bs=1M if=/dev/sda of=/dev/sdb
 
 # -- Crear Pendriver de instalacion 
-sudo dd bs=1M if=/dev/sda of=imagen.iso 
+sudo dd if=/home/ary/Descargas/manjaro-gnome-23.1.0-231215-linux66.iso of=/dev/sdb bs=4M status=progress && sync
+
 
 
 # -- Compartir directorio linux
