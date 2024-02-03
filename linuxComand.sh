@@ -440,6 +440,25 @@ dnf system-upgrade download --releasever=29
 # -- Muestra el directorio actual
 pwd
 
+
+# -- Instalar Tipografia Fuente de letra 
+
+# Crea un directorio .fonts
+mkdir ~.fonts
+
+# Copiar las fuenters al directorio
+cp * ~/.fonts
+
+# Actualizar cache de fuentes
+fc-cache -fv
+
+# Verificar instalacion fuente
+fc-list | grep -i "futura"
+
+
+
+
+
 # -- Instalar GParted
 su -c "yum install gparted" -Teine que tener la terminal permisos de administrador (sudo su)
 
@@ -463,6 +482,12 @@ htop
  sudo apt-get install htop # Ubuntu
 
  sudo yum install htop # Fedora Centos 
+# -- Ver puerto com o dispositivos usb
+ls /dev/tty*
+
+ls /dev/ttyUSB* # muestra solo el USB para Arduino
+
+dmesg | grep tty # muestra ultimos dispositivos conectados
 
 # -- Ver memoria de el sistema 
 sudo dmidecode --type memory | less
@@ -470,6 +495,9 @@ sudo dmidecode --type memory | less
 # -- Ver hardware de el sistema e informacion sistema
 lscpu
 
+# -- ver arbol de directorios 
+sudo apt install tree
+tree # Directorio
 
 # --Ve el contenido de el dicrectiorio acutal
   ls
