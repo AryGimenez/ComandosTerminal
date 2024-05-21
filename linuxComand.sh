@@ -1,210 +1,182 @@
 
 # -------------------------------<<LINUX>>-------------------------------------
-
-# -- VPN WireGuard 
-
-# Instalar en Ubuntu wireguar
+# Instalar WireGuard en Ubuntu
 sudo apt-get install wireguard
 
-# Creo que activa el Wireguard 
-sudo modprode wireguard 
+# Activar el módulo WireGuard
+sudo modprobe wireguard 
 
-# Revisar que WireGuard este activado
+# Verificar que WireGuard esté activado
 lsmod | grep wireguard 
 
-# Conectarme al servidor VPN 
-
+# Conectarse al servidor VPN
 sudo vim /etc/wireguard/wg0.conf
 
-
-# Levantar interfaz de coneccion wireguard <F>
+# Levantar la interfaz de conexión WireGuard
 sudo wg-quick up wg0
 
-
-
-# -- Instlar Visual Studio Code 
+# Instalar Visual Studio Code desde Snap
 sudo snap install --classic code
 
-# -- Actualizar Ubuntu 
+# Actualizar Ubuntu
 sudo apt-get update
 
-# -- Actualizar Manjaro 
+# Actualizar Manjaro
 sudo pacman -Syyu
 
-# -- Descomprimir RAR
+# Descomprimir un archivo RAR
 unrar e "archivo.rar" "directorio Destino"
 
-
-
-# -- Listar claves GPG de el sistema
+# Listar claves GPG del sistema
 sudo apt-key list
 
-
-
-# -- Mostrar contenido codigo QR
+# Mostrar contenido de un código QR
 zbarimg $HOME/codigoqr.png
 
-# Instalar zbrimg 
-sudo pacman -S zbar # ArchiLinux  y Derivados
+# Instalar zbarimg en Arch Linux y derivados
+sudo pacman -S zbar
 
+# Instalar zbar-tools en Ubuntu
 sudo apt-get install zbar-tools
 
-# -- Generar Codigo QR
-qrencode -o imagen2_qr.png -s 9 "Hola! ¿Como va eso?"
+# Generar un código QR
+qrencode -o imagen2_qr.png -s 9 "¡Hola! ¿Cómo va eso?"
 
-# -- Mostrar en terminal Codigo QE
+# Mostrar un código QR en la terminal
 curl qrcode.show -d @imp_details # https://muylinux.xyz/como-generar-codigo-qr-desde-la-terminal-de-linux/
 
+# Copiar entre terminales utilizando xclip
+# (No hay comentario proporcionado)
 
+# Buscar un archivo utilizando 'locate'
+sudo apt install locate
+sudo updatedb # Indexa los archivos para ayudar a 'locate'
 
-# -- Copiar entre terminales xclip <F>
-#<?> No lo entendi bien
+# Buscar archivos utilizando 'find'
+# (No hay comentario proporcionado)
 
-# -- Buscar archivo con <F>
+# Personalizar el inicio de sesión (login)
+# Verificar el archivo lightdm.conf para configurar el inicio de sesión
+# https://geekland.eu/personalizar-y-configurar-lightdm/
 
- # - locate
- sudo apt install locate
-
- sudo updatedb # indexa los archivos para alludar a locate <?><F>
-
- # - find
- find # <?> Terminar
-
-# -- Personalizar login (inicio sesion)  So https://geekland.eu/personalizar-y-configurar-lightdm/ <linuxMin> sp probo 
-vim /etc/lightdm/lightdm.conf # El el archivo lightdm.conf se encuentra la configuracion de inicio 
-
-
-
-# -- Instalar Gimp
+# Instalar Gimp
 sudo apt-get install aptitude
 sudo aptitude install gimp 
 
-# -- Instlar inkscape https://inkscape.org/release/inkscape-1.2/gnulinux/ubuntu/ppa/dl/
+# Instalar Inkscape desde el repositorio PPA
 sudo add-apt-repository ppa:inkscape.dev/stable
 sudo apt update
 sudo apt install inkscape
+# https://inkscape.org/release/inkscape-1.2/gnulinux/ubuntu/ppa/dl/
 
 
-
-# -- Trabajar con Permisos <?> <F>
-# Mas complejo  https://blog.desdelinux.net/permisos-y-derechos-en-linux/
-# Mas simple 
-
-# __Tabla a tener en cuenta --
+# -- Trabajar con Permisos
+# Mas complejo: https://blog.desdelinux.net/permisos-y-derechos-en-linux/
+# Mas simple: __Tabla a tener en cuenta --
 # 1 = --x = ejecución
 # 2 = -w- = escritura
 # 3 = -wx = escritura y ejecución
 # 4 = r-- = lectura
 # 5 = r-x = lectura y ejecución
 # 6 = rw- = lectura y escritura
-# 7 = rwx = lectura, escritura y ejecución-- Trabajar con Permisos <?>
+# 7 = rwx = lectura, escritura y ejecución
 
 # u 	dueño	dueño del archivo o directorio
 # g	grupo	grupo al que pertenece el archivo
 # o	otros	todos los demás usuarios que no son el dueño ni del grupo
-
-#Entonces decimos que 
-
 # +r Sumamos permisos de lectura.
 # +w # Sumamos permisos de Escritura.
 # +x # Sumamos permisos de ejecución 
 
-
-
 chmod archivoOdirectorio
 
-
-# Cambiar el propietario   <?>
-  sudo chown "Usuario" -R "Directiorio" # Directorio
-
-  sudo chown "Usuario" "Archivo" # Archivo
-
-  # cambiar el propietrio y el grupo 
-  sudo chown "Grupo":"Usuario" -R "Directorio" # Directorio
-
-  sudo chown "Grupo":"Usuario" "Archivo" # Archivo
+# Cambiar el propietario
+sudo chown "Usuario" -R "Directiorio" # Directorio
+sudo chown "Usuario" "Archivo" # Archivo
+# cambiar el propietrio y el grupo 
+sudo chown "Grupo":"Usuario" -R "Directorio" # Directorio
+sudo chown "Grupo":"Usuario" "Archivo" # Archivo
 
 # -- Ver contenido de un archivo
 cat
 
-# -- Ver conenido de un archivo en terminal con fortato y nuemro de pagina 
-bat # https://github.com/sharkdp/bat
-
+# -- Ver conenido de un archivo en terminal con formato y número de página 
+# Mas info: https://github.com/sharkdp/bat
+bat
 
 #  -- Reparar Driver Nvidia
-sudo ubnutu-drivers devices # Veo los drives disponible - y el Recomendado <F>
+sudo ubuntu-drivers devices # Veo los drives disponible - y el Recomendado <F>
 sudo apt install "Driver a instalar"
 
-
-# -- Me muestra informacion de compatibilidad de la tarjeta
+# -- Me muestra información de compatibilidad de la tarjeta
 lspci |grep -E "VGA|3D"
-
-<ACA>
-
 
 # -- Instalar un controlador que funciona supuestamente desde 5.4 a 5.11
 sudo apt-get update
 sudo apt-get install nvidia-legacy-340xx-kernel-dkms
 
-# -- Trabajo con Usuarios https://eltallerdelbit.com/usuarios-grupos-linux/
+# -- Trabajo con Usuarios
+# Mas info: https://eltallerdelbit.com/usuarios-grupos-linux/
 
-# --<?> Crear Usuariouseradd
+# -- Crear Usuario
+useradd
 
-# --<F> Modificar Usuario
+# -- Modificar Usuario
 usermod
 
-#-- <F> Agregar Grupo de usuario
+# -- Agregar Grupo de Usuario
 groupadd
 
-# -- Modificar Grupo de usarios <F>
+# -- Modificar Grupo de Usuarios
 gropumod
 
-# -- Elimina Grupo de Usuarios <F>
+# -- Eliminar Grupo de Usuarios
 groupdel
 
-# -- en este archivo podemos ver todos los usuarios creados, sus UID y sus GID.
+# -- Ver usuarios creados, sus UID y sus GID.
 vim /etc/passwd
 
 # -- Ver Hardware instalado
 lshw -short
 
-
-# -- En este archivo podemos ver los GID de los grupos existentes en el sistema, y los usuarios pertenecientes a cada grupo.
+# -- Ver GID de los grupos existentes en el sistema y los usuarios pertenecientes a cada grupo.
 vim /etc/group
-
 
 # -- Clonar Disco
 sudo dd bs=1M if=/dev/sda of=/dev/sdb
 
-# -- Crear Pendriver de instalacion 
+# -- Crear Pendrive de instalación 
 sudo dd if=/home/ary/Descargas/manjaro-gnome-23.1.0-231215-linux66.iso of=/dev/sdb bs=4M status=progress && sync
 
-
-
-# -- Compartir directorio linux
+# -- Compartir directorio en Linux
 groupadd migrupo  # Crea un grupo
-
 useradd -d /home/compartido/ -g migrupo -m useradmin
 
-
-
-# -- Me permite escribir de forma bonita
+# -- Escribir un mensaje bonito
 figlet "Mensaje bonito"
 
-#-- Fechas
-#Dice la fecha
+# -- Fechas
+# Dice la fecha
 
 #  Determinación de si un host remoto está accesible
 ping hostname  # <?>  En mi server no me anduvo
 
-
-# -- Instalar sudo  <Debian> https://profesorweb.es/2017/03/instalar-sudo-en-debian/
+# -- Instalar sudo en Debian
+# Mas info: https://profesorweb.es/2017/03/instalar-sudo-en-debian/
 apt-get install sudo
 vim /etc/sudoers
 tu_usuario ALL=(ALL) ALL # <F> Modificar el archivo y agregar la linea
-# debajko de
-  #User privilege specification
-  root ALL=(ALL) ALL
+# debajo de
+# User privilege specification
+# root ALL=(ALL) ALL
+
+
+////-------//////
+
+
+
+
+
 
 
 # -- Instalar Inkscape
@@ -524,6 +496,7 @@ ll
 
 # -- Crear Directorio
 mkdir Nombre\ de\ Directorio
+
 
 # -- Crear enlace o acceso directo https://www.ionos.es/digitalguide/servidores/configuracion/comando-ln-de-linux/ 
 ln
